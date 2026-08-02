@@ -1,0 +1,65 @@
+title: Equip
+type: object
+additionalProperties: false
+x-ui:
+  displayName: Equip
+  icon: shirt
+properties:
+  gustave:
+    $ref: '#/$defs/loadout'
+    x-ui:
+      displayName: Gustave
+      icon: user
+  maelle:
+    $ref: '#/$defs/loadout'
+    x-ui:
+      displayName: Maelle
+      icon: user
+  lune:
+    $ref: '#/$defs/loadout'
+    x-ui:
+      displayName: Lune
+      icon: user
+  verso:
+    $ref: '#/$defs/loadout'
+    x-ui:
+      displayName: Verso
+      icon: user
+  sciel:
+    $ref: '#/$defs/loadout'
+    x-ui:
+      displayName: Sciel
+      icon: user
+  monoco:
+    $ref: '#/$defs/loadout'
+    x-ui:
+      displayName: Monoco
+      icon: user
+$defs:
+  loadout:
+    type: object
+    additionalProperties: false
+    properties:
+      weapon:
+        type: string
+        x-ui:
+          displayName: Weapon
+          icon: sword
+      pictos:
+        type: array
+        items:
+          type: string
+        maxItems: 3
+        uniqueItems: true
+        x-ui:
+          displayName: Pictos
+          icon: gem
+      skills:
+        type: array
+        items:
+          type: string
+        maxItems: 6
+        uniqueItems: true
+        x-ui:
+          displayName: Skills
+          icon: sparkles

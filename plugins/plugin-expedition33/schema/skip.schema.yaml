@@ -1,0 +1,18 @@
+title: Skip
+type: object
+additionalProperties: false
+x-ui:
+  displayName: Skip
+  icon: fast-forward
+properties:
+  count:
+    type: integer
+    minimum: 0
+    x-ui:
+      displayName: Movie skips (total)
+      icon: skip-forward
+  loading:
+    type: boolean
+    x-ui:
+      displayName: Followed by a loading screen
+      icon: loader

@@ -1,0 +1,18 @@
+title: Formation
+type: object
+additionalProperties: false
+x-ui:
+  displayName: Formation
+  icon: users
+properties:
+  members:
+    type: array
+    items:
+      type: string
+      enum: [gustave, maelle, lune, verso, sciel, monoco]
+    minItems: 1
+    maxItems: 3
+    uniqueItems: true
+    x-ui:
+      displayName: Members
+      icon: user

@@ -1,0 +1,15 @@
+{
+  "name": "@rundocs/plugin-expedition33",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@rundocs/core": "*",
+    "@rundocs/renderer-core": "*",
+    "@rundocs/schema": "*",
+    "hastscript": "^9.0.1",
+    "yaml": "^2.6.1"
+  }
+}
