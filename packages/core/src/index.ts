@@ -7,6 +7,7 @@ export { BlockRegistry } from './block-registry.js';
 export { stateBlockHandler } from './blocks/state-block-handler.js';
 export { noteBlockHandler } from './blocks/note-block-handler.js';
 export { routeBlockHandler } from './blocks/route-block-handler.js';
+export { createComponentBlockHandler } from './blocks/component-block-handler.js';
 export { createHtmlPipeline, createHtmlRegistry, createBlockRegistry } from './pipelines/html.js';
 export { definePlugin, defineConfig } from './plugin.js';
 export type { RundocsPlugin, RundocsConfig } from './plugin.js';

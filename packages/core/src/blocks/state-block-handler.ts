@@ -1,9 +1,9 @@
-import { parseDocument } from 'yaml';
 import { createValidator } from '@rundocs/schema';
 import type { GameSchema } from '@rundocs/schema';
 import type { Diagnostic, SemanticComponent } from '@rundocs/renderer-core';
 import type { BlockHandler, ParsedBlockBody } from '../block-handler.js';
 import { toSemanticState } from '../semantic.js';
+import { parseYamlMapping } from './parse-yaml-mapping.js';
 
 /**
  * The reference BlockHandler — declarative "key: value" state, YAML-parsed and
@@ -17,25 +17,7 @@ export const stateBlockHandler: BlockHandler = {
   kind: 'state',
 
   parse(raw: string): ParsedBlockBody {
-    const doc = parseDocument(raw);
-    const diagnostics: Diagnostic[] = doc.errors.map((e) => ({
-      severity: 'error',
-      message: e.message,
-      line: e.linePos?.[0]?.line,
-    }));
-
-    const parsed = doc.toJS() ?? {};
-    if (typeof parsed !== 'object' || Array.isArray(parsed)) {
-      return {
-        value: {},
-        diagnostics: [
-          ...diagnostics,
-          { severity: 'error', message: 'Block content must be a YAML mapping ("key: value"), not a scalar or list.' },
-        ],
-      };
-    }
-
-    return { value: parsed as Record<string, unknown>, diagnostics };
+    return parseYamlMapping(raw, 'Block content must be a YAML mapping ("key: value"), not a scalar or list.');
   },
 
   validate(value, gameSchema: GameSchema | null): Diagnostic[] {

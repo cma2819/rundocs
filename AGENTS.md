@@ -92,6 +92,17 @@ YAML entirely, `route` expects a YAML list), register it in `createBlockRegistry
 (`packages/core/src/pipelines/html.ts`), and give it a `BlockRenderer` in the same file's
 `blockRenderers.register(...)` calls.
 
+`createBlockRegistry(gameSchema)` also auto-registers one `:::componentName` block per component
+the active GameSchema defines (via `createComponentBlockHandler`, `packages/core/src/blocks/
+component-block-handler.ts`) — no Plugin-side registration needed. It wraps the block's raw body
+as `{ [componentName]: value }` and delegates to the same `createValidator`/`toSemanticState` path
+`stateBlockHandler` uses, so e.g. a `plugin-oot` document can write either
+`:::state\ninventory:\n  bombs: 10\n:::` or the equivalent `:::inventory\nbombs: 10\n:::` — both
+validate and render identically (`kind` stays `"state"`, so the existing state-kind renderer and
+any Plugin-registered `ComponentRenderer` apply unchanged). Component-derived handlers are
+registered before the built-ins, so `state`/`note`/`route` stay reserved even if a component
+happens to share one of those names.
+
 ### StateBlock raw-body extraction
 
 `remark-block-directive.ts` re-reads the directive's body from the **original source text** by
