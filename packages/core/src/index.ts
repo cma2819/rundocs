@@ -1,7 +1,12 @@
-export { remarkStateDirective } from './remark-state-directive.js';
-export { remarkValidateState } from './remark-validate-state.js';
+export { remarkBlockDirective } from './remark-block-directive.js';
+export { remarkValidateBlock } from './remark-validate-block.js';
 export { toSemanticState } from './semantic.js';
-export type { Diagnostic, StateBlockNode } from './mdast-types.js';
-export { createHtmlPipeline, createHtmlRegistry } from './pipelines/html.js';
+export type { Diagnostic, BlockNode } from './mdast-types.js';
+export type { BlockHandler, ParsedBlockBody } from './block-handler.js';
+export { BlockRegistry } from './block-registry.js';
+export { stateBlockHandler } from './blocks/state-block-handler.js';
+export { noteBlockHandler } from './blocks/note-block-handler.js';
+export { routeBlockHandler } from './blocks/route-block-handler.js';
+export { createHtmlPipeline, createHtmlRegistry, createBlockRegistry } from './pipelines/html.js';
 export { definePlugin, defineConfig } from './plugin.js';
 export type { RundocsPlugin, RundocsConfig } from './plugin.js';

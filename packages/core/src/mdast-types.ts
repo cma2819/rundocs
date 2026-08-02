@@ -1,21 +1,19 @@
 import type { Position } from 'unist';
-import type { SemanticComponent } from '@rundocs/renderer-core';
+import type { Diagnostic, SemanticComponent } from '@rundocs/renderer-core';
 
-export interface Diagnostic {
-  severity: 'error' | 'warning';
-  message: string;
-  line?: number;
-}
+export type { Diagnostic };
 
-export interface StateBlockNode {
-  type: 'stateBlock';
-  /** the directive identifier right after ":::" — selects which block kind this is */
+export interface BlockNode {
+  type: 'block';
+  /** the directive name exactly as written after ":::" */
   name: string;
-  /** raw YAML source text, exactly as written (no re-serialization) */
+  /** the BlockHandler.kind that interpreted this block (may differ from `name` when it fell back) */
+  kind: string;
+  /** raw directive body, exactly as written (no re-serialization) */
   raw: string;
-  /** yaml.parse() result, before schema validation */
+  /** BlockHandler.parse() result, before validation */
   value: Record<string, unknown>;
-  /** populated by remarkValidateState */
+  /** populated by remarkValidateBlock */
   semantic?: SemanticComponent[];
   diagnostics: Diagnostic[];
   position?: Position;
@@ -24,6 +22,6 @@ export interface StateBlockNode {
 
 declare module 'mdast' {
   interface RootContentMap {
-    stateBlock: StateBlockNode & import('mdast').Node;
+    block: BlockNode & import('mdast').Node;
   }
 }

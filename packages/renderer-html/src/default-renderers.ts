@@ -1,5 +1,5 @@
 import { h } from 'hastscript';
-import type { ComponentRenderer } from '@rundocs/renderer-core';
+import type { BlockRenderer, ComponentRenderer } from '@rundocs/renderer-core';
 
 /**
  * Zero-configuration renderer: works for any component, whether or not a
@@ -20,5 +20,30 @@ export const genericComponentRenderer: ComponentRenderer<any> = (component) => {
         h('dd', {}, String(f.value)),
       ]),
     ),
+  ]);
+};
+
+/**
+ * BlockRendererRegistry fallback: presentation for any block `kind` that has no
+ * dedicated renderer registered (e.g. a Plugin adds a new BlockHandler but the
+ * HTML renderer package hasn't caught up yet). Never hides content — worst case
+ * it dumps the raw directive body so nothing silently disappears.
+ */
+export const genericBlockRenderer: BlockRenderer<any> = (block) => {
+  const errors = block.diagnostics.filter((d) => d.severity === 'error');
+  if (errors.length > 0) {
+    return h('div', { class: 'state-block state-block--error' }, [
+      h('p', {}, `⚠ ${block.name}: ${errors.length} error(s)`),
+      h(
+        'ul',
+        {},
+        errors.map((d) => h('li', {}, d.line ? `L${d.line}: ${d.message}` : d.message)),
+      ),
+    ]);
+  }
+
+  return h('div', { class: `block block--unknown block--${block.kind}` }, [
+    h('p', {}, `":::${block.name}" (kind "${block.kind}") has no dedicated renderer — showing raw content.`),
+    h('pre', {}, block.raw),
   ]);
 };
