@@ -1,0 +1,6 @@
+id: oot
+title: Ocarina of Time
+componentOrder: [location, inventory]
+components:
+  location: ./schema/location.schema.yaml
+  inventory: ./schema/inventory.schema.yaml

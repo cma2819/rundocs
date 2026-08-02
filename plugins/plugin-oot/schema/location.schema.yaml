@@ -1,0 +1,17 @@
+title: Location
+type: object
+additionalProperties: false
+x-ui:
+  displayName: Location
+  icon: map-pin
+properties:
+  scene:
+    type: string
+    x-ui:
+      displayName: Scene
+      icon: map
+  room:
+    type: string
+    x-ui:
+      displayName: Room
+      icon: door

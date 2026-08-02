@@ -25,6 +25,20 @@ h1, h2, h3 { line-height: 1.3; }
 .component dt { opacity: 0.75; }
 .component dd { margin: 0; font-weight: 600; }
 .icon::before { content: attr(class); font-size: 0; }
+
+/* Shared "slot grid" primitive — available to any Plugin renderer that wants a
+   badge/grid layout instead of the generic key-value list (see plugin-oot's
+   inventory renderer). Not component-specific: any Plugin can reuse these classes. */
+.inventory-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.slot {
+  display: flex; flex-direction: column; align-items: center; gap: 0.15rem;
+  min-width: 4.5rem; padding: 0.4rem 0.6rem; border-radius: 0.4rem;
+  border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  opacity: 0.55;
+}
+.slot--active { opacity: 1; border-color: color-mix(in srgb, currentColor 45%, transparent); }
+.slot-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.75; }
+.slot-value { font-weight: 700; }
 `;
 
 export function wrapDocument(bodyHtml: string, title: string): string {
