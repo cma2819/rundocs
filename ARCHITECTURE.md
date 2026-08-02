@@ -31,26 +31,28 @@ Markdown (自然言語)  ←── 人間が主に読み書きする層
 
 ## 1. アーキテクチャ全体
 
-### 1.1 リポジトリ構成（提案）
+### 1.1 リポジトリ構成
 
 ```
 rundocs/
+├─ ARCHITECTURE.md           # 本ファイル
 ├─ packages/
-│  ├─ core/                 # mdast拡張・remarkプラグイン・パイプライン組み立て
-│  ├─ schema/                # GameSchema型・ajvバリデーション
-│  ├─ renderer-core/         # Renderer共通インターフェース・レジストリ
-│  ├─ renderer-html/         # HTML Renderer（remark-rehype連携）
-│  ├─ renderer-cli/          # ターミナル(ANSI) Renderer
-│  ├─ renderer-pdf/          # HTML Rendererを再利用 + 印刷用CSS/Puppeteer
-│  └─ cli/                   # `rundocs build` / `rundocs check` 等のコマンド
+│  ├─ core/                  # mdast拡張・remarkプラグイン・パイプライン組み立て
+│  ├─ schema/                 # GameSchema型・ajvバリデーション
+│  ├─ renderer-core/          # Renderer共通インターフェース・レジストリ
+│  ├─ renderer-html/          # HTML Renderer（remark-rehype連携）
+│  ├─ renderer-cli/           # ターミナル(ANSI) Renderer（未実装）
+│  ├─ renderer-pdf/           # HTML Rendererを再利用 + 印刷用CSS/Puppeteer（未実装）
+│  └─ cli/                    # `rundocs build` / `rundocs dev` コマンド
 ├─ plugins/
-│  └─ plugin-oot/            # ゲーム固有: Schema・アイコン・カスタムRenderer
-├─ runbooks/
-│  └─ oot-any/
+│  └─ plugin-oot/             # ゲーム固有: Schema・アイコン・カスタムRenderer
+├─ books/                     # Plugin/GameSchemaを使う「本番想定」ワークスペース群
+│  └─ oot-sample/
 │     ├─ rundocs.config.ts
 │     └─ 01-forest-temple.md
-└─ docs/
-   └─ ARCHITECTURE.md        # 本ファイル
+└─ docs/                      # zero-config規約（§11.2）のサンプル/ドキュメント用ワークスペース
+   ├─ index.md
+   └─ 01-example-route.md
 ```
 
 `core` は Markdown ⇔ StateBlock の変換のみを担当し、ゲーム固有知識を一切持ちません。ゲーム知識は全て `plugins/*` に閉じ込めます。
@@ -616,7 +618,7 @@ export default definePlugin({
 プロジェクトルートの設定ファイルで登録します（eslint/remark の config パターンを踏襲）。
 
 ```ts
-// runbooks/oot-any/rundocs.config.ts
+// books/oot-any/rundocs.config.ts
 import { defineConfig } from '@rundocs/core';
 import oot from '@rundocs/plugin-oot';
 
@@ -631,27 +633,87 @@ export default defineConfig({
 
 ---
 
-## 8. `:::name` = Renderer/Block 種別レジストリ
+## 8. `:::name` = Renderer/Block 種別レジストリ ✅ 実装済み
 
-`:::state` 以外の Directive（例: `:::note`, `:::warning`, `:::route-map`）も同じ仕組みで拡張できるよう、Directive 名でハンドラを引くレジストリを core に用意しておくと将来の拡張がスムーズです。
+`:::state` 以外の Directive（例: `:::note`, `:::warning`, `:::route-map`）も同じ仕組みで拡張できるよう、
+Directive 名でハンドラを引くレジストリを実装した。**意味解釈の層（BlockRegistry）** と
+**表現の層（BlockRendererRegistry）** を分け、両方に「フォールバック」を持たせているのがポイント。
+
+### 8.1 意味解釈層: `BlockRegistry`（`@rundocs/core`）
 
 ```ts
-// packages/core/src/block-registry.ts
+// packages/core/src/block-handler.ts
 export interface BlockHandler {
-  name: string;
-  parse(raw: string): unknown;              // YAML以外(例:JSON)も許容できる
-  validate?(value: unknown, ctx: PluginContext): Diagnostic[];
-  toSemantic?(value: unknown, ctx: PluginContext): unknown;
+  kind: string; // BlockRendererRegistryが表示方式を選ぶ際のキー
+  parse(raw: string): ParsedBlockBody;                              // raw -> value + parse diagnostics
+  validate(value: Record<string, unknown>, gameSchema: GameSchema | null): Diagnostic[];
+  toSemantic(value: Record<string, unknown>, gameSchema: GameSchema | null): SemanticComponent[];
 }
 
+// packages/core/src/block-registry.ts
 export class BlockRegistry {
-  private handlers = new Map<string, BlockHandler>();
-  register(handler: BlockHandler) { this.handlers.set(handler.name, handler); }
-  get(name: string) { return this.handlers.get(name); }
+  register(name: string, handler: BlockHandler): void { /* ... */ }
+  setFallback(handler: BlockHandler): void { /* ... */ }
+  resolve(name: string): BlockHandler {
+    return this.handlers.get(name) ?? this.fallback!; // 未登録名はfallbackへ
+  }
 }
 ```
 
-`state` はこのレジストリに登録される最初の標準 Handler という位置づけです。
+`remarkBlockDirective` は `:::name` の `name` を問わず**全ての** containerDirective を
+`BlockRegistry.resolve(name)` に通す。未登録の名前はもう「無視される」のではなく、
+必ずどこかのハンドラ（最終的にはfallback）で解釈される。
+
+### 8.2 フォールバック = 最も汎用的なBlock
+
+`stateBlockHandler`（YAML mapping をパースし、GameSchemaがあれば検証し、無くても
+identity表示名でSemanticComponentを作る）を **`"state"` という名前で明示登録すると同時に、
+`BlockRegistry` のfallbackにも設定する**。「宣言的な key: value 状態」は Schema 前提知識ゼロで
+成立する最小単位であり、これ以上一般化できないため、フォールバックとして最も自然。
+
+```ts
+registry.register('state', stateBlockHandler);
+registry.register('note', noteBlockHandler);   // プレーンテキスト。YAML/Schemaを一切使わない
+registry.register('route', routeBlockHandler); // YAML "list" (mappingでもscalarでもない)を扱う例
+registry.setFallback(stateBlockHandler);       // 未登録の ":::whatever" もstateとして解釈される
+```
+
+`note`/`route` は同じ `BlockHandler` インターフェースを実装しているだけで、raw文字列をどう解釈するかは
+完全に自由（`note`はYAMLを一切パースしない、`route`はmappingではなくlistを期待する）。3つの例
+（`docs/01-example-route.md`）は次のように出力される。
+
+| directive | 解釈 | 表現(HTML) |
+|---|---|---|
+| `:::state` | YAML mapping + GameSchema検証 | Component単位の `<section>` |
+| `:::note` | 生テキストそのまま | `<aside class="block--note">` |
+| `:::route` | YAML list（ウェイポイント列） | `<ol class="block--route">` |
+
+### 8.3 表現層: `BlockRendererRegistry`（`@rundocs/renderer-core`）
+
+意味解釈とは独立に、「`kind` ごとにどう描画するか」を選ぶレジストリを用意した
+（`RendererRegistry` がComponent名でRendererを選ぶのと同じパターンを1階層上に適用したもの）。
+
+```ts
+// packages/renderer-core/src/block-registry.ts
+export class BlockRendererRegistry<TOut> {
+  register(kind: string, renderer: BlockRenderer<TOut>): void { /* ... */ }
+  render(block: SemanticBlock, ctx: RenderContext): TOut {
+    return (this.renderers.get(block.kind) ?? this.fallback)(block, ctx);
+  }
+}
+```
+
+こちらのfallback（`genericBlockRenderer`）は意味解釈層のfallbackとは別物: 将来 Plugin が
+新しい `kind` のBlockHandlerを追加したのに対応するRendererがまだ無い、というケースに備えたもので、
+raw contentをそのまま `<pre>` に出す「何も隠さない」実装にしてある。
+
+### 8.4 実地検証で見つかったバグ
+
+`toSemanticState`（`packages/core/src/semantic.ts`）は元々「Componentの値は必ずYAML mapping」を
+前提にしていた。未登録の directive 名でfallback実行した際、`memo: 何らかの文字列` のように
+**トップレベル値がスカラーになるケース**（`:::state` の直下でネストしたmappingを書かない書き方）で、
+`Object.entries("文字列")` が1文字ずつ分解される実バグを実機ビルドで検出・修正した
+（スカラー/配列値は単一フィールドとして扱うようガード）。
 
 ---
 
@@ -668,12 +730,16 @@ export class BlockRegistry {
 
 ## 10. 実装ロードマップ（提案）
 
-1. `@rundocs/core`: remark-directive + StateBlock抽出 + mdast型定義
-2. `@rundocs/schema`: GameSchema型 + ajv連携 + サンプルSchema(location/player)
-3. `@rundocs/renderer-html` + `rundocs build`: 最小のHTML出力（フォールバックRendererのみ）
-4. サンプル Plugin（1ゲーム分）でエンドツーエンド疎通確認
+1. ✅ `@rundocs/core`: remark-directive + StateBlock抽出 + mdast型定義
+2. ✅ `@rundocs/schema`: GameSchema型 + ajv連携 + サンプルSchema(location/inventory)
+3. ✅ `@rundocs/renderer-html` + `rundocs build`: 最小のHTML出力（フォールバックRendererのみ、`./docs` zero-config）
+4. ✅ サンプル Plugin（`plugins/plugin-oot`）でエンドツーエンド疎通確認
+   - `books/oot-sample/rundocs.config.ts` 経由でPluginを読み込み、Schema駆動のdisplayName/icon、
+     カスタムRenderer（inventoryのスロットグリッド表示）、ajvバリデーションエラーの診断表示
+     （`state-block--error` + 行番号 + コンポーネント名）まで実機で確認済み。
 5. `renderer-cli` → `renderer-pdf` の順で追加
 6. VSCode向けにJSON SchemaをComponent Schemaから自動生成し、`.md`内YAMLの補完/検証を有効化（$schemaコメント埋め込み or `.vscode/settings.json`のyaml.schemas連携）
+7. ライブブラウザリロード（現状 `rundocs dev` はrebuildのみ、websocket/SSEによる自動リロードは未実装）
 
 ---
 
@@ -694,8 +760,8 @@ export class BlockRegistry {
 
 ```
 1. 位置引数が指定されていれば、それがそのままワークスペースになる
-     rundocs dev runbooks/oot-any/          → このディレクトリ配下だけがwatch対象
-     rundocs dev runbooks/oot-any/02-x.md   → 指定ファイルの属するディレクトリがワークスペース
+     rundocs dev books/oot-any/          → このディレクトリ配下だけがwatch対象
+     rundocs dev books/oot-any/02-x.md   → 指定ファイルの属するディレクトリがワークスペース
                                                 (単一ファイルだけを見るモードではなく、
                                                  同じ階層の他ファイルも一緒にwatchされる。
                                                  初期表示だけがそのファイルになる)
@@ -710,10 +776,10 @@ export class BlockRegistry {
      "Watching entire <cwd> — no rundocs.config.ts or ./docs found." と警告を出す
 ```
 
-典型的なフロー（複数ゲームのrunbookが同居するモノレポの場合）:
+典型的なフロー（複数ゲームのbookが同居するモノレポの場合）:
 
 ```bash
-cd runbooks/oot-any
+cd books/oot-any
 rundocs dev
 # → ./rundocs.config.ts を発見 → このディレクトリが workspace → source: "**/*.md" を watch
 ```
