@@ -7,5 +7,8 @@ any coding agent working in this repo and is the primary source of truth. Read i
 
 ## Claude Code-specific notes
 
-None at this time — nothing in this repo currently requires behavior different from what
-AGENTS.md describes.
+- Before implementing a design of non-trivial scale (e.g. a new game Plugin: GameSchema +
+  Component Schemas + Renderers, a new Block kind, or anything that requires several interlocking
+  modeling decisions), enter Plan mode first and get the shape confirmed before writing files —
+  even when the architecture to mirror (e.g. `plugins/plugin-oot`) is already well understood.
+  Small/local fixes don't need this.
