@@ -1,0 +1,16 @@
+{
+  "name": "rundocs-workspace",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "tsx packages/cli/src/index.ts build",
+    "dev": "tsx packages/cli/src/index.ts dev"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
