@@ -1,0 +1,18 @@
+{
+  "name": "@rundocs/cli",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "bin": {
+    "rundocs": "./src/index.ts"
+  },
+  "dependencies": {
+    "@rundocs/core": "*",
+    "@rundocs/renderer-core": "*",
+    "@rundocs/renderer-html": "*",
+    "@rundocs/schema": "*",
+    "chokidar": "^4.0.3",
+    "fast-glob": "^3.3.2"
+  }
+}
