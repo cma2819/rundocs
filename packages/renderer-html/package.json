@@ -1,0 +1,13 @@
+{
+  "name": "@rundocs/renderer-html",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@rundocs/renderer-core": "*",
+    "@rundocs/schema": "*",
+    "hastscript": "^9.0.1"
+  }
+}
