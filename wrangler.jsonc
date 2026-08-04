@@ -1,0 +1,7 @@
+{
+  "name": "rundocs-coe33",
+  "compatibility_date": "2026-08-04",
+  "assets": {
+    "directory": "./books/coe33/dist"
+  }
+}

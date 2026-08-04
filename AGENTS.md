@@ -166,16 +166,27 @@ reliable in every dev/sandboxed environment.
 
 ## Hosting
 
-`books/coe33` is published on Cloudflare Pages (Git integration, production branch `main`) — the
-only book workspace currently public; `oot-sample`/`expedition33-sample` stay build-only regression
-fixtures and are not part of the Pages build target. Project settings (build command, output
-directory, env vars) live in the Cloudflare Pages dashboard, not in this repo — there's no
-`wrangler.toml`. For reference if the project ever needs recreating:
+`books/coe33` is published via Cloudflare Workers Builds (Git integration, production branch
+`main`) as a static-assets-only Worker — the only book workspace currently public;
+`oot-sample`/`expedition33-sample` stay build-only regression fixtures and are not part of the
+deploy target. Workers Builds runs two steps per push: a build command, then a deploy command
+(`npx wrangler deploy` by default), and `wrangler deploy` needs `wrangler.jsonc` (repo root) to
+know what to ship — that file **is** checked into this repo, unlike the rest of the Cloudflare
+project config (Root directory, env vars), which lives only in the dashboard.
 
-- Build command: `npm ci && npx tsc --noEmit && npm run build:coe33`
-- Build output directory: `books/coe33/dist`
-- Root directory: `/`
-- `NODE_VERSION` env var pinned to `20`
+- `wrangler.jsonc`: `name`/`compatibility_date`/`assets.directory` (`./books/coe33/dist`) — no
+  `main` entry point, since this is assets-only, no server-side Worker code.
+- `wrangler` is a root devDependency (Workers Builds uses the version pinned in `package.json`);
+  `npm run deploy:coe33` runs it locally for a manual/one-off deploy.
+- Dashboard project settings (Workers Builds tab):
+  - Build command: `npm ci && npx tsc --noEmit && npm run build:coe33`
+  - Deploy command: default (`npx wrangler deploy`)
+  - Root directory: `/` (must stay repo root — `books/coe33` has no `package.json` of its own;
+    the npm workspaces install and the `tsx` build both need to run from the repo root)
+  - `NODE_VERSION` env var pinned to `20`
+
+`tsc --noEmit` is in the build command because the `tsx`-based build itself doesn't type-check
+(esbuild transpiles only) — without it, a type error could still produce a "successful" deploy.
 
 `tsc --noEmit` is included in the build command because the `tsx`-based build itself doesn't
 type-check (esbuild transpiles only) — without it, a type error could still produce a "successful"

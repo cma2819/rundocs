@@ -10,10 +10,12 @@
     "build": "tsx packages/cli/src/index.ts build",
     "dev": "tsx packages/cli/src/index.ts dev",
     "build:coe33": "tsx packages/cli/src/index.ts build books/coe33",
-    "dev:coe33": "tsx packages/cli/src/index.ts dev books/coe33"
+    "dev:coe33": "tsx packages/cli/src/index.ts dev books/coe33",
+    "deploy:coe33": "wrangler deploy"
   },
   "devDependencies": {
     "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "wrangler": "^4.118.0"
   }
 }
