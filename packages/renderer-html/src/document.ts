@@ -40,6 +40,47 @@ h1, h2, h3 { line-height: 1.3; }
 .slot-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.75; }
 .slot-value { font-weight: 700; }
 
+/* Formation's <ol> stays semantic (turn order matters) but reads better as a
+   left-to-right row of name chips than a numbered vertical list. */
+.formation-order { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+.formation-member {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  font-weight: 600;
+}
+
+/* Equip: weapon chip on its own row, then pictos (a vertical chip column)
+   beside skills (a 2-column chip grid — page1/page2 land in their own
+   column so index i of each page lines up on the same row). */
+.equip-grid { display: flex; flex-direction: column; }
+.equip-card + .equip-card { border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent); margin-top: 0.75rem; padding-top: 0.75rem; }
+.equip-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "name name" "weapon weapon" "pictos skills";
+  column-gap: 1.5rem;
+  row-gap: 0.5rem;
+}
+.equip-card h4 { grid-area: name; margin: 0; }
+.equip-weapon,
+.equip-pictos li,
+.equip-skills-page li {
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  background: color-mix(in srgb, currentColor 5%, transparent);
+}
+.equip-weapon { grid-area: weapon; width: fit-content; font-weight: 600; }
+.equip-pictos {
+  grid-area: pictos;
+  display: flex; flex-direction: column; gap: 0.35rem;
+  list-style: none; margin: 0; padding: 0;
+}
+.equip-skills { grid-area: skills; display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem 0.5rem; align-content: start; }
+.equip-skills-page { display: flex; flex-direction: column; gap: 0.35rem; list-style: none; margin: 0; padding: 0; }
+
 /* ":::encounter" block — a one-shot turn log (title/note + one section per
    turn, each headed "Turn N" with an actions sub-list and an optional note).
    Distinct from the persistent-state Component styling above: a lightweight
