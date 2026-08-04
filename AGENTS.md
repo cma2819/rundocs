@@ -120,6 +120,17 @@ vendor extension (`displayName`/`icon`) that ajv ignores but renderers read. A P
 `load-game-schema.ts` reads and resolves it at plugin load time via `fs` + the `yaml` package —
 there's no custom module loader involved. See `plugins/plugin-oot/` for the full example.
 
+### Book legend pages
+
+`books/coe33/legend.md` is a living reference page listing a minimal working example of every
+Block usable in that book — the core kinds (`state`/`note`/`route`) plus every
+`plugin-expedition33` Component in its standalone `:::componentName` form. Whenever you add a new
+core Block kind, or a new Component to `plugin-expedition33`'s `game.schema.yaml`, add a matching
+example to `books/coe33/legend.md` in the same change — it's meant to stay a complete, buildable
+reference, not fall out of date. Verify with
+`npx tsx packages/cli/src/index.ts build books/coe33` (no `state-block--error` in the output pages
+beyond the always-present CSS rule of that name).
+
 ### Workspace resolution (`packages/cli/src/resolve-input.ts`)
 
 Both `build` and `dev` resolve which directory to treat as the workspace root via, in order:
@@ -152,3 +163,20 @@ literal (nonexistent) path and silently matches nothing. The watcher instead wat
 workspace directory recursively (`recursive: true`) and filters by filename inside the `'all'`
 event handler. It also sets `usePolling: true` because native fs-change notifications aren't
 reliable in every dev/sandboxed environment.
+
+## Hosting
+
+`books/coe33` is published on Cloudflare Pages (Git integration, production branch `main`) — the
+only book workspace currently public; `oot-sample`/`expedition33-sample` stay build-only regression
+fixtures and are not part of the Pages build target. Project settings (build command, output
+directory, env vars) live in the Cloudflare Pages dashboard, not in this repo — there's no
+`wrangler.toml`. For reference if the project ever needs recreating:
+
+- Build command: `npm ci && npx tsc --noEmit && npm run build:coe33`
+- Build output directory: `books/coe33/dist`
+- Root directory: `/`
+- `NODE_VERSION` env var pinned to `20`
+
+`tsc --noEmit` is included in the build command because the `tsx`-based build itself doesn't
+type-check (esbuild transpiles only) — without it, a type error could still produce a "successful"
+deploy.

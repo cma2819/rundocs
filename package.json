@@ -8,7 +8,9 @@
   ],
   "scripts": {
     "build": "tsx packages/cli/src/index.ts build",
-    "dev": "tsx packages/cli/src/index.ts dev"
+    "dev": "tsx packages/cli/src/index.ts dev",
+    "build:coe33": "tsx packages/cli/src/index.ts build books/coe33",
+    "dev:coe33": "tsx packages/cli/src/index.ts dev books/coe33"
   },
   "devDependencies": {
     "tsx": "^4.19.2",
