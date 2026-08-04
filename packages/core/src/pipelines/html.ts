@@ -8,6 +8,7 @@ import { RendererRegistry, BlockRendererRegistry } from '@rundocs/renderer-core'
 import {
   createBlockHandler,
   createStateKindRenderer,
+  encounterKindRenderer,
   genericBlockRenderer,
   genericComponentRenderer,
   noteKindRenderer,
@@ -19,6 +20,7 @@ import { BlockRegistry } from '../block-registry.js';
 import { stateBlockHandler } from '../blocks/state-block-handler.js';
 import { noteBlockHandler } from '../blocks/note-block-handler.js';
 import { routeBlockHandler } from '../blocks/route-block-handler.js';
+import { encounterBlockHandler } from '../blocks/encounter-block-handler.js';
 import { createComponentBlockHandler } from '../blocks/component-block-handler.js';
 
 export function createHtmlRegistry(): RendererRegistry<any> {
@@ -42,6 +44,7 @@ export function createBlockRegistry(gameSchema: GameSchema | null): BlockRegistr
   registry.register('state', stateBlockHandler);
   registry.register('note', noteBlockHandler);
   registry.register('route', routeBlockHandler);
+  registry.register('encounter', encounterBlockHandler);
   registry.setFallback(stateBlockHandler);
   return registry;
 }
@@ -53,6 +56,7 @@ export function createHtmlPipeline(gameSchema: GameSchema | null, componentRegis
   blockRenderers.register('state', createStateKindRenderer(componentRegistry));
   blockRenderers.register('note', noteKindRenderer);
   blockRenderers.register('route', routeKindRenderer);
+  blockRenderers.register('encounter', encounterKindRenderer);
 
   return unified()
     .use(remarkParse)

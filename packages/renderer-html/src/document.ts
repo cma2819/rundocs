@@ -39,6 +39,23 @@ h1, h2, h3 { line-height: 1.3; }
 .slot--active { opacity: 1; border-color: color-mix(in srgb, currentColor 45%, transparent); }
 .slot-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.75; }
 .slot-value { font-weight: 700; }
+
+/* ":::encounter" block — a one-shot turn log (title/note + one section per
+   turn, each headed "Turn N" with an actions sub-list and an optional note).
+   Distinct from the persistent-state Component styling above: a lightweight
+   sectioned layout, no icon/dl grid needed. */
+.block--encounter {
+  border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin: 1.25rem 0;
+}
+.encounter-title { margin: 0 0 0.5rem; font-size: 1rem; }
+.encounter-turns { margin: 0.5rem 0 0; display: flex; flex-direction: column; gap: 0.75rem; }
+.encounter-turn + .encounter-turn { border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent); padding-top: 0.75rem; }
+.encounter-turn-title { margin: 0 0 0.3rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.7; }
+.encounter-actions { margin: 0.25rem 0 0; padding-left: 1.1rem; }
+.encounter-note { margin: 0.3rem 0 0; font-style: italic; opacity: 0.75; }
 `;
 
 export function wrapDocument(bodyHtml: string, title: string): string {
