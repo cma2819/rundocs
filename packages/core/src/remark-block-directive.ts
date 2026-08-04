@@ -19,7 +19,9 @@ export interface RemarkBlockDirectiveOptions {
  */
 export function remarkBlockDirective({ registry }: RemarkBlockDirectiveOptions) {
   return (tree: Root, file: VFile) => {
-    const source = String(file.value);
+    // Normalize CRLF so re-sliced lines don't retain a trailing \r — a stray \r
+    // right before a flow-sequence close (e.g. `[a, b]\r`) breaks the YAML parser.
+    const source = String(file.value).replace(/\r\n/g, '\n');
     const lines = source.split('\n');
 
     visit(tree, 'containerDirective', (node: any, index, parent: Parent | undefined) => {
