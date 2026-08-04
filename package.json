@@ -14,6 +14,7 @@
     "deploy:coe33": "wrangler deploy"
   },
   "devDependencies": {
+    "@types/node": "^20.19.43",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
     "wrangler": "^4.118.0"

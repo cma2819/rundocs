@@ -44,7 +44,6 @@ export async function dev(resolved: ResolvedInput, port = 4173): Promise<void> {
     ignoreInitial: true,
     usePolling: true,
     interval: 300,
-    recursive: true,
   });
   watcher.on('all', async (event, path) => {
     const isRelevant = path.endsWith('.md') || path.endsWith('rundocs.config.ts');

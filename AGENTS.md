@@ -160,9 +160,10 @@ regression fixtures — check both still build cleanly after changes to the core
 `packages/cli/src/dev.ts`'s watcher does **not** pass a glob string to `chokidar.watch()` —
 chokidar v4 dropped glob-pattern support entirely, so a pattern like `"**/*.md"` is treated as a
 literal (nonexistent) path and silently matches nothing. The watcher instead watches the resolved
-workspace directory recursively (`recursive: true`) and filters by filename inside the `'all'`
-event handler. It also sets `usePolling: true` because native fs-change notifications aren't
-reliable in every dev/sandboxed environment.
+workspace directory (chokidar recursively traverses directories it's given by default — no
+explicit option needed there, unlike Node's own `fs.watch`) and filters by filename inside the
+`'all'` event handler. It also sets `usePolling: true` because native fs-change notifications
+aren't reliable in every dev/sandboxed environment.
 
 ## Hosting
 
