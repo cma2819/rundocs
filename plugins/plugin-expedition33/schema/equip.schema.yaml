@@ -63,3 +63,10 @@ $defs:
         x-ui:
           displayName: Skills
           icon: sparkles
+      luminas:
+        type: array
+        items:
+          type: string
+        x-ui:
+          displayName: Luminas
+          icon: orbit

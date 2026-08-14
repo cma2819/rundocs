@@ -73,13 +73,14 @@ members: [gustave, maelle, lune]
 
 ### equip(装備)
 
-キャラクターごとの武器・Pictos(最大3、重複不可)・スキル(最大6、重複不可)。
+キャラクターごとの武器・Pictos(最大3、重複不可)・スキル(最大6、重複不可)・ルミナ(個数制限なし、任意個の文字列)。
 
 :::equip
 maelle:
   weapon: Fleuret d'Argent
   pictos: [Vitalité I]
   skills: [Ruée, Parade Élégante]
+  luminas: [Vitalité I, Regain d'Espoir]
 :::
 
 ### status(成長度合い)

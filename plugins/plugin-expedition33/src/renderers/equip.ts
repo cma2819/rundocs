@@ -6,6 +6,7 @@ interface Loadout {
   weapon?: string;
   pictos?: string[];
   skills?: string[];
+  luminas?: string[];
 }
 
 /**
@@ -24,10 +25,12 @@ function chunkSkills(skills: string[]): [string[], string[]] {
  * Factory-shaped (rather than a single constant) so a book can supply its own
  * id -> displayName map (e.g. localized names) while reusing this layout.
  *
- * DOM order (h4, .equip-weapon, .equip-pictos, .equip-skills) is mapped onto a
- * named-area grid in document.ts — weapon chip on its own row, pictos as a
- * left chip column, skills as a 2-column chip grid (page1/page2 each their
- * own column) — so changing this order also means updating those grid-areas.
+ * DOM order (h4, .equip-weapon, .equip-pictos, .equip-skills, .equip-luminas) is
+ * mapped onto a named-area grid in document.ts — weapon chip on its own row,
+ * pictos as a left chip column, skills as a 2-column chip grid (page1/page2
+ * each their own column), luminas as a wrapped chip row spanning both columns
+ * (unbounded count, unlike the fixed pictos/skills slot counts) — so changing
+ * this order also means updating those grid-areas.
  */
 export function createEquipRenderer(characters: Record<string, CharacterMeta>): ComponentRenderer<any> {
   return (component) => {
@@ -59,6 +62,11 @@ export function createEquipRenderer(characters: Record<string, CharacterMeta>): 
               page2.map((s) => h('li', {}, s)),
             ),
           ]),
+          h(
+            'ul',
+            { class: 'equip-luminas' },
+            (loadout.luminas ?? []).map((l) => h('li', {}, l)),
+          ),
         ]);
       });
 

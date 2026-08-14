@@ -356,3 +356,118 @@ maelle:
 :::skip
 count: 1
 :::
+
+ワールドマップへ
+
+:::skip
+count: 1
+:::
+
+## キャンプ
+
+強化
+
+- マエルウム -> Lv4
+
+眠る
+
+## ワールドマップ
+
+いにしえの聖域へ
+
+## いにしえの聖域
+
+:::skip
+count: 1
+:::
+
+:::encounter
+title: ロバスト・サカパタト
+turns:
+  - note: 盾攻撃はパリィ、他は回避
+  - actions:
+    - character: ルネ
+      action: イモレーション（盾あるときはミス）
+    - character: ギュスターヴ
+      action: スキップ
+    - character: マエル
+      action: スウィフト・ストライド（盾あるときはミス）
+  - actions:
+    - character: ルネ
+      action: スキップ
+    - character: ギュスターヴ
+      action: マーキング・ショット
+    - character: マエル
+      action: ペルセ
+  - note: 回避でOK
+:::
+
+:::skip
+count: 1
+:::
+
+進む
+
+- 装備
+  - ギュスターヴ
+    - サカルアム
+- ルミナ
+  - ギュスターヴ
+    - クリティカルバーン, 死のエネルギーII
+  - マエル
+    - 回避巧者
+
+:::equip
+gustave:
+  weapon: サカルアム
+  pictos: [回避巧者]
+  luminas: [クリティカルバーン, 死のエネルギーII]
+  skills: [マーキング・ショット, オーバーチャージ, パワフル]
+lune:
+  weapon: ライトイム
+  pictos: []
+  skills: [イモレーション, アイスランス]
+maelle:
+  weapon: マエルウム（デフォルト）
+  pictos: [クリティカルバーン, 死のエネルギーII]
+  luminas: [回避巧者]
+  skills: [オフェンス・スイッチ, ペルセ, スウィフト・ストライド]
+:::
+
+
+:::encounter
+title: アルティメット・サカパタト
+turns:
+  - note: 最初の叩きつけ攻撃だけ回避、他はパリィ
+  - actions:
+    - character: ルネ
+      action: イモレーション
+    - character: ギュスターヴ
+      action: パワフル
+    - character: マエル
+      action: スウィフト・ストライド
+  - actions:
+    - character: ルネ
+      action: エイムで盾破壊, スキップ or イモレーション
+    - character: ギュスターヴ
+      action: マーキング・ショット
+    - character: マエル
+      action: ペルセ
+    note: 倒せないことあるかも
+  - actions:
+    - character: ルネ
+      action: AP ティント > マエル or スキップ
+    - character: ギュスターヴ
+      action: マーキング・ショット
+    - character: マエル
+      action: ペルセ
+:::
+
+:::status
+gustave:
+  lv: 10
+lune:
+  lv: 10
+maelle:
+  lv: 10
+:::

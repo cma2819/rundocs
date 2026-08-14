@@ -53,20 +53,22 @@ h1, h2, h3 { line-height: 1.3; }
 
 /* Equip: weapon chip on its own row, then pictos (a vertical chip column)
    beside skills (a 2-column chip grid — page1/page2 land in their own
-   column so index i of each page lines up on the same row). */
+   column so index i of each page lines up on the same row), then luminas
+   (an unbounded, wrapped chip row spanning both columns). */
 .equip-grid { display: flex; flex-direction: column; }
 .equip-card + .equip-card { border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent); margin-top: 0.75rem; padding-top: 0.75rem; }
 .equip-card {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-areas: "name name" "weapon weapon" "pictos skills";
+  grid-template-areas: "name name" "weapon weapon" "pictos skills" "luminas luminas";
   column-gap: 1.5rem;
   row-gap: 0.5rem;
 }
 .equip-card h4 { grid-area: name; margin: 0; }
 .equip-weapon,
 .equip-pictos li,
-.equip-skills-page li {
+.equip-skills-page li,
+.equip-luminas li {
   padding: 0.2rem 0.7rem;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
@@ -80,6 +82,11 @@ h1, h2, h3 { line-height: 1.3; }
 }
 .equip-skills { grid-area: skills; display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem 0.5rem; align-content: start; }
 .equip-skills-page { display: flex; flex-direction: column; gap: 0.35rem; list-style: none; margin: 0; padding: 0; }
+.equip-luminas {
+  grid-area: luminas;
+  display: flex; flex-wrap: wrap; gap: 0.35rem;
+  list-style: none; margin: 0; padding: 0;
+}
 
 /* Status: one card per character (lv badge + a Stats slot-grid + an Attributes
    slot-grid, reusing the shared .inventory-grid/.slot primitive above). */
