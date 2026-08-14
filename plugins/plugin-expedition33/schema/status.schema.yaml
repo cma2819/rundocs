@@ -1,0 +1,126 @@
+title: Status
+type: object
+additionalProperties: false
+x-ui:
+  displayName: Status
+  icon: chart-bar
+properties:
+  gustave:
+    $ref: '#/$defs/status'
+    x-ui:
+      displayName: Gustave
+      icon: user
+  maelle:
+    $ref: '#/$defs/status'
+    x-ui:
+      displayName: Maelle
+      icon: user
+  lune:
+    $ref: '#/$defs/status'
+    x-ui:
+      displayName: Lune
+      icon: user
+  verso:
+    $ref: '#/$defs/status'
+    x-ui:
+      displayName: Verso
+      icon: user
+  sciel:
+    $ref: '#/$defs/status'
+    x-ui:
+      displayName: Sciel
+      icon: user
+  monoco:
+    $ref: '#/$defs/status'
+    x-ui:
+      displayName: Monoco
+      icon: user
+$defs:
+  status:
+    type: object
+    additionalProperties: false
+    properties:
+      lv:
+        type: integer
+        minimum: 0
+        x-ui:
+          displayName: Lv
+          icon: star
+      stats:
+        $ref: '#/$defs/stats'
+        x-ui:
+          displayName: Stats
+          icon: chart-bar
+      attributes:
+        $ref: '#/$defs/attributes'
+        x-ui:
+          displayName: Attributes
+          icon: sparkles
+  stats:
+    type: object
+    additionalProperties: false
+    properties:
+      h:
+        type: integer
+        minimum: 0
+        x-ui:
+          displayName: HP
+          icon: heart
+      s:
+        type: integer
+        minimum: 0
+        x-ui:
+          displayName: Speed
+          icon: wind
+      a:
+        type: integer
+        minimum: 0
+        x-ui:
+          displayName: Attack
+          icon: sword
+      d:
+        type: integer
+        minimum: 0
+        x-ui:
+          displayName: Defense
+          icon: shield
+      c:
+        type: integer
+        minimum: 0
+        x-ui:
+          displayName: Crit Rate
+          icon: target
+  attributes:
+    type: object
+    additionalProperties: false
+    properties:
+      v:
+        type: integer
+        minimum: 0
+        x-ui:
+          displayName: Vitality
+          icon: heart
+      m:
+        type: integer
+        minimum: 0
+        x-ui:
+          displayName: Might
+          icon: sword
+      a:
+        type: integer
+        minimum: 0
+        x-ui:
+          displayName: Agility
+          icon: wind
+      d:
+        type: integer
+        minimum: 0
+        x-ui:
+          displayName: Defense
+          icon: shield
+      l:
+        type: integer
+        minimum: 0
+        x-ui:
+          displayName: Luck
+          icon: clover

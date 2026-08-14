@@ -81,6 +81,21 @@ h1, h2, h3 { line-height: 1.3; }
 .equip-skills { grid-area: skills; display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem 0.5rem; align-content: start; }
 .equip-skills-page { display: flex; flex-direction: column; gap: 0.35rem; list-style: none; margin: 0; padding: 0; }
 
+/* Status: one card per character (lv badge + a Stats slot-grid + an Attributes
+   slot-grid, reusing the shared .inventory-grid/.slot primitive above). */
+.status-grid { display: flex; flex-direction: column; }
+.status-card + .status-card { border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent); margin-top: 0.75rem; padding-top: 0.75rem; }
+.status-card h4 { margin: 0 0 0.5rem; display: flex; align-items: baseline; gap: 0.5rem; }
+.status-lv {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+  background: color-mix(in srgb, currentColor 12%, transparent);
+}
+.status-group-title { margin: 0.5rem 0 0.35rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.7; }
+
 /* ":::encounter" block — a one-shot turn log (title/note + one section per
    turn, each headed "Turn N" with an actions sub-list and an optional note).
    Distinct from the persistent-state Component styling above: a lightweight

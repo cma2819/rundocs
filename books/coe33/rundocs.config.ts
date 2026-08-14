@@ -1,6 +1,7 @@
 import { defineConfig } from '@rundocs/core';
-import expedition33, { createFormationRenderer, createEquipRenderer } from '@rundocs/plugin-expedition33';
+import expedition33, { createFormationRenderer, createEquipRenderer, createStatusRenderer } from '@rundocs/plugin-expedition33';
 import { CHARACTERS_JA } from './characters.ja.js';
+import { STATUS_LABELS_JA } from './status-labels.ja.js';
 
 export default defineConfig({
   plugin: {
@@ -10,6 +11,7 @@ export default defineConfig({
         ...expedition33.renderers?.html,
         formation: createFormationRenderer(CHARACTERS_JA),
         equip: createEquipRenderer(CHARACTERS_JA),
+        status: createStatusRenderer(CHARACTERS_JA, STATUS_LABELS_JA),
       },
     },
   },
