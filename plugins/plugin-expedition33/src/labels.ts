@@ -14,3 +14,18 @@ export const STATUS_LABELS: StatusLabels = {
   stats: { h: 'HP', s: 'Speed', a: 'Attack', d: 'Defense', c: 'Crit Rate' },
   attributes: { v: 'Vitality', m: 'Might', a: 'Agility', d: 'Defense', l: 'Luck' },
 };
+
+export interface SkipLabels {
+  title: string;
+  loading: string;
+}
+
+/**
+ * Default (English) display labels for the `skip` Component. Books can
+ * supply their own via `createSkipRenderer`'s argument — same localization
+ * pattern as `CHARACTERS`/`CHARACTERS_JA` and `STATUS_LABELS`.
+ */
+export const SKIP_LABELS: SkipLabels = {
+  title: 'Skip',
+  loading: 'Loading screen follows',
+};

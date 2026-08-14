@@ -187,3 +187,172 @@ lune:
 gustave:
   lv: 4
 :::
+
+## ワールドマップ
+
+浮遊する水前でキャンプ
+
+:::skip
+count: 1
+:::
+
+浮遊する水へ
+
+## 浮遊する水
+
+エリアinムービー中
+
+- スキル
+  - （ギュスターヴ）ルミエール・アサルト解除
+- ピクトス
+  - ギュスターヴ
+    - 外す, 外す, 回避巧者（Yes）
+- 武器
+  - ルネ
+    - ライトイム
+
+小屋まで進む
+
+:::skip
+count: 1
+loading: true
+:::
+
+:::skip
+count: 1
+:::
+
+マエル合流
+
+- ピクトス
+  - マエル
+    - クリティカルバーン
+    - 死のエネルギーII
+- スキル
+  - マエル
+    - スパーク（3）解除
+
+旗前
+
+- ルネ out-in
+
+キュレーター前強化
+
+- 特性
+  - ギュスターヴ
+    - 素早さ1, 攻撃力残り（6 -> 11）
+  - マエル
+    - 攻撃力All（15）
+  - ルネ
+    - 素早さ All - 1 (5)
+- スキル
+  - ギュスターヴ
+    - マーキングショット
+  - マエル
+    - スウィフト・ストライド
+
+:::status
+lune:
+  attributes:
+    m: 6
+    a: 5
+gustave:
+  attributes:
+    m: 11
+    a: 1
+maelle:
+  attributes:
+    m: 15
+:::
+
+:::equip
+gustave:
+  weapon: ノアルアム（デフォルト）
+  pictos: [回避巧者]
+  skills: [マーキング・ショット, オーバーチャージ, パワフル]
+lune:
+  weapon: ライトイム
+  pictos: []
+  skills: [イモレーション, アイスランス]
+maelle:
+  weapon: マエルウム（デフォルト）
+  pictos: [クリティカルバーン, 死のエネルギーII]
+  skills: [オフェンス・スイッチ, ペルセ, スウィフト・ストライド]
+:::
+
+:::encounter
+title: キュレーター
+turns:
+  - actions:
+    - character: ルネ
+      action: APティント > マエル
+    - character: ギュスターヴ
+      action: マーキング・ショット
+    - character: マエル
+      action: ペルセ
+  - note: 残ったら反撃で終わり
+:::
+
+屋敷から出る
+
+:::skip
+count: 1
+:::
+
+進む
+
+Gobluムービー前
+
+- 隊列
+  - マエル out-in
+- 装備（やってなければ）
+  - ルネ
+    - ライトイム
+
+:::encounter
+title: ゴブル
+turns:
+  - note: 回避する
+  - actions:
+      - character: ルネ
+        action: イモレーション
+      - character: ギュスターヴ
+        action: パワフル
+      - character: マエル
+        action: スウィフト・ストライド
+  - actions:
+      - character: ルネ
+        action: アイスランス
+      - character: ギュスターヴ
+        action: マーキング・ショット
+      - character: マエル
+        action: ペルセ
+    note: ペルセがクリティカルだったら以降も回避
+  - actions:
+      - character: ルネ
+        action: イモレーション
+      - character: ギュスターヴ
+        action: オーバーチャージ
+      - character: マエル
+        action: スウィフト・ストライド
+  - actions:
+      - character: ルネ
+        action: スキップ
+      - character: ギュスターヴ
+        action: マーキング・ショット
+      - character: マエル
+        action: ペルセ
+:::
+
+:::status
+gustave:
+  lv: 7
+lune:
+  lv: 7
+maelle:
+  lv: 7
+:::
+
+:::skip
+count: 1
+:::

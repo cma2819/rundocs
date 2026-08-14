@@ -11,7 +11,7 @@ const MIME: Record<string, string> = {
   '.js': 'text/javascript; charset=utf-8',
 };
 
-export async function dev(resolved: ResolvedInput, port = 4173): Promise<void> {
+export async function dev(resolved: ResolvedInput, port = 4174): Promise<void> {
   let result: BuildResult = await build(resolved);
   console.log(`[rundocs] built ${result.pages.length} page(s) from ${resolved.workspaceRoot} (${resolved.resolvedBy})`);
 

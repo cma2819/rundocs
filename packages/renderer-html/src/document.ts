@@ -112,6 +112,32 @@ h1, h2, h3 { line-height: 1.3; }
 .encounter-turn-title { margin: 0 0 0.3rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.7; }
 .encounter-actions { margin: 0.25rem 0 0; padding-left: 1.1rem; }
 .encounter-note { margin: 0.3rem 0 0; font-style: italic; opacity: 0.75; }
+
+/* ":::skip" marks a cutscene skip in the run's flow rather than persistent
+   party state — it appears many times per page, so its .state-block wrapper
+   drops the generic box (border/background/padding) and the badge itself
+   stays a compact inline pill instead of a boxed section+<dl>. */
+.state-block--skip { border: none; background: none; padding: 0; margin: 0.5rem 0; }
+.skip-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  background: color-mix(in srgb, currentColor 5%, transparent);
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+.skip-badge-count { font-weight: 600; }
+.skip-badge-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding-left: 0.55rem;
+  border-left: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  opacity: 0.75;
+}
 `;
 
 export function wrapDocument(bodyHtml: string, title: string): string {
