@@ -120,6 +120,17 @@ h1, h2, h3 { line-height: 1.3; }
 .encounter-actions { margin: 0.25rem 0 0; padding-left: 1.1rem; }
 .encounter-note { margin: 0.3rem 0 0; font-style: italic; opacity: 0.75; }
 
+/* ":::note" is a supplementary aside/caution called out mid-procedure — an
+   accent-bordered callout (Radix amber) sets it apart from surrounding prose
+   without borrowing the error red used for state-block diagnostics. */
+.block--note {
+  border-left: 3px solid #ffb224;
+  background: color-mix(in srgb, #ffb224 12%, transparent);
+  border-radius: 0.35rem;
+  padding: 0.6rem 1rem;
+  margin: 1.25rem 0;
+}
+
 /* ":::skip" marks a cutscene skip in the run's flow rather than persistent
    party state — it appears many times per page, so its .state-block wrapper
    drops the generic box (border/background/padding) and the badge itself
