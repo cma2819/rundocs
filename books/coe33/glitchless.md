@@ -921,6 +921,8 @@ count: 2
     - 先制攻撃
   - シエル
     - 先制攻撃
+  - モノコ
+    - 先制攻撃
   - マエル
     - 先制攻撃
 
@@ -1037,7 +1039,7 @@ members: [verso, sciel, maelle]
   - ヴェルソ
     - リーダーシップ, 左上
   - シエル
-    - 自己犠牲, 左上
+    - 自己犠牲, 左中
 
 ヴィサージュ戦前
 
@@ -1060,7 +1062,7 @@ sciel:
   skills: [フォーチュン・フューリー, 自己犠牲, ファイアリング・シャドウ, シアリング・ボンド, フォーカス・フォーテル, ハーベスト]
 maelle:
   weapon: メダルウム
-  pictos: [コンボ攻撃I, 土壇場, 先制攻撃]
+  pictos: [コンボ攻撃I, 瀬戸際, 先制攻撃]
   luminas: [死のエネルギーII, インバーテッドアフィニティ, 緊急強化]
   skills: [オフェンス・スイッチ, ペルセ, レイン・オブ・ファイア, スウィフト・ストライド]
 :::
@@ -1121,3 +1123,293 @@ count: 1
 シレーヌへ
 
 ## シレーヌ
+
+ムービーin
+
+- ピクトス
+  - シエル
+    - 完全無欠(1)
+- ルミナス
+  - シエル
+    - 瀬戸際
+  - ヴェルソ
+    - エナジャイズスタートI
+  - マエル
+    - エナジャイズスタートI
+
+旗
+
+強化
+
+- シエル
+  - 攻撃力4 (53)
+  - 残り素早さ (22)
+- マエル
+  - 素早さ全振り (12)
+- ヴェルソ
+  - 攻撃力全振り (26)
+
+:::status
+sciel:
+  attributes:
+    m: 53
+    a: 22
+verso:
+  attributes:
+    m: 26
+    a: 52
+maelle:
+  attributes:
+    m: 63
+    a: 12
+:::
+
+:::encounter
+title: グリッサンド
+turns:
+  - actions:
+    - character: ヴェルソ
+      action: リーダーシップ
+    - character: シエル
+      action: 自己犠牲
+    - character: マエル
+      action: レイン・オブ・ファイア
+  - actions:
+    - character: シエル
+      action: フォーチュン・フューリー > シエル
+    - character: ヴェルソ
+      action: ベルセルク・スラッシュ（APなければディファイアント・ストライク）
+  - actions:
+    - character: マエル
+      action: オフェンス・スイッチ
+    - character: シエル
+      action: グラデエント・スキル > ファイアリング・シャドウ
+:::
+
+シレーヌ前
+
+- ピクトス
+  - マエル
+    - 強化先制攻撃 < 瀬戸際（入れ替え）
+- ルミナ
+  - マエル
+    - 瀬戸際
+- ピクトス
+  - ヴェルソ
+    - 自動加速 (1)
+
+:::equip
+verso:
+  weapon: デラルアム
+  pictos: [自動加速, インバーテッドアフィニティ, 瀬戸際]
+  luminas: [エナジャイズスタートI, クリティカルバーン, 先制攻撃, 死のエネルギーII]
+  skills: [リーダーシップ, ベルセルク・スラッシュ, マーキング・ショット, ディファイアント・ストライク, パワフル]
+sciel:
+  weapon: シエルオン（デフォルト）
+  pictos: [完全無欠, エナジャイジングスタートI]
+  luminas: [インバーテッドアフィニティ, クリティカルバーン, 先制攻撃, 死のエネルギーII, 瀬戸際]
+  skills: [フォーチュン・フューリー, 自己犠牲, ファイアリング・シャドウ, シアリング・ボンド, フォーカス・フォーテル, ハーベスト]
+maelle:
+  weapon: メダルウム
+  pictos: [コンボ攻撃I, 強化先制攻撃, 先制攻撃]
+  luminas: [死のエネルギーII, インバーテッドアフィニティ, エナジャイズスタートI, 瀬戸際, 緊急強化]
+  skills: [オフェンス・スイッチ, ペルセ, レイン・オブ・ファイア, スウィフト・ストライド]
+:::
+
+:::encounter
+title: シレーヌ
+turns:
+  - actions:
+    - character: ヴェルソ
+      action: パワフル
+    - character: シエル
+      action: フォーチュン・フューリー > シエル
+    - character: マエル
+      action: レイン・オブ・ファイア
+  - actions:
+    - character: ヴェルソ
+      action: ヴェルセルク・スラッシュ
+    - character: マエル
+      action: レイン・オブ・ファイア
+    - character: シエル
+      action: グラデエント・スキル > ファイアリング・シャドウ
+:::
+
+:::skip
+count: 1
+:::
+
+キャンプ、寝る
+
+:::skip
+count: 1
+loading: true
+:::
+
+モノリスへ
+
+:::skip
+count: 1
+loading: true
+:::
+
+## モノリス
+
+:::skip
+count: 1
+:::
+
+ペイントレス前までに
+
+- 隊列
+  - マエルout, ヴェルソout, モノコin, シエルout-in
+
+:::formation
+members: [monoco, sciel]
+:::
+
+- ピクトス
+  - シエル
+    - エナジャイズターン (3)
+      - 左2回、AでOK
+- ルミナ
+  - シエル
+    - クリティカルバーンout
+    - 自動加速in
+
+:::encounter
+title: ペイントレス（モノリス）
+turns:
+  - note: ヒールティント > シエル, ハーベスト（失敗）
+  - note: あとはスキップ
+:::
+
+:::skip
+count: 1
+loading: true
+:::
+
+## モノリス内部
+
+道中ジャンプしてメニュー
+
+- モノコout
+- マエルin、シエルout、ヴェルソin、シエルin
+
+道中で回収 「弱点の恩恵」
+
+電車に乗る
+
+:::skip
+count: 1
+:::
+
+旗（）
+
+強化
+
+- 特性
+  - シエル
+    - 素早さ全振り (31)
+- スキル
+  - シエル
+    - シールド・フェイト > 左下
+
+ルノワール前
+
+- 武器
+  - ティスルオン
+- ピクトス
+  - シエル
+    - 弱点の恩恵 < エナジャイズスタートI 
+
+:::equip
+sciel:
+  weapon: ティスルオン
+  pictos: [完全無欠, 弱点の恩恵, エナジャイズターン]
+  luminas: [インバーテッドアフィニティ,  先制攻撃, 死のエネルギーII, 瀬戸際, 自動加速]
+  skills: [フォーチュン・フューリー, 自己犠牲, シールド・フェイト, シアリング・ボンド, フォーカス・フォーテル, ハーベスト]
+verso:
+  weapon: デラルアム
+  pictos: [自動加速, インバーテッドアフィニティ, 瀬戸際]
+  luminas: [エナジャイズスタートI, クリティカルバーン, 先制攻撃, 死のエネルギーII]
+  skills: [リーダーシップ, ベルセルク・スラッシュ, マーキング・ショット, ディファイアント・ストライク, パワフル]
+maelle:
+  weapon: メダルウム
+  pictos: [コンボ攻撃I, 強化先制攻撃, 先制攻撃]
+  luminas: [死のエネルギーII, インバーテッドアフィニティ, エナジャイズスタートI, 瀬戸際, 緊急強化]
+  skills: [オフェンス・スイッチ, ペルセ, レイン・オブ・ファイア, スウィフト・ストライド]
+:::
+
+:::formation
+members: [maelle, sciel, verso]
+:::
+
+:::encounter
+title: ルノワール2戦目
+turns:
+  - actions:
+    - character: マエル
+      action: レイン・オブ・ファイア
+    - character: シエル
+      action: 自己犠牲
+    - character: ヴェルソ
+      action: リーダーシップ
+    - character: シエル
+      action: フォーチュン・フューリー > シエル
+  - actions:
+    - character: ヴェルソ
+      action: ベルセルク・スラッシュ
+    - character: シエル
+      action: グラディエントスキル > シールド・フェイト
+:::
+
+ペイントレス前
+
+- ルミナ
+  <!-- - マエル
+    - 緊急強化 out
+    - エナジャイズスタートI, 自動加速 -->
+  - シエル
+    - 自動加速 out
+    - クリティカルバーン, 強化先制攻撃
+
+:::encounter
+title: ペイントレス第一形態
+turns:
+  - actions:
+    - character: マエル
+      action: レイン・オブ・ファイア
+    - character: シエル
+      action: フォーカス・フォーテル
+    - character: ヴェルソ
+      action: ベルセルク・スラッシュ
+  - actions:
+    - character: シエル
+      action: フォーチュン・フューリー
+    - character: ヴェルソ
+      action: パワフル
+  - actions:
+    - character: マエル
+      action: スウィフト・ストライド
+    - character: シエル
+      action: グラディエントスキル > シールド・フェイト
+:::
+
+:::encounter
+title: ペイントレス第二形態
+turns:
+  - actions:
+    - character: ヴェルソ
+      action: ベルセルク・スラッシュ
+  - actions:
+    - character: シエル
+      action: フォーチュン・フューリー
+  - actions:
+    - character: ヴェルソ
+      action: ベルセルク・スラッシュ
+    - character: マエル
+      action: レイン・オブ・ファイア
+    - character: シエル
+      action: グラディエントスキル > シールド・フェイト
+:::
