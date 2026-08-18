@@ -1,6 +1,6 @@
 # Expedition 33 - Any% Glitchless Story
-- English Guide: https://docs.google.com/document/u/1/d/e/2PACX-1vQE03keLEMNHDpwreijov_UN7Tq1eqiTA7F9pydlbNAyn7uDavmVrHufUKK6ZMFreWCnt0ZDg6VcBpZ/pub
-- Reference: https://www.youtube.com/watch?v=Ru_raFSlok8
+- [English Guide](https://docs.google.com/document/u/1/d/e/2PACX-1vQE03keLEMNHDpwreijov_UN7Tq1eqiTA7F9pydlbNAyn7uDavmVrHufUKK6ZMFreWCnt0ZDg6VcBpZ/pub)
+- [Reference Video](https://www.youtube.com/watch?v=Ru_raFSlok8)
 
 ## ルミエール
 
