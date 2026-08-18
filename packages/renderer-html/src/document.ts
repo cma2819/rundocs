@@ -118,6 +118,7 @@ h1, h2, h3 { line-height: 1.3; }
 .encounter-turn + .encounter-turn { border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent); padding-top: 0.75rem; }
 .encounter-turn-title { margin: 0 0 0.3rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.7; }
 .encounter-actions { margin: 0.25rem 0 0; padding-left: 1.1rem; }
+.encounter-action-note { font-style: italic; opacity: 0.75; }
 .encounter-note { margin: 0.3rem 0 0; font-style: italic; opacity: 0.75; }
 
 /* ":::note" is a supplementary aside/caution called out mid-procedure — an

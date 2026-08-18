@@ -48,9 +48,15 @@ export const encounterKindRenderer: BlockRenderer<any> = (block) => {
                 ? h(
                     'ul',
                     { class: 'encounter-actions' },
-                    actions.map((a) =>
-                      h('li', {}, `${typeof a.character === 'string' ? a.character : '?'}: ${typeof a.action === 'string' ? a.action : '?'}`),
-                    ),
+                    actions.map((a) => {
+                      const actionNote = typeof a.note === 'string' ? a.note : undefined;
+                      const label = `${typeof a.character === 'string' ? a.character : '?'}: ${typeof a.action === 'string' ? a.action : '?'}`;
+                      return h(
+                        'li',
+                        {},
+                        actionNote ? [label, h('span', { class: 'encounter-action-note' }, ` — ${actionNote}`)] : label,
+                      );
+                    }),
                   )
                 : null,
               turnNote ? h('p', { class: 'encounter-note' }, turnNote) : null,

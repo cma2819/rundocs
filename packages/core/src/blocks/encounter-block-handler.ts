@@ -13,8 +13,9 @@ function describeType(v: unknown): string {
  * what happened turn by turn, and any notes — unlike "state", which is a
  * persistent snapshot. Deliberately genre-neutral (not "battle"), same
  * reasoning as why "route" isn't named after any one genre's movement mechanic.
- * No GameSchema involvement (character/action are always free strings). Both
- * the top-level "note" (whole encounter) and each turn's "note" are optional.
+ * No GameSchema involvement (character/action are always free strings). The
+ * top-level "note" (whole encounter), each turn's "note", and each action's
+ * "note" are all optional.
  */
 export const encounterBlockHandler: BlockHandler = {
   kind: 'encounter',
@@ -90,6 +91,10 @@ export const encounterBlockHandler: BlockHandler = {
           diagnostics.push({ severity: 'error', message: `turns[${i}].actions[${j}] is missing required "action".` });
         } else if (typeof action.action !== 'string') {
           diagnostics.push({ severity: 'error', message: `turns[${i}].actions[${j}].action must be a string (got ${describeType(action.action)}).` });
+        }
+
+        if ('note' in action && typeof action.note !== 'string') {
+          diagnostics.push({ severity: 'warning', message: `turns[${i}].actions[${j}].note should be a string (got ${describeType(action.note)}).` });
         }
       });
     });

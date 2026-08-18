@@ -14,6 +14,7 @@ turns:
   - actions:
     - character: ギュスターヴ
       action: 攻撃
+      note: クリティカルだったら次のエイム飛ばせる
   - actions:
     - character: ギュスターヴ
       action: エイム3発（or ヘッドショット＋エイム）-> 攻撃
@@ -64,7 +65,8 @@ title: ランセリエ
 turns:
   - actions:
     - character: ギュスターヴ
-      action: エイム（ヘッドショット含む2発） -> 攻撃
+      action: エイム（弱点含む2発） -> スキップ
+      note: 弱点逃したら3発 > 攻撃
     - character: ランセリエ
       action: 攻撃 （パリィ）
 :::
