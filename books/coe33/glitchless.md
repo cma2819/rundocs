@@ -1,4 +1,6 @@
 # Expedition 33 - Any% Glitchless Story
+- English Guide: https://docs.google.com/document/u/1/d/e/2PACX-1vQE03keLEMNHDpwreijov_UN7Tq1eqiTA7F9pydlbNAyn7uDavmVrHufUKK6ZMFreWCnt0ZDg6VcBpZ/pub
+- Reference: https://www.youtube.com/watch?v=Ru_raFSlok8
 
 ## ルミエール
 
@@ -1366,10 +1368,10 @@ turns:
 
 ペイントレス前
 
+- ピクトス
+  - マエル
+    - コンボ攻撃 I 外す
 - ルミナ
-  <!-- - マエル
-    - 緊急強化 out
-    - エナジャイズスタートI, 自動加速 -->
   - シエル
     - 自動加速 out
     - クリティカルバーン, 強化先制攻撃
@@ -1391,7 +1393,7 @@ turns:
       action: パワフル
   - actions:
     - character: マエル
-      action: スウィフト・ストライド
+      action: オフェンス・スイッチ
     - character: シエル
       action: グラディエントスキル > シールド・フェイト
 :::
@@ -1412,4 +1414,126 @@ turns:
       action: レイン・オブ・ファイア
     - character: シエル
       action: グラディエントスキル > シールド・フェイト
+:::
+
+:::encounter
+title: ペイントレス第二形態
+note: シールド・フェイト
+:::
+
+:::skip
+count: 1
+loading: true
+:::
+
+:::skip
+count: 5
+loading: true
+:::
+
+クレアと会話（いいえ2回）
+
+:::skip
+count: 2
+loading: true
+:::
+
+:::skip
+count: 3
+:::
+
+## ルミエール
+
+ルノワールムービーin
+
+- ピクトス
+  - 強化先制攻撃 out, (2) out, かりそめの力 in
+- ルミナ
+  - 完全無欠 in, エナジャイズスタートI out, 強化先制攻撃 in
+
+:::skip
+count: 1
+loading: true
+:::
+
+:::skip
+count: 1
+:::
+
+全員と会話、選択肢「史上最高の遠征隊をつくる。」
+
+ルミエールへ
+
+:::skip
+count: 1
+:::
+
+- 隊列
+  - マエル out-in
+
+旗（港）
+
+- スキル
+  - シエル
+    - リコート
+    - （ラッシュ, スペクトル・スイープ, ダーク・クレンジング）インターヴェンション > 左上
+  - マエル
+    - スタンダール > 左上
+    - (メッゾ・フォルテ, ) ラストチャンス > 左中
+- 武器強化
+  - マエル
+    - メダルウム > Lv15
+
+アべレイションと戦闘
+
+:::encounter
+title: アベレイション
+note: エネルギーティント, スタンダール
+:::
+
+ジャンプ時にメニュー
+
+- ピクトス
+  - マエル
+    - ショートカット(1)
+
+クリアションは逃げる
+
+クリアション戦後、隊列
+
+- シエル in
+
+:::formation
+members: [verso, maelle, sciel]
+:::
+
+:::encounter
+title: ルノワール（最終）
+turns:
+  - actions:
+    - character: ヴェルソ
+      action: リーダーシップ
+    - character: マエル
+      action: スタンダール
+    - character: シエル
+      action: インターヴェンション 
+    - character: マエル
+      action: ラストチャンス > スタンダール
+:::
+
+:::skip
+count: 2
+:::
+
+「絵を描くのをやめる時だ。」
+
+:::skip
+count: 1
+:::
+
+「マエルとして戦う。」
+
+:::encounter
+title: ヴェルソ
+note: レイン・オブ・ファイア
 :::
