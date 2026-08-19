@@ -2,12 +2,47 @@ const CSS = `
 :root { color-scheme: light dark; }
 body {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  max-width: 46rem;
-  margin: 0 auto;
-  padding: 2rem 1.25rem 6rem;
   line-height: 1.65;
 }
 h1, h2, h3 { line-height: 1.3; }
+
+/* Page shell: a sticky left-rail table of contents beside the reading
+   column. ".toc:empty" collapses the rail (and its gap) for pages with no
+   headings — e.g. the "Runbooks" index page — with no markup branching
+   needed on the renderer-html side. No JS anywhere in this project, so
+   narrow viewports hard-hide the rail rather than growing a JS drawer. */
+.page {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 6rem;
+}
+.page > main { flex: 1; min-width: 0; max-width: 46rem; }
+.toc {
+  position: sticky;
+  top: 1.5rem;
+  flex-shrink: 0;
+  width: 13rem;
+  font-size: 0.85rem;
+}
+.toc:empty { display: none; }
+.toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.25rem; }
+.toc a {
+  display: block;
+  padding: 0.15rem 0 0.15rem 0.7rem;
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.65;
+  border-left: 2px solid color-mix(in srgb, currentColor 15%, transparent);
+}
+.toc a:hover { opacity: 1; border-left-color: currentColor; }
+.toc-h2 a { padding-left: 1.4rem; }
+.toc-h3 a { padding-left: 2.1rem; }
+@media (max-width: 60rem) {
+  .toc { display: none; }
+}
 .state-block {
   border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
   border-radius: 0.5rem;
@@ -159,7 +194,26 @@ h1, h2, h3 { line-height: 1.3; }
 }
 `;
 
-export function wrapDocument(bodyHtml: string, title: string): string {
+export interface Heading {
+  depth: number;
+  id: string;
+  text: string;
+}
+
+const HTML_ESCAPES: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' };
+function escapeHtml(text: string): string {
+  return text.replace(/[&<>"]/g, (c) => HTML_ESCAPES[c]!);
+}
+
+function renderToc(headings: Heading[]): string {
+  if (headings.length === 0) return '';
+  const items = headings
+    .map((h) => `<li class="toc-h${h.depth}"><a href="#${escapeHtml(h.id)}">${escapeHtml(h.text)}</a></li>`)
+    .join('');
+  return `<ul>${items}</ul>`;
+}
+
+export function wrapDocument(bodyHtml: string, title: string, headings: Heading[] = []): string {
   return `<!doctype html>
 <html lang="ja">
 <head>
@@ -169,7 +223,12 @@ export function wrapDocument(bodyHtml: string, title: string): string {
 <style>${CSS}</style>
 </head>
 <body>
+<div class="page">
+<nav class="toc">${renderToc(headings)}</nav>
+<main>
 ${bodyHtml}
+</main>
+</div>
 </body>
 </html>
 `;

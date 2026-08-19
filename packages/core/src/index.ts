@@ -1,5 +1,6 @@
 export { remarkBlockDirective } from './remark-block-directive.js';
 export { remarkValidateBlock } from './remark-validate-block.js';
+export { remarkCollectHeadings } from './remark-collect-headings.js';
 export { toSemanticState } from './semantic.js';
 export type { Diagnostic, BlockNode } from './mdast-types.js';
 export type { BlockHandler, ParsedBlockBody } from './block-handler.js';

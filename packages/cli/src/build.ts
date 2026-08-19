@@ -2,7 +2,7 @@ import fg from 'fast-glob';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, relative } from 'node:path';
 import { createHtmlPipeline, createHtmlRegistry } from '@rundocs/core';
-import { wrapDocument } from '@rundocs/renderer-html';
+import { wrapDocument, type Heading } from '@rundocs/renderer-html';
 import type { ResolvedInput } from './resolve-input.js';
 
 export interface PageResult {
@@ -46,12 +46,13 @@ export async function build(resolved: ResolvedInput, outDirName = 'dist'): Promi
     const raw = await readFile(file, 'utf8');
     const vfile = await pipeline.process({ value: raw, path: file } as never);
     const bodyHtml = String(vfile);
+    const headings = (vfile.data as { headings?: Heading[] }).headings ?? [];
     const rel = relative(workspaceRoot, file).replace(/\\/g, '/');
     const outRel = rel.replace(/\.md$/, '.html');
     const outFile = join(outDir, outRel);
 
     await mkdir(dirname(outFile), { recursive: true });
-    await writeFile(outFile, wrapDocument(bodyHtml, rel), 'utf8');
+    await writeFile(outFile, wrapDocument(bodyHtml, rel, headings), 'utf8');
     pages.push({ source: rel, output: outRel, errorCount: countErrors(bodyHtml) });
   }
 
