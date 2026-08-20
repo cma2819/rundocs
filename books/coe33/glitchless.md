@@ -441,6 +441,7 @@ maelle:
 
 :::encounter
 title: アルティメット・サカパタト
+note: 体力調整を注意すること。削り過ぎると防御が高くなるので、クリティカルで倒せる範囲で抑える
 turns:
   - note: 最初の叩きつけ攻撃だけ回避、他はパリィ
   - actions:
@@ -452,7 +453,8 @@ turns:
       action: スウィフト・ストライド
   - actions:
     - character: ルネ
-      action: エイムで盾破壊, スキップ or イモレーション
+      action: エイムで盾破壊, スキップ or イモレーション or 通常攻撃
+      note: `sakapatate` の最初の T にゲージが乗るくらいを目安
     - character: ギュスターヴ
       action: マーキング・ショット
     - character: マエル
