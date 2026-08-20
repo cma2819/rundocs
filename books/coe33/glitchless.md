@@ -341,7 +341,8 @@ turns:
         action: スウィフト・ストライド
   - actions:
       - character: ルネ
-        action: スキップ
+        action: 攻撃
+        note: ペルセでクリティカルが出た or 他のクリティカルで100ダメージ以上増えてるならスキップ
       - character: ギュスターヴ
         action: マーキング・ショット
       - character: マエル
@@ -373,7 +374,7 @@ count: 1
 
 - マエルウム -> Lv4
 
-眠る
+眠る (opt2)
 
 ## ワールドマップ
 
