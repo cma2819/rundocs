@@ -309,9 +309,6 @@ Gobluムービー前
 
 - 隊列
   - マエル out-in
-- 装備（やってなければ）
-  - ルネ
-    - ライトイム
 
 :::encounter
 title: ゴブル
@@ -455,7 +452,7 @@ turns:
   - actions:
     - character: ルネ
       action: エイムで盾破壊, スキップ or イモレーション or 通常攻撃
-      note: `sakapatate` の最初の T にゲージが乗るくらいを目安
+      note: sakapatate の最初の T にゲージが乗るくらいを目安
     - character: ギュスターヴ
       action: マーキング・ショット
     - character: マエル
@@ -490,8 +487,7 @@ maelle:
     - 攻撃力全振り（30）
 - スキル
   - マエル
-    - （デガジュマン）, レイン・オブ・ファイア
-    - スウィフト・ストライド -> レイン・オブ・ファイア
+    - （デガジュマン）, レイン・オブ・ファイア < スウィフト・ストライド（左下）
 
 :::status
 maelle:
@@ -545,6 +541,10 @@ count: 2
 :::
 
 ゴルグラと会話、ワールドマップへ
+
+:::skip
+count: 1
+:::
 
 キャンプ、休息
 
@@ -630,7 +630,7 @@ turns:
 
 ## ワールドマップ
 
-キャンプへ
+エスキエ解放、すぐキャンプへ
 
 :::skip
 count: 1
@@ -641,6 +641,10 @@ count: 1
 - メダリウム（Lv6 or Lv7）
 
 眠る
+
+:::skip
+count: 1
+:::
 
 岩波の崖向かって左側、海辺沿いでエナジャイズスタートI回収
 
@@ -660,6 +664,9 @@ count: 1
 
 - クロマx790
 - デラルアム
+
+入手後のジャンプでメニュー、デラルアム装備 
+
 - 先制攻撃
 - 緊急強化
 - クロマx790
@@ -701,13 +708,14 @@ turns:
   - actions:
     - character: マエル
       action: レイン・オブ・ファイア
+  - note: マエルが1度でもパリィしている必要あり。なければ全員攻撃で一周回す
   - actions:
     - character: ギュスターヴ
       action: パワフル
     - character: マエル
       action: スウィフト・ストライド
     - character: シエル
-      action: フォーチュン・フューリー 
+      action: フォーチュン・フューリー > マエル
   - actions:
     - character: ギュスターヴ
       action: オーバーチャージ
@@ -741,6 +749,11 @@ maelle:
   lv: 14
 sciel:
   lv: 16
+:::
+
+:::skip
+count: 1
+loading: true
 :::
 
 ACT 2
