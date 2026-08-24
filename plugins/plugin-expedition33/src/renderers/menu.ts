@@ -4,7 +4,7 @@ import { markdownToHast } from '@rundocs/renderer-html';
 import { CHARACTERS, type CharacterMeta } from '../characters.js';
 import { MENU_LABELS, type MenuLabels } from '../labels.js';
 
-type MenuKind = 'weapon' | 'pictos' | 'lumina' | 'skill';
+type MenuKind = 'weapon' | 'pictos' | 'lumina' | 'skill' | 'formation';
 
 interface MenuActionNode {
   character?: string;

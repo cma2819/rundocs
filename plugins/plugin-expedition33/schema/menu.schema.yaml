@@ -26,7 +26,7 @@ $defs:
         enum: [gustave, maelle, lune, verso, sciel, monoco]
       kind:
         type: string
-        enum: [weapon, pictos, lumina, skill]
+        enum: [weapon, pictos, lumina, skill, formation]
       note:
         type: string
       items:

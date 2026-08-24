@@ -31,7 +31,7 @@ export const SKIP_LABELS: SkipLabels = {
 };
 
 export interface MenuLabels {
-  kind: { weapon: string; pictos: string; lumina: string; skill: string };
+  kind: { weapon: string; pictos: string; lumina: string; skill: string; formation: string };
 }
 
 /**
@@ -41,5 +41,5 @@ export interface MenuLabels {
  * `STATUS_LABELS`/`SKIP_LABELS`.
  */
 export const MENU_LABELS: MenuLabels = {
-  kind: { weapon: 'Weapon', pictos: 'Pictos', lumina: 'Lumina', skill: 'Skill' },
+  kind: { weapon: 'Weapon', pictos: 'Pictos', lumina: 'Lumina', skill: 'Skill', formation: 'Formation' },
 };
