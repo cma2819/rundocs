@@ -185,19 +185,22 @@ h1, h2, h3 { line-height: 1.3; }
    a core Block kind, since character/kind are enum-validated against the
    game's fixed roster/categories rather than free strings. Like ":::skip" it
    can appear many times per page, so its .state-block wrapper stays
-   borderless (spacing only) while .menu-card carries the visual weight: an
-   optional "when" timing line followed by the ordered list of actions.
-   "when"/character/kind are metadata, not content, so they're styled as a
-   small heading-like label (same treatment as .encounter-turn-title) —
-   "note" is the actual substance of what was done, so it renders as plain,
-   normal-weight Markdown prose instead of a dimmed inline aside. */
+   borderless (spacing only) while .menu-card carries the visual weight: the
+   "Menu" title (.component h3, same rule every Component uses) leads, then
+   "when" — the headline fact of the card, so it gets a bold/larger treatment
+   like .skip-card-heading rather than a dimmed label — then the ordered list
+   of actions. Within each action, character/kind are metadata rather than
+   content, so they stay a small heading-like label (same treatment as
+   .encounter-turn-title); "note" is the actual substance of what was done,
+   so it renders as plain, normal-weight Markdown prose instead of a dimmed
+   inline aside. */
 .state-block--menu { border: none; background: none; padding: 0; margin: 0.75rem 0; }
 .menu-card {
   border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
 }
-.menu-when,
+.menu-when { margin: 0 0 0.6rem; font-size: 0.95rem; font-weight: 700; }
 .menu-action-heading {
   margin: 0;
   font-size: 0.8rem;
@@ -206,7 +209,6 @@ h1, h2, h3 { line-height: 1.3; }
   letter-spacing: 0.03em;
   opacity: 0.7;
 }
-.menu-when { margin-bottom: 0.6rem; }
 .menu-actions { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 .menu-action-note { margin: 0.2rem 0 0; }
 .menu-action-items { margin: 0.4rem 0 0; padding-left: 1.1rem; }

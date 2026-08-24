@@ -34,9 +34,11 @@ interface MenuActionNode {
  * normal-weight prose rather than a dimmed inline aside.
  *
  * Styled as a compact left-accent card (`.state-block--menu` strips the
- * generic boxed wrapper, `.menu-card` carries the visual weight) rather than
- * `formation`/`equip`/`status`'s full boxed section+heading — same reasoning
- * as `skip`: a menu session can appear many times per page.
+ * generic boxed wrapper, `.menu-card` carries the visual weight) — lighter
+ * than `formation`/`equip`/`status`'s full boxed section, but unlike `skip`
+ * it keeps the `<h3>` title (`.component h3`, same rule every other
+ * Component uses) since a menu card has enough going on (when + a list of
+ * actions) to benefit from a leading label.
  *
  * Factory-shaped so a book can supply its own id -> displayName character map
  * and/or localized kind labels while reusing this layout — same pattern as
@@ -77,6 +79,7 @@ export function createMenuRenderer(
   };
 
   return (component) => {
+    const title = component.schema?.['x-ui']?.displayName ?? component.name;
     const when = typeof component.value.when === 'string' ? (component.value.when as string) : undefined;
     const actions = Array.isArray(component.value.actions) ? (component.value.actions as MenuActionNode[]) : [];
 
@@ -84,6 +87,7 @@ export function createMenuRenderer(
       'div',
       { class: 'component component--menu menu-card' },
       [
+        h('h3', {}, title),
         when ? h('div', { class: 'menu-when' }, when) : null,
         actions.length > 0 ? h('ol', { class: 'menu-actions' }, actions.map(renderActionNode)) : null,
       ].filter(Boolean) as any,
