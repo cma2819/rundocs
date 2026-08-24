@@ -173,10 +173,43 @@ h1, h2, h3 { line-height: 1.3; }
    whitespace beyond the container's own padding. */
 .block--note > :first-child,
 .encounter-note > :first-child,
+.menu-action-note > :first-child,
 .component dd > :first-child { margin-top: 0; }
 .block--note > :last-child,
 .encounter-note > :last-child,
+.menu-action-note > :last-child,
 .component dd > :last-child { margin-bottom: 0; }
+
+/* ":::menu" records a pause-menu session (weapon/pictos/lumina/skill changes,
+   etc.) — a Component (see plugin-expedition33/schema/menu.schema.yaml), not
+   a core Block kind, since character/kind are enum-validated against the
+   game's fixed roster/categories rather than free strings. Like ":::skip" it
+   can appear many times per page, so its .state-block wrapper stays
+   borderless (spacing only) while .menu-card carries the visual weight: an
+   optional "when" timing line followed by the ordered list of actions.
+   "when"/character/kind are metadata, not content, so they're styled as a
+   small heading-like label (same treatment as .encounter-turn-title) —
+   "note" is the actual substance of what was done, so it renders as plain,
+   normal-weight Markdown prose instead of a dimmed inline aside. */
+.state-block--menu { border: none; background: none; padding: 0; margin: 0.75rem 0; }
+.menu-card {
+  border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+.menu-when,
+.menu-action-heading {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.7;
+}
+.menu-when { margin-bottom: 0.6rem; }
+.menu-actions { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.menu-action-note { margin: 0.2rem 0 0; }
+.menu-action-items { margin: 0.4rem 0 0; padding-left: 1.1rem; }
 
 /* ":::skip" marks a cutscene skip in the run's flow rather than persistent
    party state — it appears many times per page, so its .state-block wrapper

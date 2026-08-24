@@ -1,0 +1,35 @@
+title: Menu
+type: object
+additionalProperties: false
+x-ui:
+  displayName: Menu
+  icon: menu
+properties:
+  when:
+    type: string
+    x-ui:
+      displayName: Menu timing
+      icon: clock
+  actions:
+    type: array
+    items:
+      $ref: '#/$defs/action'
+    x-ui:
+      displayName: Actions
+$defs:
+  action:
+    type: object
+    additionalProperties: false
+    properties:
+      character:
+        type: string
+        enum: [gustave, maelle, lune, verso, sciel, monoco]
+      kind:
+        type: string
+        enum: [weapon, pictos, lumina, skill]
+      note:
+        type: string
+      items:
+        type: array
+        items:
+          $ref: '#/$defs/action'

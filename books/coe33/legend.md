@@ -20,10 +20,11 @@ formation:
 
 ### note
 
-YAMLを介さない、プレーンなテキストのみのBlock。手順の補足や注意書きに使う。
+YAMLを介さない、プレーンなテキストのみのBlock。手順の補足や注意書きに使う。本文はMarkdownとして
+解釈される。
 
 :::note
-このセクションはカメラが暗転することがあるが、入力は止めなくてよい。
+このセクションは**カメラが暗転**することがあるが、入力は止めなくてよい。
 :::
 
 ### route
@@ -51,7 +52,7 @@ turns:
         action: Attack
       - character: maelle
         action: Guard
-    note: 3コンボ目をPerfect Dodgeしてから全力バースト
+    note: 3コンボ目を*Perfect Dodge*してから全力バースト
   - actions:
       - character: lune
         action: Potion → gustave
@@ -108,4 +109,33 @@ lune:
 count: 1
 when: 会話終了後
 loading: true
+:::
+
+### menu(メニューイング)
+
+一時停止メニューを開いて武器・Pictos・ルミナ・スキルなどを変更した記録。メニューを開いた
+`when`(タイミング、省略可)と、順序を持つ`actions`を持つ。各行動は`character`(誰の)と
+`kind`(種別)を持てるが、どちらが親になるか(`items`で束ねる側)は行動ごとに逆転してよい。
+`character`は`formation`と同じキャラクターID、`kind`は`weapon`/`pictos`/`lumina`/`skill`の
+いずれかで、いずれも`menu.schema.yaml`の`enum`で検証される固定値(自由入力不可)。`character`/
+`kind`はラベルとして見出し的に表示され、`note`は操作内容の具体としてMarkdownで描画される。
+
+:::menu
+when: ボス戦前の休憩地点で
+actions:
+  - character: lune
+    items:
+      - kind: weapon
+        note: "**エクリプス**に持ち替え(会心率+10%)"
+      - kind: pictos
+        note: 会心率up系を1枠追加
+  - kind: lumina
+    items:
+      - character: maelle
+        note: 属性耐性を確保
+      - character: verso
+        note: 同上
+  - character: gustave
+    kind: weapon
+    note: 初期装備のままでよい
 :::

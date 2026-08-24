@@ -8,6 +8,7 @@
   "dependencies": {
     "@rundocs/core": "*",
     "@rundocs/renderer-core": "*",
+    "@rundocs/renderer-html": "*",
     "@rundocs/schema": "*",
     "hastscript": "^9.0.1",
     "yaml": "^2.6.1"

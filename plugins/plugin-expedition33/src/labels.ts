@@ -29,3 +29,17 @@ export const SKIP_LABELS: SkipLabels = {
   title: 'Movie Skip',
   loading: 'Loading',
 };
+
+export interface MenuLabels {
+  kind: { weapon: string; pictos: string; lumina: string; skill: string };
+}
+
+/**
+ * Default (English) display labels for the `menu` Component's `kind` enum
+ * (`menu.schema.yaml`'s `$defs.action.kind`). Books can supply their own via
+ * `createMenuRenderer`'s second argument — same localization pattern as
+ * `STATUS_LABELS`/`SKIP_LABELS`.
+ */
+export const MENU_LABELS: MenuLabels = {
+  kind: { weapon: 'Weapon', pictos: 'Pictos', lumina: 'Lumina', skill: 'Skill' },
+};

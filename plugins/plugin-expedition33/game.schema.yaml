@@ -1,8 +1,9 @@
 id: expedition33
 title: "Clair Obscur: Expedition 33"
-componentOrder: [formation, equip, status, skip]
+componentOrder: [formation, equip, status, skip, menu]
 components:
   formation: ./schema/formation.schema.yaml
   equip: ./schema/equip.schema.yaml
   status: ./schema/status.schema.yaml
   skip: ./schema/skip.schema.yaml
+  menu: ./schema/menu.schema.yaml

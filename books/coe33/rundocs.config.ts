@@ -1,8 +1,15 @@
 import { defineConfig } from '@rundocs/core';
-import expedition33, { createFormationRenderer, createEquipRenderer, createStatusRenderer, createSkipRenderer } from '@rundocs/plugin-expedition33';
+import expedition33, {
+  createFormationRenderer,
+  createEquipRenderer,
+  createStatusRenderer,
+  createSkipRenderer,
+  createMenuRenderer,
+} from '@rundocs/plugin-expedition33';
 import { CHARACTERS_JA } from './characters.ja.js';
 import { STATUS_LABELS_JA } from './status-labels.ja.js';
 import { SKIP_LABELS_JA } from './skip-labels.ja.js';
+import { MENU_LABELS_JA } from './menu-labels.ja.js';
 
 export default defineConfig({
   plugin: {
@@ -14,6 +21,7 @@ export default defineConfig({
         equip: createEquipRenderer(CHARACTERS_JA),
         status: createStatusRenderer(CHARACTERS_JA, STATUS_LABELS_JA),
         skip: createSkipRenderer(SKIP_LABELS_JA),
+        menu: createMenuRenderer(CHARACTERS_JA, MENU_LABELS_JA),
       },
     },
   },
