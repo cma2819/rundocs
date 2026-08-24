@@ -5,6 +5,6 @@ import type { SkipLabels } from '@rundocs/plugin-expedition33';
  * `characters.ja.ts`/`status-labels.ja.ts`'s pattern.
  */
 export const SKIP_LABELS_JA: SkipLabels = {
-  title: 'スキップ',
-  loading: 'ロード画面あり',
+  title: 'ムービースキップ',
+  loading: 'ロード',
 };

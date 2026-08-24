@@ -11,6 +11,11 @@ properties:
     x-ui:
       displayName: Movie skips (total)
       icon: skip-forward
+  when:
+    type: string
+    x-ui:
+      displayName: Skip timing
+      icon: clock
   loading:
     type: boolean
     x-ui:

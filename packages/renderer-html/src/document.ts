@@ -169,28 +169,31 @@ h1, h2, h3 { line-height: 1.3; }
 
 /* ":::skip" marks a cutscene skip in the run's flow rather than persistent
    party state — it appears many times per page, so its .state-block wrapper
-   drops the generic box (border/background/padding) and the badge itself
-   stays a compact inline pill instead of a boxed section+<dl>. */
-.state-block--skip { border: none; background: none; padding: 0; margin: 0.5rem 0; }
-.skip-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.15rem 0.7rem;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
-  background: color-mix(in srgb, currentColor 5%, transparent);
+   stays borderless (spacing only) while the component itself renders as a
+   left-accent card: heading, optional timing text, and (separated by a
+   dashed rule) an optional loading tag — enough visual weight to stay
+   legible among prose without the full boxed section+<dl> treatment. */
+.state-block--skip { border: none; background: none; padding: 0; margin: 0.75rem 0; }
+.skip-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  border-left: 3px solid color-mix(in srgb, currentColor 35%, transparent);
+  background: color-mix(in srgb, currentColor 4%, transparent);
+  border-radius: 0.35rem;
+  padding: 0.5rem 0.75rem;
   font-size: 0.85rem;
-  opacity: 0.85;
 }
-.skip-badge-count { font-weight: 600; }
-.skip-badge-loading {
+.skip-card-heading { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 600; }
+.skip-card-when { margin: 0; opacity: 0.9; }
+.skip-card-loading {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  padding-left: 0.55rem;
-  border-left: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-  opacity: 0.75;
+  padding-top: 0.3rem;
+  border-top: 1px dashed color-mix(in srgb, currentColor 25%, transparent);
+  opacity: 0.65;
+  font-size: 0.8rem;
 }
 `;
 

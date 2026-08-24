@@ -26,6 +26,6 @@ export interface SkipLabels {
  * pattern as `CHARACTERS`/`CHARACTERS_JA` and `STATUS_LABELS`.
  */
 export const SKIP_LABELS: SkipLabels = {
-  title: 'Skip',
-  loading: 'Loading screen follows',
+  title: 'Movie Skip',
+  loading: 'Loading',
 };
