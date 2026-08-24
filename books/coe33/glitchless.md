@@ -28,20 +28,20 @@ count: 1
 
 港へ
 
-テキスト -> Yes
+テキスト -> Yes(1)
 
 :::skip
 count: 3
 :::
 
 - アレクサンドルと会話
-- マエルと会話 -> No
+- マエルと会話 -> No(2)
 
 :::skip
 count: 1
 :::
 
-- エマと会話 -> Yes
+- エマと会話 -> Yes(1)
 
 :::skip
 count: 1
@@ -54,7 +54,9 @@ loading: true
 count: 3
 :::
 
-クロマエリクサー使う
+ランセリエ戦へ進む
+
+- 道中でクロマエリクサー
 
 :::skip
 count: 1
@@ -75,7 +77,7 @@ turns:
 count: 1
 :::
 
-進む
+先へ進む
 
 :::skip
 count: 1
@@ -117,15 +119,24 @@ turns:
 
 進む
 
-ジャーナルムービーin
-
-- 隊列
-  - ギュスターブ: Out -> In
-- ピクトス
-  - ギュスターヴ(2): `クリティカルバーン`
-  - ルネ(2): `回避巧者`
+:::menu
+when: 遠征隊ジャーナルムービーin
+actions:
+  - kind: formation
+    note: |
+      - ギュスターブ Out, In
+  - kind: pictos
+    items:
+      - character: gustave
+        note: |
+          `クリティカルバーン` (2)
+      - character: lune
+        note: |
+          `回避巧者` (2)
+:::
 
 :::skip
+when: 遠征隊ジャーナル入手
 count: 2
 :::
 
@@ -140,13 +151,18 @@ count: 2
     - 攻撃力全振り (0+6)
   - ルネ
     - 攻撃力全振り (0+6)
+
 - スキル
   - パワフル  
 
 イヴェキムービー
 
-- ピクトス
-  - ギュスターヴ: `死のエネルギーII`
+:::menu
+actions:
+  - character: gustave
+    kind: pictos
+    note: 死のエネルギーII
+:::
 
 :::formation
 members: [lune, gustave]
@@ -204,16 +220,19 @@ count: 1
 
 ## 浮遊する水
 
-エリアinムービー中
-
-- スキル
-  - （ギュスターヴ）ルミエール・アサルト解除
-- ピクトス
-  - ギュスターヴ
-    - 外す, 外す, 回避巧者（3, Yes）
-- 武器
-  - ルネ
-    - ライトイム
+:::menu
+when: エリアinムービー
+actions:
+  - character: gustave
+    items:
+      - kind: skill
+        note: ルミエール・アサルト解除
+      - kind: pictos
+        note: 外す, 外す, 回避巧者（3, Yes）
+  - character: lune
+    kind: weapon
+    note: ライトイム
+:::
 
 小屋まで進む
 
@@ -226,19 +245,25 @@ loading: true
 count: 1
 :::
 
-マエル合流
+:::menu
+when: マエル合流
+actions:
+  - character: maelle
+    items:
+      - kind: pictos
+        note: |
+          - クリティカルバーン
+          - 死のエネルギーII
+      - kind: skill
+        note: スパーク（3）解除
+:::
 
-- ピクトス
-  - マエル
-    - クリティカルバーン
-    - 死のエネルギーII
-- スキル
-  - マエル
-    - スパーク（3）解除
-
-旗前
-
-- ルネ out-in
+:::menu
+when: 旗へのジャンプ時
+actions:
+  - kind: formation
+    note: ルネ out-in
+:::
 
 キュレーター前強化
 
@@ -305,10 +330,12 @@ count: 1
 
 進む
 
-Gobluムービー前
-
-- 隊列
-  - マエル out-in
+:::menu
+when: Gobluムービー前
+actions:
+  - kind: formation
+    note: マエル out-in
+:::
 
 :::encounter
 title: ゴブル
@@ -410,14 +437,18 @@ count: 1
 
 進む
 
-- 装備
-  - ギュスターヴ
-    - サカルアム
-- ルミナ
-  - ギュスターヴ
-    - クリティカルバーン, 死のエネルギーII
-  - マエル
-    - 回避巧者
+:::menu
+actions:
+  - character: gustave
+    items:
+      - kind: weapon
+        note: サカルアム
+      - kind: lumina
+        note: クリティカルバーン, 死のエネルギーII
+  - character: maelle
+    kind: lumina
+    note: 回避巧者
+:::
 
 :::equip
 gustave:
@@ -570,20 +601,22 @@ count: 1
   - シエル
     - フォーチュン・フューリー、左上に装備（A連打でOK）
 
-メニュー
-
-- エマ out, シエル in
-- 武器
-  - マエル
-    - メダルウム
-- ピクトス
-  - マエル
-    - ブレイカー（3）
-- スキル
-  - マエル
-    - スウィフト・ストライド（右上）
-  - シエル
-    - ファイアリング・シャドウ（左下）
+:::menu
+actions:
+  - kind: formation
+    note: エマ out, シエル in
+  - character: maelle
+    items:
+      - kind: weapon
+        note: メダルウム
+      - kind: pictos
+        note: ブレイカー（3）
+      - kind: skill
+        note: スウィフト・ストライド（右上）
+  - character: sciel
+    kind: skill
+    note: ファイアリング・シャドウ（左下）
+:::
 
 :::equip
 maelle:
@@ -615,14 +648,22 @@ turns:
       action: エイム（盾はがすまで）, ペルセ
 :::
 
-エスキエムービーin、メニュー
-
-- マエル
-  - ピクトス 2,3 解除、強化先制攻撃（3）
-  - ルミナ 死のエネルギーII追加、回避巧者解除
-- シエル
-  - ルミナ クリティカルバーン, 死のエネルギーII
-  - スキル フォーカス・フォーテルを右中へ
+:::menu
+when: エスキエムービーin
+actions:
+  - character: maelle
+    items:
+      - kind: pictos
+        note: 2,3 解除、強化先制攻撃（3）
+      - kind: lumina
+        note: 死のエネルギーII追加、回避巧者解除
+  - character: sciel
+    items:
+      - kind: lumina
+        note: クリティカルバーン, 死のエネルギーII
+      - kind: skill
+        note: フォーカス・フォーテルを右中へ
+:::
 
 向かって左手、旗（フランソワの洞窟）へ、ファストトラベル（入り口）
 
@@ -650,15 +691,18 @@ count: 1
 
 ## 岩波の崖
 
-ムービーinメニュー
-
-- ピクトス
-  - シエル
-    - ブレイカー
-    - エナジャイズスタートI
-- スキル
-  - シエル
-    - ハーベストを右下へ
+:::menu
+when: ムービーin
+actions:
+  - character: sciel
+    items:
+      - kind: pictos
+        note: |
+          - ブレイカー
+          - エナジャイズスタートI
+      - kind: skill
+        note: ハーベストを右下へ
+:::
 
 道中回収
 
@@ -671,14 +715,16 @@ count: 1
 - 緊急強化
 - クロマx790
 
-ランプマスター前
-
-- ピクトス
-  - ギュスターヴ
-    - 緊急強化（1）
-  - マエル
-    - 先制攻撃（2）
-
+:::menu
+when: ランプマスター前
+actions:
+  - character: gustave
+    kind: pictos
+    note: 緊急強化（1）
+  - character: maelle
+    kind: pictos
+    note: 先制攻撃（2）
+:::
 
 :::equip
 gustave:
@@ -785,20 +831,25 @@ note: ヴェルソを瀕死にして、レイン・オブ・ファイヤ
 運ゲーだから古い戦闘に変えてもいいかも
 :::
 
-道中
-
-- マエル out, ルネ out
+:::menu
+when: 道中
+actions:
+  - kind: formation
+    note: マエル out, ルネ out
+:::
 
 店
 
 - 洗練されたクロマカタリストx5
 - インバーテッドアフィニティ
 
-ジャンプでメニュー
-
-- 武器
-  - ヴェルソ
-    - デラルアム
+:::menu
+when: 入手後のジャンプ
+actions:
+  - character: verso
+    kind: weapon
+    note: デラルアム
+:::
 
 旗（古い橋）
 
@@ -813,12 +864,15 @@ note: ヴェルソを瀕死にして、レイン・オブ・ファイヤ
     - 左上にディファイアント・ストライク
     - 左中にベルセルク・スラッシュ
 
-デュアリステ前メニュー
-
-- ピクトス
-  - ヴェルソ
-    - インバーテッドアフィニティ(2)
-    - 回避巧者 > 先制攻撃(3)
+:::menu
+when: デュアリステ前
+actions:
+  - character: verso
+    kind: pictos
+    note: |
+      - インバーテッドアフィニティ(2)
+      - 回避巧者 > 先制攻撃(3)
+:::
 
 :::equip
 verso:
@@ -846,11 +900,13 @@ turns:
   - note: エイムで削って、ベルセルク・スラッシュ
 :::
 
-ムービーinメニュー
-
-- マエル
-  - ピクトス
-    - 瀬戸際(2)
+:::menu
+when: ムービーin
+actions:
+  - character: maelle
+    kind: pictos
+    note: 瀬戸際(2)
+:::
 
 ワールドマップへ
 
@@ -882,7 +938,12 @@ turns:
   - note: エイムで削って、ベルセルク・スラッシュ
 :::
 
-スタラクト前、シエル in > マエル in
+:::menu
+when: スタラクト前
+actions:
+  - kind: formation
+    note: シエル in, マエル in
+:::
 
 :::formation
 members: [verso, sciel, maelle]
@@ -931,20 +992,23 @@ count: 2
 - 洗練されたクロマカタリストx5
 - ルミナのカラーx1
 
-パーティ分割ムービーin
-
-- ピクトス
-  - ルネ
-    - エナジャイジングスタートI
-- ルミナ
-  - ルネ
-    - 先制攻撃
-  - シエル
-    - 先制攻撃
-  - モノコ
-    - 先制攻撃
-  - マエル
-    - 先制攻撃
+:::menu
+when: パーティ分割ムービーin
+actions:
+  - kind: pictos
+    character: lune
+    note: エナジャイジングスタートI
+  - kind: lumina
+    items:
+      - character: lune
+        note: 先制攻撃
+      - character: sciel
+        note: 先制攻撃
+      - character: monoco
+        note: 先制攻撃
+      - character: maelle
+        note: 先制攻撃
+:::
 
 :::note
 ルミナ画面で、補助でフィルタ＋逆順ソートするといい
@@ -968,12 +1032,14 @@ turns:
 count: 1
 :::
 
-ルノアール戦前
-
-- ピクトス
-  - クリティカルバーン > 自動加速（1）
-- ルミナ
-  - インバーテッドアフィニティ
+:::menu
+when: ルノアール戦前
+actions:
+  - kind: pictos
+    note: クリティカルバーン > 自動加速（1）
+  - kind: lumina
+    note: インバーテッドアフィニティ
+:::
 
 :::encounter
 title: ルノアール戦1
@@ -1022,22 +1088,27 @@ count: 1
 
 進む
 
-ムービーinメニュー
-
-- 隊列
-  - ルネout, シエルin
-  - マエルout, マエルin
-- ピクトス
-  - マエル
-    - コンボ攻撃 < 自動加速
-    - 先制攻撃 < 強化先制攻撃（入れ替え）
-- ルミナ
-  - マエル
-    - 緊急強化（逆順ソート、左上）
-  - シエル
-    - インバーテッドアフィニティ
-  - ヴェルソ
-    - 先制攻撃
+:::menu
+when: ムービーin
+actions:
+  - kind: formation
+    note: |
+      - ルネout, シエルin, マエルout-in
+  - character: maelle
+    items:
+      - kind: pictos
+        note: |
+          - コンボ攻撃 < 自動加速
+          - 先制攻撃 < 強化先制攻撃（入れ替え）
+      - kind: lumina
+        note: 緊急強化（逆順ソート、左上）
+  - character: sciel
+    kind: lumina
+    note: インバーテッドアフィニティ
+  - character: verso
+    kind: lumina
+    note: 先制攻撃
+:::
 
 :::formation
 members: [verso, sciel, maelle]
@@ -1061,12 +1132,15 @@ members: [verso, sciel, maelle]
   - シエル
     - 自己犠牲, 左中
 
-ヴィサージュ戦前
-
-- ピクトス
-  - シエル
-    - エナジャイジングスタートI (2)
-    - 自動加速 (3)
+:::menu
+when: ヴィサージュ戦前
+actions:
+  - character: sciel
+    kind: pictos
+    note: |
+      - エナジャイジングスタートI (2)
+      - 自動加速 (3)
+:::
 
 
 :::equip
@@ -1144,18 +1218,22 @@ count: 1
 
 ## シレーヌ
 
-ムービーin
-
-- ピクトス
-  - シエル
-    - 完全無欠(1)
-- ルミナス
-  - シエル
-    - 瀬戸際
-  - ヴェルソ
-    - エナジャイズスタートI
-  - マエル
-    - エナジャイズスタートI
+:::menu
+when: ムービーin
+actions:
+  - kind: pictos
+    items:
+      - character: sciel
+        note: 完全無欠(1)
+  - kind: lumina 
+    items:
+      - character: sciel
+        note: 瀬戸際
+      - character: verso
+        note: エナジャイズスタートI
+      - character: maelle
+        note: エナジャイズスタートI
+:::
 
 旗
 
@@ -1206,17 +1284,19 @@ turns:
       action: グラデエント・スキル > ファイアリング・シャドウ
 :::
 
-シレーヌ前
-
-- ピクトス
-  - マエル
-    - 強化先制攻撃 < 瀬戸際（入れ替え）
-- ルミナ
-  - マエル
-    - 瀬戸際
-- ピクトス
-  - ヴェルソ
-    - 自動加速 (1)
+:::menu
+when: シレーヌ前
+actions:
+  - character: maelle
+    items:
+      - kind: pictos
+        note: 強化先制攻撃 < 瀬戸際（入れ替え）
+      - kind: lumina
+        note: 瀬戸際
+  - character: verso
+    kind: pictos
+    note: 自動加速 (1)
+:::
 
 :::equip
 verso:
@@ -1279,23 +1359,30 @@ loading: true
 count: 1
 :::
 
-ペイントレス前までに
-
-- 隊列
-  - マエルout, ヴェルソout, モノコin, シエルout-in
+:::menu
+when: ペイントレス前までに
+actions:
+  - kind: formation
+    note: マエルout, ヴェルソout, モノコin, シエルout-in
+:::
 
 :::formation
 members: [monoco, sciel]
 :::
 
-- ピクトス
-  - シエル
-    - エナジャイズターン (3)
-      - 左2回、AでOK
-- ルミナ
-  - シエル
-    - クリティカルバーンout
-    - 自動加速in
+:::menu
+actions:
+  - character: sciel
+    items:
+      - kind: pictos
+        note: |
+          エナジャイズターン (3)
+          - 左2回、AでOK
+      - kind: lumina
+        note: |
+          - クリティカルバーンout
+          - 自動加速in
+:::
 
 :::encounter
 title: ペイントレス（モノリス）
@@ -1311,10 +1398,14 @@ loading: true
 
 ## モノリス内部
 
-道中ジャンプしてメニュー
-
-- モノコout
-- マエルin、シエルout、ヴェルソin、シエルin
+:::menu
+when: 道中ジャンプで
+actions:
+  - kind: formation
+    note: |
+      - モノコout
+      - マエルin、シエルout、ヴェルソin、シエルin
+:::
 
 道中で回収 「弱点の恩恵」
 
@@ -1335,13 +1426,16 @@ count: 1
   - シエル
     - シールド・フェイト > 左下
 
-ルノワール前
-
-- 武器
-  - ティスルオン
-- ピクトス
-  - シエル
-    - 弱点の恩恵 < エナジャイズスタートI 
+:::menu
+when: ルノワール前
+actions:
+  - character: sciel
+    items:
+      - kind: weapon
+        note: ティスルオン
+      - kind: pictos
+        note: 弱点の恩恵 < エナジャイズスタートI
+:::
 
 :::equip
 sciel:
@@ -1384,15 +1478,18 @@ turns:
       action: グラディエントスキル > シールド・フェイト
 :::
 
-ペイントレス前
-
-- ピクトス
-  - マエル
-    - コンボ攻撃 I 外す
-- ルミナ
-  - シエル
-    - 自動加速 out
-    - クリティカルバーン, 強化先制攻撃
+:::menu
+when: ペイントレス前
+actions:
+  - character: maelle
+    kind: pictos
+    note: コンボ攻撃 I 外す
+  - character: sciel
+    kind: lumina
+    note: |
+      - 自動加速 out
+      - クリティカルバーン, 強化先制攻撃
+:::
 
 :::encounter
 title: ペイントレス第一形態
@@ -1462,12 +1559,16 @@ count: 3
 
 ## ルミエール
 
-ルノワールムービーin
-
-- ピクトス
-  - 強化先制攻撃 out, (2) out, かりそめの力 in
-- ルミナ
-  - 完全無欠 in, エナジャイズスタートI out, 強化先制攻撃 in
+:::menu
+when: ルノワールムービーin
+actions:
+  - character: maelle
+    items:
+      - kind: pictos
+        note: 強化先制攻撃 out, (2) out, かりそめの力 in
+      - kind: lumina
+        note: 完全無欠 in, エナジャイズスタートI out, 強化先制攻撃 in
+:::
 
 :::skip
 count: 1
@@ -1486,8 +1587,11 @@ count: 1
 count: 1
 :::
 
-- 隊列
-  - マエル out-in
+:::menu
+actions:
+  - kind: formation
+    note: マエル out-in
+:::
 
 旗（港）
 
@@ -1498,9 +1602,13 @@ count: 1
   - マエル
     - スタンダール > 左上
     - (メッゾ・フォルテ, ) ラストチャンス > 左中
-- 武器強化
-  - マエル
-    - メダルウム > Lv15
+
+:::menu
+actions:
+  - character: maelle
+    kind: weapon
+    note: メダルウム > Lv15
+:::
 
 アべレイションと戦闘
 
@@ -1509,17 +1617,22 @@ title: アベレイション
 note: エネルギーティント, スタンダール
 :::
 
-ジャンプ時にメニュー
-
-- ピクトス
-  - マエル
-    - ショートカット(1)
+:::menu
+when: ジャンプ時
+actions:
+  - character: maelle
+    kind: pictos
+    note: ショートカット(1)
+:::
 
 クリアションは逃げる
 
-クリアション戦後、隊列
-
-- シエル in
+:::menu
+when: クリアション戦後
+actions:
+  - kind: formation
+    note: シエル in
+:::
 
 :::formation
 members: [verso, maelle, sciel]
@@ -1543,13 +1656,13 @@ turns:
 count: 2
 :::
 
-「絵を描くのをやめる時だ。」
+「絵を描くのをやめる時だ。」(1)
 
 :::skip
 count: 1
 :::
 
-「マエルとして戦う。」
+「マエルとして戦う。」(2)
 
 :::encounter
 title: ヴェルソ
