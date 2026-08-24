@@ -1,5 +1,6 @@
 import { h } from 'hastscript';
 import type { BlockRenderer, ComponentRenderer } from '@rundocs/renderer-core';
+import { markdownToHast } from './markdown.js';
 
 /**
  * Zero-configuration renderer: works for any component, whether or not a
@@ -17,7 +18,7 @@ export const genericComponentRenderer: ComponentRenderer<any> = (component) => {
       {},
       component.fields.flatMap((f) => [
         h('dt', {}, [f.icon ? h('span', { class: `icon icon--${f.icon}` }) : null, f.displayName].filter(Boolean) as any),
-        h('dd', {}, String(f.value)),
+        h('dd', {}, f.key === 'note' && typeof f.value === 'string' ? markdownToHast(f.value) : String(f.value)),
       ]),
     ),
   ]);

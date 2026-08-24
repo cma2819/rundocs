@@ -685,8 +685,18 @@ registry.setFallback(stateBlockHandler);       // 未登録の ":::whatever" も
 | directive | 解釈 | 表現(HTML) |
 |---|---|---|
 | `:::state` | YAML mapping + GameSchema検証 | Component単位の `<section>` |
-| `:::note` | 生テキストそのまま | `<aside class="block--note">` |
+| `:::note` | 生テキスト(`text`はMarkdownとして解釈) | `<aside class="block--note">` |
 | `:::route` | YAML list（ウェイポイント列） | `<ol class="block--route">` |
+
+**`note`フィールドのMarkdown規約**: Block種別を問わず、フィールド/プロパティのキーが文字通り
+`note`である文字列は、`packages/renderer-html/src/markdown.ts`の`markdownToHast`/
+`markdownToInlineHast`（軽量な`unified + remark-parse + remark-rehype`パイプライン、
+`allowDangerousHtml: false`）を通してMarkdownとして解釈される。対象は`:::note`ブロック本文
+（`text`フィールド）、`:::encounter`の`note`（トップレベル/ターン/アクション）、
+stateブロックやauto-registeredな`:::componentName`ブロックの`note`という名前のプロパティ。
+これは`PropertySchema`（`@rundocs/schema`）に`format`相当の宣言があるわけではなく、
+`renderer-html`側の命名規約であることに注意（プラグインが`note`という名前で別の意図の
+フィールドを定義した場合もMarkdownとして解釈される）。
 
 ### 8.3 表現層: `BlockRendererRegistry`（`@rundocs/renderer-core`）
 

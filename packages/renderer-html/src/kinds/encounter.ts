@@ -1,5 +1,6 @@
 import { h } from 'hastscript';
 import type { BlockRenderer } from '@rundocs/renderer-core';
+import { markdownToHast, markdownToInlineHast } from '../markdown.js';
 
 /**
  * Presentation for BlockHandler.kind === "encounter": a title/note followed by
@@ -32,7 +33,7 @@ export const encounterKindRenderer: BlockRenderer<any> = (block) => {
     { class: 'block block--encounter' },
     [
       title ? h('h3', { class: 'encounter-title' }, title) : null,
-      note ? h('p', { class: 'encounter-note' }, note) : null,
+      note ? h('div', { class: 'encounter-note' }, markdownToHast(note)) : null,
       h(
         'div',
         { class: 'encounter-turns' },
@@ -54,12 +55,14 @@ export const encounterKindRenderer: BlockRenderer<any> = (block) => {
                       return h(
                         'li',
                         {},
-                        actionNote ? [label, h('span', { class: 'encounter-action-note' }, ` — ${actionNote}`)] : label,
+                        actionNote
+                          ? [label, h('span', { class: 'encounter-action-note' }, [' — ', ...markdownToInlineHast(actionNote)])]
+                          : label,
                       );
                     }),
                   )
                 : null,
-              turnNote ? h('p', { class: 'encounter-note' }, turnNote) : null,
+              turnNote ? h('div', { class: 'encounter-note' }, markdownToHast(turnNote)) : null,
             ].filter(Boolean) as any,
           );
         }),

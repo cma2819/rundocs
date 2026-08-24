@@ -167,6 +167,17 @@ h1, h2, h3 { line-height: 1.3; }
   margin: 1.25rem 0;
 }
 
+/* note/encounter-note/state-field "note" text is now parsed as Markdown, so a
+   plain single-line note is wrapped in a <p> instead of being a bare text
+   node — collapse its edge margins so these callouts don't gain extra
+   whitespace beyond the container's own padding. */
+.block--note > :first-child,
+.encounter-note > :first-child,
+.component dd > :first-child { margin-top: 0; }
+.block--note > :last-child,
+.encounter-note > :last-child,
+.component dd > :last-child { margin-bottom: 0; }
+
 /* ":::skip" marks a cutscene skip in the run's flow rather than persistent
    party state — it appears many times per page, so its .state-block wrapper
    stays borderless (spacing only) while the component itself renders as a
