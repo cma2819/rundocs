@@ -1544,7 +1544,7 @@ turns:
 :::
 
 :::encounter
-title: ペイントレス第二形態
+title: ペイントレス第三形態
 turns:
   - actions:
     - character: ヴェルソ
