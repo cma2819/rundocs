@@ -27,6 +27,14 @@ interface MenuActionNode {
  * "for lumina: Maelle, then Verso") — `renderActionNode` recurses to handle
  * both directions with the same code.
  *
+ * A node authored with *both* `character` and `kind` set directly (no
+ * `items`) is sugar for a single-child grouping — `renderActionNode`
+ * normalizes it to `{ character, items: [{ kind, note }] }` before
+ * rendering, so a one-fact action and a multi-item grouping always render
+ * at the same nesting depth instead of the note sometimes sitting flush
+ * with the heading and sometimes indented under it depending on how the
+ * YAML happened to be authored.
+ *
  * `character`/`kind` are metadata, not content, so they render as a small
  * heading-like label line (`.menu-action-heading`) — `note` is the actual
  * substance (what was done) and is parsed as Markdown (`markdownToHast`,
@@ -66,6 +74,10 @@ export function createMenuRenderer(
   const renderActionNode = (node: MenuActionNode): any => {
     const note = typeof node.note === 'string' ? node.note : undefined;
     const items = Array.isArray(node.items) ? node.items : [];
+
+    if (node.character && node.kind && items.length === 0) {
+      return renderActionNode({ character: node.character, items: [{ kind: node.kind, note: node.note }] });
+    }
 
     return h(
       'li',
