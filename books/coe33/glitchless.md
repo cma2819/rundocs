@@ -785,7 +785,8 @@ turns:
     - character: マエル
       action: ペルセかレイン・オブ・ファイア
     - character: シエル
-      action: 倒せてなければ、倒すための行動
+      action: APティント or 攻撃などなど
+  - note: ダメージ足らない場合、傷跡＋ペルセを狙っていくのが安定っぽい
 :::
 
 :::status
@@ -1549,7 +1550,7 @@ turns:
 :::
 
 :::encounter
-title: ペイントレス第三形態
+title: ペイントレス第二形態
 turns:
   - actions:
     - character: ヴェルソ
@@ -1567,7 +1568,7 @@ turns:
 :::
 
 :::encounter
-title: ペイントレス第二形態
+title: ペイントレス第三形態
 note: シールド・フェイト
 :::
 
