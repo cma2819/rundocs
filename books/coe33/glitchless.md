@@ -1425,8 +1425,8 @@ when: 道中ジャンプで
 actions:
   - kind: formation
     note: |
-      - モノコout
-      - シエルout-in、ヴェルソin
+      - モノコout, マエルin
+      - シエルout-in, ヴェルソin
 :::
 
 道中で回収 「弱点の恩恵」
@@ -1523,15 +1523,19 @@ turns:
       action: フォーカス・フォーテル
     - character: ヴェルソ
       action: ベルセルク・スラッシュ
-    - note: 最低 1 AP はヴェルソに入らなければ、セーブをロード
+    - character: ペイントレス
+      action: 隕石攻撃 > パリィ 
+      note: 最低 1 AP はヴェルソに入らなければ、セーブをロード
   - actions:
     - character: シエル
       action: フォーチュン・フューリー
     - character: ヴェルソ
-      note: |
+      action: |
         - 3 パリィ以上してたらベルセルク・スラッシュ
         - 2 か 1 パリィならディファイアント・ストライク
-    - note: ここまでで 3 AP 以上ヴェルソに入ってなければ、ダメージを減らす（シールド・フェイトのQTEで失敗するなどする）
+    - character: ペイントレス
+      action: グラディエントアタック
+      note: ここまでで 3 AP 以上ヴェルソに入ってなければ、次以降ダメージを減らす（シールド・フェイトのQTEで失敗するなどする）
   - actions:
     - character: マエル
       action: オフェンス・スイッチ
