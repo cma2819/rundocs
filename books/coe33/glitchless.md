@@ -785,7 +785,8 @@ turns:
     - character: マエル
       action: ペルセかレイン・オブ・ファイア
     - character: シエル
-      action: 倒せてなければ、倒すための行動
+      action: APティント or 攻撃などなど
+  - note: ダメージ足らない場合、傷跡＋ペルセを狙っていくのが安定っぽい
 :::
 
 :::status
@@ -1448,6 +1449,11 @@ count: 1
   - シエル
     - シールド・フェイト > 左下
 
+:::note
+リコート持っていなければ回収する
+広場左手2つめの路地塞がってるとこ
+:::
+
 :::menu
 when: ルノワール前
 actions:
@@ -1544,7 +1550,7 @@ turns:
 :::
 
 :::encounter
-title: ペイントレス第三形態
+title: ペイントレス第二形態
 turns:
   - actions:
     - character: ヴェルソ
@@ -1562,7 +1568,7 @@ turns:
 :::
 
 :::encounter
-title: ペイントレス第二形態
+title: ペイントレス第三形態
 note: シールド・フェイト
 :::
 
@@ -1576,7 +1582,15 @@ count: 5
 loading: true
 :::
 
-クレアと会話（いいえ2回）
+## 屋敷
+
+クレアと会話
+
+:::skip
+count: 1
+:::
+
+（いいえ2回）
 
 :::skip
 count: 2
@@ -1595,7 +1609,7 @@ actions:
   - character: maelle
     items:
       - kind: pictos
-        note: 強化先制攻撃 out, (2) out, かりそめの力 in
+        note: 強化先制攻撃(2) out, かりそめの力 in
       - kind: lumina
         note: 完全無欠 in, エナジャイズスタートI out, 強化先制攻撃 in
 :::
@@ -1609,18 +1623,12 @@ loading: true
 count: 1
 :::
 
-全員と会話、選択肢「史上最高の遠征隊をつくる。」
+全員と会話、選択肢「史上最高の遠征隊をつくる。」(2)
 
 ルミエールへ
 
 :::skip
 count: 1
-:::
-
-:::menu
-actions:
-  - kind: formation
-    note: マエル out-in
 :::
 
 旗（港）
@@ -1632,12 +1640,14 @@ actions:
   - マエル
     - スタンダール > 左上
     - (メッゾ・フォルテ, ) ラストチャンス > 左中
+- 武器強化
+  - メダルウム > Lv15
 
 :::menu
+when: アベレイション前
 actions:
-  - character: maelle
-    kind: weapon
-    note: メダルウム > Lv15
+  - kind: formation
+    note: ルネout, マエル out-in
 :::
 
 アべレイションと戦闘
