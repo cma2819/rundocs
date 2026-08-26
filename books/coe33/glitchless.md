@@ -577,7 +577,7 @@ count: 2
 count: 1
 :::
 
-キャンプ、休息
+キャンプ、休息(2)
 
 :::skip
 count: 1
@@ -604,7 +604,7 @@ count: 1
 :::menu
 actions:
   - kind: formation
-    note: エマ out, シエル in
+    note: ルネ out, シエル in
   - character: maelle
     items:
       - kind: weapon
