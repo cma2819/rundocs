@@ -195,7 +195,8 @@ turns:
       action: ルミエール・アサルト
   - actions:
     - character: ルネ
-      action: できるだけ削ってアイスランス / 攻撃 / APティント（ギュスターヴの AP 足りなければ）
+      action: APティント（ギュスターヴの AP 足りなければ）/ アイスランス / 攻撃
+      note: HP残り3/8くらいを目指す
     - character: ギュスターヴ
       action: オーバーチャージ
   - note: オーバーチャージでクリティカル出ないと倒せない。残ったら、頑張って削って倒す
@@ -331,7 +332,7 @@ count: 1
 進む
 
 :::menu
-when: Gobluムービー前
+when: ゴブルムービー前
 actions:
   - kind: formation
     note: マエル out-in
@@ -339,6 +340,7 @@ actions:
 
 :::encounter
 title: ゴブル
+note: クリティカル見ておくこと
 turns:
   - note: 回避する
   - actions:
@@ -348,6 +350,7 @@ turns:
         action: パワフル
       - character: マエル
         action: スウィフト・ストライド
+  - note: ここも回避
   - actions:
       - character: ルネ
         action: アイスランス
@@ -398,7 +401,7 @@ count: 1
 
 - マエルウム -> Lv4
 
-眠る (opt2)
+眠る(2)
 
 ## ワールドマップ
 
@@ -438,6 +441,7 @@ count: 1
 進む
 
 :::menu
+when: アルティメット・サカパタト前
 actions:
   - character: gustave
     items:
