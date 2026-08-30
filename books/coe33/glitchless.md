@@ -89,7 +89,7 @@ turns:
   - actions:
     - character: ギュスターヴ
       action: エイム（ヘッドショット含む2発）-> 攻撃 
-    - character: エマ
+    - character: ルネ
       action: アイスランス
 :::
 
