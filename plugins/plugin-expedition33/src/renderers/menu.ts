@@ -35,11 +35,13 @@ interface MenuActionNode {
  * with the heading and sometimes indented under it depending on how the
  * YAML happened to be authored.
  *
- * `character`/`kind` are metadata, not content, so they render as a small
- * heading-like label line (`.menu-action-heading`) — `note` is the actual
- * substance (what was done) and is parsed as Markdown (`markdownToHast`,
- * same helper `note`/`encounter`'s note fields use) so it reads as plain,
- * normal-weight prose rather than a dimmed inline aside.
+ * `character` is the primary fact ("who"), so it renders Emphasis-weight at
+ * full opacity (`.menu-action-character`); `kind` is secondary metadata, so
+ * it stays a dimmer Label-role tag beside it (`.menu-action-kind`) — both
+ * sit in the `.menu-action-heading` row. `note` is the actual substance
+ * (what was done) and is parsed as Markdown (`markdownToHast`, same helper
+ * `note`/`encounter`'s note fields use) so it reads as plain, normal-weight
+ * prose rather than a dimmed inline aside.
  *
  * Styled as a compact left-accent card (`.state-block--menu` strips the
  * generic boxed wrapper, `.menu-card` carries the visual weight) — lighter
@@ -65,7 +67,6 @@ export function createMenuRenderer(
       { class: 'menu-action-heading' },
       [
         characterLabel ? h('span', { class: 'menu-action-character' }, characterLabel) : null,
-        characterLabel && kindLabel ? ' — ' : null,
         kindLabel ? h('span', { class: 'menu-action-kind' }, kindLabel) : null,
         !characterLabel && !kindLabel ? '?' : null,
       ].filter(Boolean) as any,

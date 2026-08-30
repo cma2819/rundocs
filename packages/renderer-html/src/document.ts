@@ -256,11 +256,14 @@ h1, h2, h3 { line-height: 1.3; }
    borderless (spacing only) while .menu-card carries the visual weight: the
    "Menu" title (.component h3, same rule every Component uses) leads, then
    the ordered list of actions (timing, if any, is a preceding ":::when"
-   block rather than part of this card). Within each action, character/kind
-   are metadata rather than content, so they stay a small heading-like label
-   (same treatment as .encounter-turn-title); "note" is the actual substance
-   of what was done, so it renders as plain, normal-weight Markdown prose
-   instead of a dimmed inline aside. */
+   block rather than part of this card). Within each action, the character
+   is the primary fact ("who"), so it renders Emphasis-weight at full
+   opacity; kind (pictos/formation/etc.) is secondary metadata, so it stays
+   a dimmer Label-role tag beside it — uppercase/letter-spacing are dropped
+   here since this book's labels are Japanese, where those transforms are
+   no-ops and only hurt legibility. "note" is the actual substance of what
+   was done, so it renders as plain, normal-weight Markdown prose instead of
+   a dimmed inline aside. */
 .state-block--menu { border: none; background: none; padding: 0; margin: 0.75rem 0; }
 .menu-card {
   border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
@@ -269,11 +272,18 @@ h1, h2, h3 { line-height: 1.3; }
 }
 .menu-action-heading {
   margin: 0;
-  font-size: var(--rd-label-size-sm);
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+.menu-action-character {
+  font-size: var(--rd-label-size-lg);
+  font-weight: var(--rd-emphasis-weight);
+}
+.menu-action-kind {
+  font-size: var(--rd-label-size-lg);
   font-weight: var(--rd-label-weight);
-  text-transform: uppercase;
-  letter-spacing: var(--rd-label-tracking);
-  opacity: var(--rd-label-opacity);
+  opacity: 0.85;
 }
 .menu-actions { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 .menu-action-note { margin: 0.2rem 0 0; }
