@@ -1,5 +1,27 @@
 const CSS = `
-:root { color-scheme: light dark; }
+/* ---- Typography style guide --------------------------------------------
+   Every Block/Component's chrome text reuses one of two roles below instead
+   of hand-rolling new font-size/font-weight pairs — this is what keeps
+   different blocks reading as one system.
+
+   Label    — a quiet, uppercase, letter-spaced tag that names something
+              (a Component's title, a field group, a metadata line). Two
+              sizes only: -lg for a block/Component's own title, -sm for a
+              label nested inside a card. Always dimmed via opacity, never
+              heavier than Emphasis.
+   Emphasis — the standout fact/value next to a Label (a stat number, a
+              badge, a value cell). Normal case, no dimming, heavier weight
+              than Label so the two roles stay visually distinct.
+   -------------------------------------------------------------------------- */
+:root {
+  color-scheme: light dark;
+  --rd-label-weight: 600;
+  --rd-label-tracking: 0.03em;
+  --rd-label-opacity: 0.7;
+  --rd-label-size-lg: 0.95rem;
+  --rd-label-size-sm: 0.75rem;
+  --rd-emphasis-weight: 700;
+}
 body {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.65;
@@ -55,10 +77,17 @@ h1, h2, h3 { line-height: 1.3; }
   background: color-mix(in srgb, #e5484d 12%, transparent);
 }
 .component { margin: 0.5rem 0; }
-.component h3 { margin: 0 0 0.35rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.75; }
+.component h3 {
+  margin: 0 0 0.35rem;
+  font-size: var(--rd-label-size-lg);
+  font-weight: var(--rd-label-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--rd-label-tracking);
+  opacity: var(--rd-label-opacity);
+}
 .component dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.15rem 0.75rem; margin: 0; }
 .component dt { opacity: 0.75; }
-.component dd { margin: 0; font-weight: 600; }
+.component dd { margin: 0; font-weight: var(--rd-emphasis-weight); }
 .icon::before { content: attr(class); font-size: 0; }
 
 /* Shared "slot grid" primitive — available to any Plugin renderer that wants a
@@ -72,8 +101,14 @@ h1, h2, h3 { line-height: 1.3; }
   opacity: 0.55;
 }
 .slot--active { opacity: 1; border-color: color-mix(in srgb, currentColor 45%, transparent); }
-.slot-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.75; }
-.slot-value { font-weight: 700; }
+.slot-label {
+  font-size: var(--rd-label-size-sm);
+  font-weight: var(--rd-label-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--rd-label-tracking);
+  opacity: var(--rd-label-opacity);
+}
+.slot-value { font-weight: var(--rd-emphasis-weight); }
 
 /* Formation's <ol> stays semantic (turn order matters) but reads better as a
    left-to-right row of name chips than a numbered vertical list. */
@@ -83,7 +118,7 @@ h1, h2, h3 { line-height: 1.3; }
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
   background: color-mix(in srgb, currentColor 6%, transparent);
-  font-weight: 600;
+  font-weight: var(--rd-emphasis-weight);
 }
 
 /* Equip: weapon chip on its own row, then pictos (a vertical chip column)
@@ -109,7 +144,7 @@ h1, h2, h3 { line-height: 1.3; }
   border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
   background: color-mix(in srgb, currentColor 5%, transparent);
 }
-.equip-weapon { grid-area: weapon; width: fit-content; font-weight: 600; }
+.equip-weapon { grid-area: weapon; width: fit-content; font-weight: var(--rd-emphasis-weight); }
 .equip-pictos {
   grid-area: pictos;
   display: flex; flex-direction: column; gap: 0.35rem;
@@ -130,13 +165,20 @@ h1, h2, h3 { line-height: 1.3; }
 .status-card h4 { margin: 0 0 0.5rem; display: flex; align-items: baseline; gap: 0.5rem; }
 .status-lv {
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: var(--rd-emphasis-weight);
   padding: 0.15rem 0.65rem;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
   background: color-mix(in srgb, currentColor 12%, transparent);
 }
-.status-group-title { margin: 0.5rem 0 0.35rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.7; }
+.status-group-title {
+  margin: 0.5rem 0 0.35rem;
+  font-size: var(--rd-label-size-sm);
+  font-weight: var(--rd-label-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--rd-label-tracking);
+  opacity: var(--rd-label-opacity);
+}
 
 /* ":::encounter" block — a one-shot turn log (title/note + one section per
    turn, each headed "Turn N" with an actions sub-list and an optional note).
@@ -151,10 +193,20 @@ h1, h2, h3 { line-height: 1.3; }
 .encounter-title { margin: 0 0 0.5rem; font-size: 1rem; }
 .encounter-turns { margin: 0.5rem 0 0; display: flex; flex-direction: column; gap: 0.75rem; }
 .encounter-turn + .encounter-turn { border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent); padding-top: 0.75rem; }
-.encounter-turn-title { margin: 0 0 0.3rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.7; }
+.encounter-turn-title {
+  margin: 0 0 0.3rem;
+  font-size: var(--rd-label-size-sm);
+  font-weight: var(--rd-label-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--rd-label-tracking);
+  opacity: var(--rd-label-opacity);
+}
 .encounter-actions { margin: 0.25rem 0 0; padding-left: 1.1rem; }
-.encounter-action-note { font-style: italic; opacity: 0.75; }
-.encounter-note { margin: 0.3rem 0 0; font-style: italic; opacity: 0.75; }
+/* "note" text is the substance of what happened, not a dimmed aside — same
+   full-color treatment as .menu-action-note, so a note reads the same
+   whether it's attached to an encounter turn/action or a menu action. */
+.encounter-action-note { font-style: italic; }
+.encounter-note { margin: 0.3rem 0 0; font-style: italic; }
 
 /* ":::note" is a supplementary aside/caution called out mid-procedure — an
    accent-bordered callout (Radix amber) sets it apart from surrounding prose
@@ -200,14 +252,14 @@ h1, h2, h3 { line-height: 1.3; }
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
 }
-.menu-when { margin: 0 0 0.6rem; font-size: 0.95rem; font-weight: 700; }
+.menu-when { margin: 0 0 0.6rem; font-size: 0.95rem; font-weight: var(--rd-emphasis-weight); }
 .menu-action-heading {
   margin: 0;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: var(--rd-label-size-sm);
+  font-weight: var(--rd-label-weight);
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-  opacity: 0.7;
+  letter-spacing: var(--rd-label-tracking);
+  opacity: var(--rd-label-opacity);
 }
 .menu-actions { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 .menu-action-note { margin: 0.2rem 0 0; }
@@ -230,7 +282,7 @@ h1, h2, h3 { line-height: 1.3; }
   padding: 0.5rem 0.75rem;
   font-size: 0.85rem;
 }
-.skip-card-heading { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 600; }
+.skip-card-heading { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: var(--rd-emphasis-weight); }
 .skip-card-when { margin: 0; opacity: 0.9; }
 .skip-card-loading {
   display: inline-flex;
