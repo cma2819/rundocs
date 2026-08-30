@@ -1398,6 +1398,7 @@ members: [monoco, sciel]
 :::
 
 :::menu
+when: ペイントレス（モノリス）前
 actions:
   - character: sciel
     items:
