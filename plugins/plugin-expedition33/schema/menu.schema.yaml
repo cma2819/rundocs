@@ -5,11 +5,6 @@ x-ui:
   displayName: Menu
   icon: menu
 properties:
-  when:
-    type: string
-    x-ui:
-      displayName: Menu timing
-      icon: clock
   actions:
     type: array
     items:

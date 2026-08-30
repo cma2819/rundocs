@@ -58,6 +58,15 @@ turns:
         action: Potion → gustave
 :::
 
+### when
+
+操作のタイミングを一言で記す、プレーンなテキストのみのBlock。`:::skip`や`:::menu`など、
+タイミングが意味を持つBlockの直前に置く。
+
+:::when
+ボス戦前の休憩地点で
+:::
+
 ## plugin-expedition33 のComponent Block
 
 `game.schema.yaml` の `components` に登録されたComponentは、`:::state` にネストする代わりに
@@ -103,26 +112,25 @@ lune:
 
 ### skip(ムービースキップ)
 
-ムービースキップの累計回数、スキップするタイミング、直後にロード画面を挟むかどうか。
+ムービースキップの累計回数と、直後にロード画面を挟むかどうか。スキップするタイミングを記す
+場合は、直前に`:::when`を置く。
 
 :::skip
 count: 1
-when: 会話終了後
 loading: true
 :::
 
 ### menu(メニューイング)
 
-一時停止メニューを開いて武器・Pictos・ルミナ・スキル・隊列などを変更した記録。メニューを開いた
-`when`(タイミング、省略可)と、順序を持つ`actions`を持つ。各行動は`character`(誰の)と
-`kind`(種別)を持てるが、どちらが親になるか(`items`で束ねる側)は行動ごとに逆転してよい。
-`character`は`formation` Componentと同じキャラクターID、`kind`は`weapon`/`pictos`/`lumina`/
-`skill`/`formation`(隊列変更)のいずれかで、いずれも`menu.schema.yaml`の`enum`で検証される
-固定値(自由入力不可)。`character`/`kind`はラベルとして見出し的に表示され、`note`は操作内容の
-具体としてMarkdownで描画される。
+一時停止メニューを開いて武器・Pictos・ルミナ・スキル・隊列などを変更した記録。順序を持つ
+`actions`を持つ。各行動は`character`(誰の)と`kind`(種別)を持てるが、どちらが親になるか
+(`items`で束ねる側)は行動ごとに逆転してよい。`character`は`formation` Componentと同じ
+キャラクターID、`kind`は`weapon`/`pictos`/`lumina`/`skill`/`formation`(隊列変更)のいずれかで、
+いずれも`menu.schema.yaml`の`enum`で検証される固定値(自由入力不可)。`character`/`kind`は
+ラベルとして見出し的に表示され、`note`は操作内容の具体としてMarkdownで描画される。メニューを
+開いたタイミングを記す場合は、直前に`:::when`を置く。
 
 :::menu
-when: ボス戦前の休憩地点で
 actions:
   - character: lune
     items:

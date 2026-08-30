@@ -4,7 +4,6 @@ import { SKIP_LABELS, type SkipLabels } from '../labels.js';
 
 interface Skip {
   count?: number;
-  when?: string;
   loading?: boolean;
 }
 
@@ -15,10 +14,11 @@ interface Skip {
  * component itself carries the visual weight as a left-accent card (see
  * `.skip-card` in document.ts for the matching CSS), so it stays legible
  * against surrounding prose without a fully boxed section+<dl>. Reads
- * top-to-bottom like a procedure step: heading (what + how many), optional
- * timing text, then — separated by a dashed rule — an optional loading tag.
- * `when`/`loading` are omitted entirely when absent, so the common
- * count-only case stays a single line.
+ * top-to-bottom like a procedure step: heading (what + how many), then —
+ * separated by a dashed rule — an optional loading tag. Timing, if
+ * relevant, is authored as a preceding `:::when` block rather than a field
+ * here. `loading` is omitted entirely when absent, so the common count-only
+ * case stays a single line.
  *
  * Factory-shaped (rather than a single constant) so a book can supply its own
  * localized labels while reusing this layout — same pattern as
@@ -43,7 +43,6 @@ export function createSkipRenderer(labels: SkipLabels = SKIP_LABELS): ComponentR
             h('span', {}, count != null ? `${labels.title} ×${count}` : labels.title),
           ].filter(Boolean) as any,
         ),
-        skip.when ? h('p', { class: 'skip-card-when' }, skip.when) : null,
         skip.loading
           ? h(
               'div',

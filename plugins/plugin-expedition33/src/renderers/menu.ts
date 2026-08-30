@@ -15,8 +15,8 @@ interface MenuActionNode {
 
 /**
  * A record of a pause-menu session mid-run (weapon/pictos/lumina/skill
- * changes, etc.): an optional `when` timing line followed by the ordered
- * `actions` taken inside it. Each action's `character`/`kind` are validated
+ * changes, etc.): the ordered `actions` taken inside it. Each action's
+ * `character`/`kind` are validated
  * against `menu.schema.yaml`'s enums (the fixed roster / fixed menu
  * categories), so unlike `formation`/`equip`/`status` this renderer only
  * needs to translate already-valid ids to display labels, not guard against
@@ -45,8 +45,9 @@ interface MenuActionNode {
  * generic boxed wrapper, `.menu-card` carries the visual weight) — lighter
  * than `formation`/`equip`/`status`'s full boxed section, but unlike `skip`
  * it keeps the `<h3>` title (`.component h3`, same rule every other
- * Component uses) since a menu card has enough going on (when + a list of
- * actions) to benefit from a leading label.
+ * Component uses) since a menu card has enough going on (a list of actions)
+ * to benefit from a leading label. Timing, if relevant, is authored as a
+ * preceding `:::when` block rather than a field on this Component.
  *
  * Factory-shaped so a book can supply its own id -> displayName character map
  * and/or localized kind labels while reusing this layout — same pattern as
@@ -92,7 +93,6 @@ export function createMenuRenderer(
 
   return (component) => {
     const title = component.schema?.['x-ui']?.displayName ?? component.name;
-    const when = typeof component.value.when === 'string' ? (component.value.when as string) : undefined;
     const actions = Array.isArray(component.value.actions) ? (component.value.actions as MenuActionNode[]) : [];
 
     return h(
@@ -100,7 +100,6 @@ export function createMenuRenderer(
       { class: 'component component--menu menu-card' },
       [
         h('h3', {}, title),
-        when ? h('div', { class: 'menu-when' }, when) : null,
         actions.length > 0 ? h('ol', { class: 'menu-actions' }, actions.map(renderActionNode)) : null,
       ].filter(Boolean) as any,
     );

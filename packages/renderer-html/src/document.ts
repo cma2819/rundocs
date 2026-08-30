@@ -219,6 +219,22 @@ h1, h2, h3 { line-height: 1.3; }
   margin: 1.25rem 0;
 }
 
+/* ":::when" states the timing of the operation that follows it — a
+   label+value row (reusing .slot-label/.slot-value, the same pair used by
+   inventory/status slots) inside the same left-accent card treatment as
+   ".skip-card", since both are a single short fact rather than the
+   supplementary prose ".block--note" calls out. */
+.block--when {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  border-left: 3px solid color-mix(in srgb, currentColor 35%, transparent);
+  background: color-mix(in srgb, currentColor 4%, transparent);
+  border-radius: 0.35rem;
+  padding: 0.5rem 0.75rem;
+  margin: 1.25rem 0;
+}
+
 /* note/encounter-note/state-field "note" text is now parsed as Markdown, so a
    plain single-line note is wrapped in a <p> instead of being a bare text
    node — collapse its edge margins so these callouts don't gain extra
@@ -239,20 +255,18 @@ h1, h2, h3 { line-height: 1.3; }
    can appear many times per page, so its .state-block wrapper stays
    borderless (spacing only) while .menu-card carries the visual weight: the
    "Menu" title (.component h3, same rule every Component uses) leads, then
-   "when" — the headline fact of the card, so it gets a bold/larger treatment
-   like .skip-card-heading rather than a dimmed label — then the ordered list
-   of actions. Within each action, character/kind are metadata rather than
-   content, so they stay a small heading-like label (same treatment as
-   .encounter-turn-title); "note" is the actual substance of what was done,
-   so it renders as plain, normal-weight Markdown prose instead of a dimmed
-   inline aside. */
+   the ordered list of actions (timing, if any, is a preceding ":::when"
+   block rather than part of this card). Within each action, character/kind
+   are metadata rather than content, so they stay a small heading-like label
+   (same treatment as .encounter-turn-title); "note" is the actual substance
+   of what was done, so it renders as plain, normal-weight Markdown prose
+   instead of a dimmed inline aside. */
 .state-block--menu { border: none; background: none; padding: 0; margin: 0.75rem 0; }
 .menu-card {
   border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
 }
-.menu-when { margin: 0 0 0.6rem; font-size: 0.95rem; font-weight: var(--rd-emphasis-weight); }
 .menu-action-heading {
   margin: 0;
   font-size: var(--rd-label-size-sm);
@@ -268,9 +282,10 @@ h1, h2, h3 { line-height: 1.3; }
 /* ":::skip" marks a cutscene skip in the run's flow rather than persistent
    party state — it appears many times per page, so its .state-block wrapper
    stays borderless (spacing only) while the component itself renders as a
-   left-accent card: heading, optional timing text, and (separated by a
-   dashed rule) an optional loading tag — enough visual weight to stay
-   legible among prose without the full boxed section+<dl> treatment. */
+   left-accent card: heading, and (separated by a dashed rule) an optional
+   loading tag — enough visual weight to stay legible among prose without the
+   full boxed section+<dl> treatment. Timing, if any, is a preceding
+   ":::when" block rather than part of this card. */
 .state-block--skip { border: none; background: none; padding: 0; margin: 0.75rem 0; }
 .skip-card {
   display: flex;
@@ -283,7 +298,6 @@ h1, h2, h3 { line-height: 1.3; }
   font-size: 0.85rem;
 }
 .skip-card-heading { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: var(--rd-emphasis-weight); }
-.skip-card-when { margin: 0; opacity: 0.9; }
 .skip-card-loading {
   display: inline-flex;
   align-items: center;

@@ -119,8 +119,11 @@ turns:
 
 進む
 
+:::when
+遠征隊ジャーナルムービーin
+:::
+
 :::menu
-when: 遠征隊ジャーナルムービーin
 actions:
   - kind: formation
     note: |
@@ -135,8 +138,11 @@ actions:
           `回避巧者` (2)
 :::
 
+:::when
+遠征隊ジャーナル入手
+:::
+
 :::skip
-when: 遠征隊ジャーナル入手
 count: 2
 :::
 
@@ -221,8 +227,11 @@ count: 1
 
 ## 浮遊する水
 
+:::when
+エリアinムービー
+:::
+
 :::menu
-when: エリアinムービー
 actions:
   - character: gustave
     items:
@@ -246,8 +255,11 @@ loading: true
 count: 1
 :::
 
+:::when
+マエル合流
+:::
+
 :::menu
-when: マエル合流
 actions:
   - character: maelle
     items:
@@ -259,8 +271,11 @@ actions:
         note: スパーク（3）解除
 :::
 
+:::when
+旗へのジャンプ時
+:::
+
 :::menu
-when: 旗へのジャンプ時
 actions:
   - kind: formation
     note: ルネ out-in
@@ -331,8 +346,11 @@ count: 1
 
 進む
 
+:::when
+ゴブルムービー前
+:::
+
 :::menu
-when: ゴブルムービー前
 actions:
   - kind: formation
     note: マエル out-in
@@ -440,8 +458,11 @@ count: 1
 
 進む
 
+:::when
+アルティメット・サカパタト前
+:::
+
 :::menu
-when: アルティメット・サカパタト前
 actions:
   - character: gustave
     items:
@@ -652,8 +673,11 @@ turns:
       action: エイム（盾はがすまで）, ペルセ
 :::
 
+:::when
+エスキエムービーin
+:::
+
 :::menu
-when: エスキエムービーin
 actions:
   - character: maelle
     items:
@@ -695,8 +719,11 @@ count: 1
 
 ## 岩波の崖
 
+:::when
+ムービーin
+:::
+
 :::menu
-when: ムービーin
 actions:
   - character: sciel
     items:
@@ -720,8 +747,11 @@ actions:
 - クロマx790
 - ルミナのカラー
 
+:::when
+ランプマスター前
+:::
+
 :::menu
-when: ランプマスター前
 actions:
   - character: gustave
     kind: pictos
@@ -830,8 +860,11 @@ count: 1
 
 ## 忘れ去られた戦場
 
+:::when
+エリアin
+:::
+
 :::skip
-when: エリアin
 count: 1
 :::
 
@@ -849,8 +882,11 @@ turns:
 :::
 
 
+:::when
+道中
+:::
+
 :::menu
-when: 道中
 actions:
   - kind: formation
     note: マエル out, ルネ out
@@ -861,8 +897,11 @@ actions:
 - 洗練されたクロマカタリストx5
 - インバーテッドアフィニティ
 
+:::when
+入手後のジャンプ
+:::
+
 :::menu
-when: 入手後のジャンプ
 actions:
   - character: verso
     kind: weapon
@@ -882,8 +921,11 @@ actions:
     - 左下にディファイアント・ストライク
     - 左中にベルセルク・スラッシュ
 
+:::when
+デュアリステ前
+:::
+
 :::menu
-when: デュアリステ前
 actions:
   - character: verso
     kind: pictos
@@ -921,8 +963,11 @@ turns:
   - note: 倒せなければ、回避のちグラディエントカウンター
 :::
 
+:::when
+ムービーin
+:::
+
 :::menu
-when: ムービーin
 actions:
   - character: maelle
     kind: pictos
@@ -959,8 +1004,11 @@ turns:
   - note: エイムで削って、ベルセルク・スラッシュ
 :::
 
+:::when
+スタラクト前
+:::
+
 :::menu
-when: スタラクト前
 actions:
   - kind: formation
     note: シエル in, マエル in
@@ -1013,8 +1061,11 @@ count: 2
 - 洗練されたクロマカタリストx5
 - ルミナのカラーx1 (合計4個, アルティメットサカパタト以降にダメージ受けてるなら、5個)
 
+:::when
+パーティ分割ムービーin
+:::
+
 :::menu
-when: パーティ分割ムービーin
 actions:
   - kind: pictos
     character: lune
@@ -1055,8 +1106,11 @@ count: 1
 
 - 入手 `自動加速`
 
+:::when
+ルノアール戦前
+:::
+
 :::menu
-when: ルノアール戦前
 actions:
   - kind: pictos
     note: クリティカルバーン > 自動加速（1）
@@ -1111,8 +1165,11 @@ count: 1
 
 進む
 
+:::when
+ムービーin
+:::
+
 :::menu
-when: ムービーin
 actions:
   - kind: formation
     note: |
@@ -1157,8 +1214,11 @@ members: [verso, sciel, maelle]
   - シエル
     - 自己犠牲, 左中
 
+:::when
+ヴィサージュ戦前
+:::
+
 :::menu
-when: ヴィサージュ戦前
 actions:
   - character: sciel
     kind: pictos
@@ -1245,8 +1305,11 @@ count: 1
 
 ## シレーヌ
 
+:::when
+ムービーin
+:::
+
 :::menu
-when: ムービーin
 actions:
   - kind: pictos
     items:
@@ -1311,8 +1374,11 @@ turns:
       action: グラデエント・スキル > ファイアリング・シャドウ
 :::
 
+:::when
+シレーヌ前
+:::
+
 :::menu
-when: シレーヌ前
 actions:
   - character: maelle
     items:
@@ -1387,8 +1453,11 @@ loading: true
 count: 1
 :::
 
+:::when
+ペイントレス前までに
+:::
+
 :::menu
-when: ペイントレス前までに
 actions:
   - kind: formation
     note: マエルout, ヴェルソout, モノコin, シエルout-in
@@ -1398,8 +1467,11 @@ actions:
 members: [monoco, sciel]
 :::
 
+:::when
+ペイントレス（モノリス）前
+:::
+
 :::menu
-when: ペイントレス（モノリス）前
 actions:
   - character: sciel
     items:
@@ -1427,8 +1499,11 @@ loading: true
 
 ## モノリス内部
 
+:::when
+道中ジャンプで
+:::
+
 :::menu
-when: 道中ジャンプで
 actions:
   - kind: formation
     note: |
@@ -1460,8 +1535,11 @@ count: 1
 広場左手2つめの路地塞がってるとこ
 :::
 
+:::when
+ルノワール前
+:::
+
 :::menu
-when: ルノワール前
 actions:
   - character: sciel
     items:
@@ -1512,8 +1590,11 @@ turns:
       action: グラディエントスキル > シールド・フェイト
 :::
 
+:::when
+ペイントレス前
+:::
+
 :::menu
-when: ペイントレス前
 actions:
   - character: maelle
     kind: pictos
@@ -1609,8 +1690,11 @@ count: 3
 
 ## ルミエール
 
+:::when
+ルノワールムービーin
+:::
+
 :::menu
-when: ルノワールムービーin
 actions:
   - character: maelle
     items:
@@ -1649,8 +1733,11 @@ count: 1
 - 武器強化
   - メダルウム > Lv15
 
+:::when
+アベレイション前
+:::
+
 :::menu
-when: アベレイション前
 actions:
   - kind: formation
     note: ルネout, マエル out-in
@@ -1663,8 +1750,11 @@ title: アベレイション
 note: エネルギーティント, スタンダール
 :::
 
+:::when
+ジャンプ時
+:::
+
 :::menu
-when: ジャンプ時
 actions:
   - character: maelle
     kind: pictos
@@ -1673,8 +1763,11 @@ actions:
 
 クリアションは逃げる
 
+:::when
+クリアション戦後
+:::
+
 :::menu
-when: クリアション戦後
 actions:
   - kind: formation
     note: シエル in
