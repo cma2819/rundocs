@@ -4,6 +4,7 @@ additionalProperties: false
 x-ui:
   displayName: Status
   icon: chart-bar
+  reference: true
 properties:
   gustave:
     $ref: '#/$defs/status'

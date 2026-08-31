@@ -4,6 +4,7 @@ additionalProperties: false
 x-ui:
   displayName: Equip
   icon: shirt
+  reference: true
 properties:
   gustave:
     $ref: '#/$defs/loadout'

@@ -65,6 +65,60 @@ h1, h2, h3 { line-height: 1.3; }
 @media (max-width: 60rem) {
   .toc { display: none; }
 }
+
+/* Reference-info toggle: a checkbox-hack switch (no JS anywhere in this
+   project, same reasoning as the TOC rail above) that hides Components
+   flagged "x-ui.reference: true" (e.g. status/equip — useful when
+   troubleshooting a desync, not needed to just follow the route) until
+   switched on. The checkbox/label sit outside ".page" so the general
+   sibling combinator can reach every "[data-reference]" node inside
+   "main" regardless of nesting depth. State is per-page-load only: this
+   repo has no JS, so there's nowhere to persist it across navigation. */
+.rd-ref-toggle {
+  /* "fixed", not "absolute": clicking the label focuses this checkbox, and
+     browsers scroll a newly focused element into view. "absolute" with no
+     offset sits at its static flow position (the very top of <body>), so
+     focusing it would jump the page to the top on every toggle. "fixed" at
+     the label's own on-screen position is always already in the viewport,
+     so no scroll is triggered. */
+  position: fixed;
+  top: 1rem;
+  right: 1.25rem;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.rd-ref-toggle-label {
+  position: fixed;
+  top: 1rem;
+  right: 1.25rem;
+  z-index: 1;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  cursor: pointer;
+  opacity: 0.6;
+}
+.rd-ref-toggle-label:hover,
+.rd-ref-toggle:checked ~ .rd-ref-toggle-label { opacity: 1; }
+.rd-ref-toggle:focus-visible ~ .rd-ref-toggle-label { outline: 2px solid currentColor; }
+/* Collapsed (unchecked) state keeps each reference Component's own <h3>
+   label (e.g. "Status", "Equip") visible so a reader can see *that* there's
+   hidden info without switching the toggle — only its body content and the
+   surrounding card chrome collapse away. */
+.rd-ref-toggle:not(:checked) ~ .page [data-reference="true"] .component > :not(h3) {
+  display: none;
+}
+.rd-ref-toggle:not(:checked) ~ .page .state-block:has([data-reference="true"]) {
+  padding: 0.4rem 1rem;
+  background: none;
+}
+.rd-ref-toggle:not(:checked) ~ .page [data-reference="true"] .component { margin: 0; }
+.rd-ref-toggle:not(:checked) ~ .page [data-reference="true"] .component h3 { margin: 0; }
+
 .state-block {
   border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
   border-radius: 0.5rem;
@@ -348,6 +402,8 @@ export function wrapDocument(bodyHtml: string, title: string, headings: Heading[
 <style>${CSS}</style>
 </head>
 <body>
+<input type="checkbox" id="rd-ref-toggle" class="rd-ref-toggle">
+<label for="rd-ref-toggle" class="rd-ref-toggle-label">Reference info</label>
 <div class="page">
 <nav class="toc">${renderToc(headings)}</nav>
 <main>

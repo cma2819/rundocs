@@ -3,6 +3,10 @@ export interface UiMeta {
   icon?: string;
   renderer?: string;
   order?: number;
+  /** Reference-only info (e.g. character stats/equipment) — not needed to
+   *  follow the route, but useful when troubleshooting a desync. Hidden by
+   *  default in HTML output behind a page-level toggle. */
+  reference?: boolean;
 }
 
 export interface PropertySchema {
