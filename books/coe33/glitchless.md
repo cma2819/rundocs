@@ -544,7 +544,8 @@ maelle:
     - 攻撃力全振り（30）
 - スキル
   - マエル
-    - （デガジュマン）, レイン・オブ・ファイア < スウィフト・ストライド（左下）
+    - （デガジュマン）
+    - レイン・オブ・ファイア > スウィフト・ストライド（左下）
 
 :::status
 maelle:
@@ -932,7 +933,7 @@ actions:
     kind: pictos
     note: |
       - インバーテッドアフィニティ(2)
-      -  先制攻撃 < 回避巧者(3)
+      -  先制攻撃 > 回避巧者(3)
 :::
 
 :::equip
@@ -1174,8 +1175,8 @@ actions:
     items:
       - kind: pictos
         note: |
-          - コンボ攻撃 < 自動加速
-          - 先制攻撃 < 強化先制攻撃（入れ替え）
+          - コンボ攻撃 > 自動加速(1)
+          - 先制攻撃 > 強化先制攻撃(3)（入れ替え）
       - kind: lumina
         note: 緊急強化（逆順ソート、左上）
   - character: sciel
@@ -1379,7 +1380,7 @@ actions:
   - character: maelle
     items:
       - kind: pictos
-        note: 強化先制攻撃 < 瀬戸際（入れ替え）
+        note: 強化先制攻撃 > 瀬戸際(2, 入れ替え)
       - kind: lumina
         note: 瀬戸際
   - character: verso
@@ -1542,7 +1543,7 @@ actions:
       - kind: weapon
         note: ティスルオン
       - kind: pictos
-        note: 弱点の恩恵 < エナジャイズスタートI
+        note: 弱点の恩恵 > エナジャイズスタートI (2)
 :::
 
 :::equip
