@@ -27,20 +27,20 @@ count: 1
 :::
 
 - 港へ
-- テキスト -> Yes(1)
+- テキスト -> Yes[1]
 
 :::skip
 count: 3
 :::
 
 - アレクサンドルと会話
-- マエルと会話 -> No(2)
+- マエルと会話 -> No[2]
 
 :::skip
 count: 1
 :::
 
-- エマと会話 -> Yes(1)
+- エマと会話 -> Yes[1]
 
 :::skip
 count: 1
@@ -132,10 +132,10 @@ actions:
     items:
       - character: gustave
         note: |
-          `クリティカルバーン` (2)
+          `クリティカルバーン` [2] (<AA)
       - character: lune
         note: |
-          `回避巧者` (2)
+          `回避巧者` [2] (<<AA)
 :::
 
 :::skip
@@ -232,7 +232,7 @@ actions:
       - kind: skill
         note: ルミエール・アサルト解除
       - kind: pictos
-        note: 外す, 外す, 回避巧者（3, Yes）
+        note: 外す, 外す, 回避巧者 [3, Yes]
   - character: lune
     kind: weapon
     note: ライトイム（間に合わなかったら屋敷前でも可）
@@ -266,7 +266,7 @@ actions:
           - クリティカルバーン
           - 死のエネルギーII
       - kind: skill
-        note: スパーク（3）解除
+        note: スパーク[3] 解除
 :::
 
 :::when
@@ -417,7 +417,7 @@ count: 1
 
 - 武器強化
   - マエルウム -> Lv4
-- 焚火 -> 眠る(2)
+- 焚火 -> 眠る[2]
 
 ワールドマップ
 
@@ -607,7 +607,7 @@ count: 2
 count: 1
 :::
 
-キャンプ、休息(2)
+キャンプ、休息[2]
 
 :::skip
 count: 1
@@ -640,7 +640,7 @@ actions:
       - kind: weapon
         note: メダルウム
       - kind: pictos
-        note: ブレイカー（3）
+        note: ブレイカー[3]
       - kind: skill
         note: スウィフト・ストライド（右上）
   - character: sciel
@@ -687,7 +687,7 @@ actions:
   - character: maelle
     items:
       - kind: pictos
-        note: 2,3 解除、強化先制攻撃（3）
+        note: 2,3 解除、強化先制攻撃[3]
       - kind: lumina
         note: 死のエネルギーII追加、回避巧者解除
   - character: sciel
@@ -710,7 +710,7 @@ count: 1
 
 - 武器強化
   - メダリウム（Lv6 or Lv7）
-- 焚火 -> 眠る(1)
+- 焚火 -> 眠る[1]
 
 :::skip
 count: 1
@@ -760,10 +760,10 @@ actions:
 actions:
   - character: gustave
     kind: pictos
-    note: 緊急強化（1）
+    note: 緊急強化[1]
   - character: maelle
     kind: pictos
-    note: 先制攻撃（2）
+    note: 先制攻撃[2]
 :::
 
 :::equip
@@ -851,7 +851,7 @@ count: 2
 
 キャンプ
 
-- 眠る(1)
+- 眠る[1]
 
 :::skip
 count: 1
@@ -935,8 +935,8 @@ actions:
   - character: verso
     kind: pictos
     note: |
-      - インバーテッドアフィニティ(2)
-      -  先制攻撃 > 回避巧者(3)
+      - インバーテッドアフィニティ[2] (AA)
+      - 先制攻撃 > 回避巧者[3]
 :::
 
 :::equip
@@ -976,7 +976,7 @@ turns:
 actions:
   - character: maelle
     kind: pictos
-    note: 瀬戸際(2)
+    note: 瀬戸際[2] (<AA)
 :::
 
 ワールドマップへ
@@ -990,7 +990,7 @@ count: 1
 - 武器強化
   - ヴェルソ: デラルアム Lv9
   - マエル: メダルウム Lv8～9
-- 焚火 -> 眠る(2)
+- 焚火 -> 眠る[2]
 
 :::skip
 count: 1
@@ -1110,13 +1110,13 @@ count: 1
 - 入手 `自動加速`
 
 :::when
-ルノアール戦前
+ルノアール戦ムービー前（植木3つ目の奥側に判定）
 :::
 
 :::menu
 actions:
   - kind: pictos
-    note: クリティカルバーン > 自動加速（1）
+    note: 自動加速 > クリティカルバーン[1] (<<AA)
   - kind: lumina
     note: インバーテッドアフィニティ
 :::
@@ -1133,7 +1133,7 @@ turns:
       action: ベルセルク・スラッシュ 
   - actions:
     - character: マエル
-      action: スキップ
+      action: オフェンス・スイッチ（ベルセルク・スラッシュでクリティカル）
     - character: シエル
       action: エネルギーティント > ヴェルソ
     - character: ヴェルソ
@@ -1157,7 +1157,7 @@ count: 1
 - 資源強化
   - ルミナ > シエル全振り
   - ヒーリングティント
-- 焚火 -> 眠る(2)
+- 焚火 -> 眠る[2]
 
 ワールドマップ、ヴィサージュへ
 
@@ -1178,8 +1178,8 @@ actions:
     items:
       - kind: pictos
         note: |
-          - コンボ攻撃 > 自動加速(1)
-          - 先制攻撃 > 強化先制攻撃(3)（入れ替え）
+          - コンボ攻撃 > 自動加速[1]
+          - 先制攻撃 > 強化先制攻撃[3]（入れ替え）
       - kind: lumina
         note: 緊急強化（逆順ソート、左上）
   - character: sciel
@@ -1223,8 +1223,8 @@ actions:
   - character: sciel
     kind: pictos
     note: |
-      - エナジャイジングスタートI (2) > Yes
-      - 自動加速 (3)
+      - エナジャイジングスタートI [2] > Yes
+      - 自動加速 [3]
 :::
 
 
@@ -1299,7 +1299,7 @@ loading: true
 count: 1
 :::
 
-キャンプ、眠る(2)
+キャンプ、眠る[2]
 
 シレーヌへ
 
@@ -1314,7 +1314,7 @@ actions:
   - kind: pictos
     items:
       - character: sciel
-        note: 完全無欠(1)
+        note: 完全無欠[1]
   - kind: lumina 
     items:
       - character: sciel
@@ -1388,7 +1388,7 @@ actions:
         note: 瀬戸際
   - character: verso
     kind: pictos
-    note: 自動加速 (1)
+    note: 自動加速 [1]
 :::
 
 :::equip
@@ -1433,7 +1433,7 @@ turns:
 count: 1
 :::
 
-キャンプ、寝る(2)
+キャンプ、寝る[2]
 
 :::skip
 count: 1
@@ -1477,7 +1477,7 @@ actions:
     items:
       - kind: pictos
         note: |
-          エナジャイズターン (3)
+          エナジャイズターン [3]
           - 左2回、AでOK
       - kind: lumina
         note: |
@@ -1546,7 +1546,7 @@ actions:
       - kind: weapon
         note: ティスルオン
       - kind: pictos
-        note: 弱点の恩恵 > エナジャイズスタートI (2)
+        note: 弱点の恩恵 > エナジャイズスタートI [2]
 :::
 
 :::equip
@@ -1699,7 +1699,7 @@ actions:
   - character: maelle
     items:
       - kind: pictos
-        note: 強化先制攻撃(2) out, かりそめの力 in
+        note: 強化先制攻撃[2] out, かりそめの力 in
       - kind: lumina
         note: 完全無欠 in, エナジャイズスタートI out, 強化先制攻撃 in
 :::
@@ -1713,7 +1713,7 @@ loading: true
 count: 1
 :::
 
-全員と会話、選択肢「史上最高の遠征隊をつくる。」(2)
+全員と会話、選択肢「史上最高の遠征隊をつくる。」[2]
 
 ルミエールへ
 
@@ -1758,7 +1758,7 @@ note: エネルギーティント, スタンダール
 actions:
   - character: maelle
     kind: pictos
-    note: ショートカット(1)
+    note: ショートカット[1]
 :::
 
 クリアションは逃げる
@@ -1795,13 +1795,13 @@ turns:
 count: 2
 :::
 
-「絵を描くのをやめる時だ。」(1)
+「絵を描くのをやめる時だ。」[1]
 
 :::skip
 count: 1
 :::
 
-「マエルとして戦う。」(1)
+「マエルとして戦う。」[1]
 
 :::encounter
 title: ヴェルソ
