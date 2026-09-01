@@ -506,6 +506,9 @@ turns:
       action: パワフル
     - character: マエル
       action: スウィフト・ストライド
+  - note: |
+      - 回避（理論上はダメージくらってもいいらしい）
+      - パリィ
   - actions:
     - character: ルネ
       action: エイムで盾破壊, スキップ or イモレーション or 通常攻撃
