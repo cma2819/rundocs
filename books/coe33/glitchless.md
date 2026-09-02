@@ -57,6 +57,10 @@ count: 3
 
 - 道中でクロマエリクサー
 
+:::when
+ランセリエ戦
+:::
+
 :::skip
 count: 1
 :::
@@ -103,6 +107,10 @@ count: 1
 - 入手 `回避巧者`
 - 入手 `クリティカルバーン`
 
+:::when
+ヴォレステ戦
+:::
+
 :::skip
 count: 1
 :::
@@ -132,15 +140,17 @@ actions:
     items:
       - character: gustave
         note: |
-          `クリティカルバーン` [2] (<AA)
+          `クリティカルバーン` [2] (`<AA`)
       - character: lune
         note: |
-          `回避巧者` [2] (<<AA)
+          `回避巧者` [2] (`<<AA`)
 :::
 
 :::skip
 count: 2
 :::
+
+イヴェキ戦へ進む
 
 - 入手 `死のエネルギーII`
 - 入手 `ルミナのカラー`
@@ -151,9 +161,9 @@ count: 2
 
 - 特性
   - ギュスターヴ
-    - 攻撃力全振り (0+6)
+    - 攻撃力全振り (6)
   - ルネ
-    - 攻撃力全振り (0+6)
+    - 攻撃力全振り (6)
 - スキル
   - パワフル  
 
@@ -253,6 +263,8 @@ loading: true
 count: 1
 :::
 
+マエルの部屋へ
+
 :::when
 マエル合流
 :::
@@ -263,8 +275,8 @@ actions:
     items:
       - kind: pictos
         note: |
-          - クリティカルバーン
-          - 死のエネルギーII
+          - クリティカルバーン (`<AA`)
+          - 死のエネルギーII (`<vAA`)
       - kind: skill
         note: スパーク[3] 解除
 :::
@@ -465,12 +477,12 @@ actions:
   - character: gustave
     items:
       - kind: weapon
-        note: サカルアム
+        note: サカルアム (`vA`)
       - kind: lumina
-        note: クリティカルバーン, 死のエネルギーII
+        note: クリティカルバーン, 死のエネルギーII (`A>A`)
   - character: lune
     kind: lumina
-    note: (R3), 回避巧者, 死のエネルギーII
+    note: 回避巧者, 死のエネルギーII (R3 A>A)
   - character: maelle
     kind: lumina
     note: 回避巧者
@@ -496,7 +508,9 @@ maelle:
 
 :::encounter
 title: アルティメット・サカパタト
-note: 体力調整を注意すること。削り過ぎると防御が高くなるので、クリティカルで倒せる範囲で抑える
+note: |
+  - 体力調整に注意
+  - 削り過ぎるとガード貼られてしまうので、クリティカルで倒せる範囲で抑える
 turns:
   - note: 最初の叩きつけ攻撃だけ回避、他はパリィ
   - actions:
@@ -547,8 +561,7 @@ maelle:
     - 攻撃力全振り（30）
 - スキル
   - マエル
-    - （デガジュマン）
-    - レイン・オブ・ファイア > スウィフト・ストライド（左下）
+    - （デガジュマン, ）レイン・オブ・ファイア > スウィフト・ストライド（左下）
 
 :::status
 maelle:
@@ -629,7 +642,7 @@ count: 1
     - 攻撃力全振り（45）
 - スキル
   - シエル
-    - フォーチュン・フューリー、左上に装備（A連打でOK）
+    - フォーチュン・フューリー、左上に装備（`AA`）
 
 :::menu
 actions:
@@ -640,12 +653,12 @@ actions:
       - kind: weapon
         note: メダルウム
       - kind: pictos
-        note: ブレイカー[3]
+        note: ブレイカー[3] (`<<AA`)
       - kind: skill
-        note: スウィフト・ストライド（右上）
+        note: スウィフト・ストライド（右上, `<vvA>A`）
   - character: sciel
     kind: skill
-    note: ファイアリング・シャドウ（左下）
+    note: ファイアリング・シャドウ（左下, `A<vA`）
 :::
 
 :::equip
@@ -687,15 +700,15 @@ actions:
   - character: maelle
     items:
       - kind: pictos
-        note: 2,3 解除、強化先制攻撃[3]
+        note: 2,3 解除、強化先制攻撃[3] (`vYvY AA`)
       - kind: lumina
-        note: 死のエネルギーII追加、回避巧者解除
+        note: 死のエネルギーII追加、回避巧者解除 (`>>AvA`)
   - character: sciel
     items:
       - kind: lumina
-        note: クリティカルバーン, 死のエネルギーII
+        note: クリティカルバーン, 死のエネルギーII (`A>A`)
       - kind: skill
-        note: フォーカス・フォーテルを右中へ
+        note: フォーカス・フォーテルを右中へ (`<A >vA`)
 :::
 
 向かって左手、旗（フランソワの洞窟）へ、ファストトラベル（入り口）
@@ -721,6 +734,10 @@ count: 1
 :::
 
 岩波の崖向かって左側、海辺沿いでエナジャイズスタートI回収
+
+:::note
+↑忘れない！！！
+:::
 
 ## 岩波の崖
 
@@ -760,10 +777,10 @@ actions:
 actions:
   - character: gustave
     kind: pictos
-    note: 緊急強化[1]
+    note: 緊急強化[1] (`<AA`)
   - character: maelle
     kind: pictos
-    note: 先制攻撃[2]
+    note: 先制攻撃[2] (`<<AA`)
 :::
 
 :::equip
@@ -935,7 +952,7 @@ actions:
   - character: verso
     kind: pictos
     note: |
-      - インバーテッドアフィニティ[2] (AA)
+      - インバーテッドアフィニティ[2] (`AA`)
       - 先制攻撃 > 回避巧者[3]
 :::
 
@@ -976,7 +993,7 @@ turns:
 actions:
   - character: maelle
     kind: pictos
-    note: 瀬戸際[2] (<AA)
+    note: 瀬戸際[2] (`<AA`)
 :::
 
 ワールドマップへ
@@ -1116,7 +1133,7 @@ count: 1
 :::menu
 actions:
   - kind: pictos
-    note: 自動加速 > クリティカルバーン[1] (<<AA)
+    note: 自動加速 > クリティカルバーン[1] (`<<AA`)
   - kind: lumina
     note: インバーテッドアフィニティ
 :::
