@@ -27,6 +27,9 @@ body {
   line-height: 1.65;
 }
 h1, h2, h3 { line-height: 1.3; }
+pre, code, kbd, samp {
+  font-family: ui-monospace, "Cascadia Code", "Cascadia Mono", Consolas, "SFMono-Regular", Menlo, Monaco, "Liberation Mono", monospace;
+}
 
 /* Page shell: a sticky left-rail table of contents beside the reading
    column. ".toc:empty" collapses the rail (and its gap) for pages with no
