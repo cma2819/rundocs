@@ -171,7 +171,7 @@ count: 2
 actions:
   - character: gustave
     kind: pictos
-    note: 死のエネルギーII
+    note: 死のエネルギーII (`<AA`)
 :::
 
 :::formation
@@ -1787,7 +1787,7 @@ note: エネルギーティント, スタンダール
 actions:
   - character: maelle
     kind: pictos
-    note: ショートカット[1] (`<<vAA`)
+    note: ショートカット[1] (`AvA`)
 :::
 
 クリアションは逃げる
