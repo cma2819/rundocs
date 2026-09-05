@@ -952,8 +952,8 @@ actions:
   - character: verso
     kind: pictos
     note: |
-      - インバーテッドアフィニティ[2] (`AA`)
-      - 先制攻撃 > 回避巧者[3]
+      - インバーテッドアフィニティ[2] (`<AA`)
+      - 先制攻撃 > 回避巧者[3] (Yes, `<vAvAA`)
 :::
 
 :::equip
@@ -1108,6 +1108,14 @@ actions:
 
 進む
 
+:::when
+ルネパーティ終了時
+:::
+
+:::note
+ムービーinでリコートみる (^A L1)
+:::
+
 :::skip
 count: 2
 :::
@@ -1135,7 +1143,7 @@ actions:
   - kind: pictos
     note: 自動加速 > クリティカルバーン[1] (`<<AA`)
   - kind: lumina
-    note: インバーテッドアフィニティ
+    note: インバーテッドアフィニティ (`<^A`)
 :::
 
 :::encounter
@@ -1150,7 +1158,7 @@ turns:
       action: ベルセルク・スラッシュ 
   - actions:
     - character: マエル
-      action: オフェンス・スイッチ（ベルセルク・スラッシュでクリティカル）
+      action: オフェンス・スイッチ
     - character: シエル
       action: エネルギーティント > ヴェルソ
     - character: ヴェルソ
@@ -1195,16 +1203,16 @@ actions:
     items:
       - kind: pictos
         note: |
-          - コンボ攻撃 > 自動加速[1]
-          - 先制攻撃 > 強化先制攻撃[3]（入れ替え）
+          - コンボ攻撃 > 自動加速[1] (`<AA`)
+          - 先制攻撃 > 強化先制攻撃[3]（入れ替え, `>vvA ^AY`）
       - kind: lumina
         note: 緊急強化（逆順ソート、左上）
   - character: sciel
     kind: lumina
-    note: インバーテッドアフィニティ
+    note: インバーテッドアフィニティ (`>A`)
   - character: verso
     kind: lumina
-    note: 先制攻撃
+    note: 先制攻撃 (`>>A`)
 :::
 
 :::formation
@@ -1240,8 +1248,8 @@ actions:
   - character: sciel
     kind: pictos
     note: |
-      - エナジャイジングスタートI [2] > Yes
-      - 自動加速 [3]
+      - エナジャイジングスタートI [2] > Yes (`v<AAA`)
+      - 自動加速 [3] (`AA`)
 :::
 
 
@@ -1331,15 +1339,15 @@ actions:
   - kind: pictos
     items:
       - character: sciel
-        note: 完全無欠[1]
+        note: 完全無欠[1] (`<<AA`)
   - kind: lumina 
     items:
       - character: sciel
-        note: 瀬戸際
+        note: 瀬戸際 (`R2L2 A`)
       - character: verso
-        note: エナジャイズスタートI
+        note: エナジャイズスタートI (`R3 vA`)
       - character: maelle
-        note: エナジャイズスタートI
+        note: エナジャイズスタートI (`vA`)
 :::
 
 旗
@@ -1400,12 +1408,12 @@ actions:
   - character: maelle
     items:
       - kind: pictos
-        note: 強化先制攻撃 > 瀬戸際(2, 入れ替え)
+        note: 強化先制攻撃 > 瀬戸際(2, 入れ替え `vA vvAY`)
       - kind: lumina
-        note: 瀬戸際
+        note: 瀬戸際 (`A`)
   - character: verso
     kind: pictos
-    note: 自動加速 [1]
+    note: 自動加速 [1] (`<AAA`)
 :::
 
 :::equip
@@ -1444,6 +1452,11 @@ turns:
     - character: シエル
       action: グラデエント・スキル > ファイアリング・シャドウ
   - note: 倒せなかったらジャンプカウンターだけやる、他は回避
+:::
+
+:::skip
+count: 1
+loading: true
 :::
 
 :::skip
@@ -1494,12 +1507,11 @@ actions:
     items:
       - kind: pictos
         note: |
-          エナジャイズターン [3]
-          - 左2回、AでOK
+          - エナジャイズターン [3] (`<<AA`)
       - kind: lumina
         note: |
-          - クリティカルバーンout
-          - 自動加速in
+          - クリティカルバーンout (`<^A`)
+          - 自動加速in (`>^A`)
 :::
 
 :::encounter
@@ -1545,7 +1557,7 @@ count: 1
     - 素早さ全振り (31)
 - スキル
   - シエル
-    - シールド・フェイト > 左下
+    - (ファントム・ブレイド,) シールド・フェイト > 左下
 
 :::note
 リコート持っていなければ回収する
@@ -1563,7 +1575,7 @@ actions:
       - kind: weapon
         note: ティスルオン
       - kind: pictos
-        note: 弱点の恩恵 > エナジャイズスタートI [2]
+        note: 弱点の恩恵 > エナジャイズスタートI [2] (`<<AvA`)
 :::
 
 :::equip
@@ -1716,9 +1728,9 @@ actions:
   - character: maelle
     items:
       - kind: pictos
-        note: 強化先制攻撃[2] out, かりそめの力 in
+        note: 強化先制攻撃[2] out, かりそめの力 in (`vY AA`)
       - kind: lumina
-        note: 完全無欠 in, エナジャイズスタートI out, 強化先制攻撃 in
+        note: 完全無欠 in, エナジャイズスタートI out, 強化先制攻撃 in (`^>A ^>A ^^<A`)
 :::
 
 :::skip
@@ -1775,7 +1787,7 @@ note: エネルギーティント, スタンダール
 actions:
   - character: maelle
     kind: pictos
-    note: ショートカット[1]
+    note: ショートカット[1] (`<<vAA`)
 :::
 
 クリアションは逃げる
