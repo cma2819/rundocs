@@ -140,10 +140,10 @@ actions:
     items:
       - character: gustave
         note: |
-          `クリティカルバーン` [2] (`<AA`)
+          `クリティカルバーン` [2] (`AA`)
       - character: lune
         note: |
-          `回避巧者` [2] (`<<AA`)
+          `回避巧者` [2] (`<AA`)
 :::
 
 :::skip
