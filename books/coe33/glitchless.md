@@ -1143,7 +1143,7 @@ actions:
   - kind: pictos
     note: 自動加速 > クリティカルバーン[1] (`<<AA`)
   - kind: lumina
-    note: インバーテッドアフィニティ (`<^A`)
+    note: インバーテッドアフィニティ (`(L3)R3 >A`)
 :::
 
 :::encounter
