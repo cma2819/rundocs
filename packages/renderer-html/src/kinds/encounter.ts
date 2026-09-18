@@ -30,7 +30,7 @@ export const encounterKindRenderer: BlockRenderer<any> = (block) => {
 
   return h(
     'div',
-    { class: 'block block--encounter' },
+    { class: 'block block--encounter', 'data-block-category': 'encounter' },
     [
       title ? h('h3', { class: 'encounter-title' }, title) : null,
       note ? h('div', { class: 'encounter-note' }, markdownToHast(note)) : null,

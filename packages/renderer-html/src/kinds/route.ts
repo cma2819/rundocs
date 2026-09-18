@@ -6,7 +6,7 @@ export const routeKindRenderer: BlockRenderer<any> = (block) => {
   const steps = block.semantic[0]?.fields ?? [];
   return h(
     'ol',
-    { class: 'block block--route' },
+    { class: 'block block--route', 'data-block-category': 'route' },
     steps.map((f) => h('li', {}, String(f.value))),
   );
 };

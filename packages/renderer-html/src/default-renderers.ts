@@ -43,7 +43,7 @@ export const genericBlockRenderer: BlockRenderer<any> = (block) => {
     ]);
   }
 
-  return h('div', { class: `block block--unknown block--${block.kind}` }, [
+  return h('div', { class: `block block--unknown block--${block.kind}`, 'data-block-category': block.kind }, [
     h('p', {}, `":::${block.name}" (kind "${block.kind}") has no dedicated renderer — showing raw content.`),
     h('pre', {}, block.raw),
   ]);

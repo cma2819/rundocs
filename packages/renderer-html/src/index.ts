@@ -5,5 +5,5 @@ export { noteKindRenderer } from './kinds/note.js';
 export { routeKindRenderer } from './kinds/route.js';
 export { encounterKindRenderer } from './kinds/encounter.js';
 export { whenKindRenderer } from './kinds/when.js';
-export { wrapDocument, type Heading } from './document.js';
+export { wrapDocument, type Heading, type BlockCategory } from './document.js';
 export { markdownToHast, markdownToInlineHast } from './markdown.js';

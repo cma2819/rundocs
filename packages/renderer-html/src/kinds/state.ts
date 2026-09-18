@@ -22,15 +22,17 @@ export function createStateKindRenderer(componentRegistry: RendererRegistry<any>
 
     const children = block.semantic.map((component) => {
       const rendered = componentRegistry.render(component, { format: 'html' });
-      // Reference-only Components (x-ui.reference, e.g. status/equip) are
-      // hidden by default in HTML output — see the ".rd-ref-toggle" CSS rule
-      // in document.ts. Wrapped rather than tagged in place so this applies
-      // uniformly whether the Component came from ":::status" (block.name ===
-      // component.name) or a mixed ":::state" block nesting several.
+      // Every Component is wrapped so the "Filter blocks" UI (document.ts) can
+      // target it by "data-block-category" regardless of whether it came from
+      // ":::status" (block.name === component.name) or a mixed ":::state"
+      // block nesting several. Reference-only Components (x-ui.reference, e.g.
+      // status/equip) additionally get "data-reference" — hidden by default,
+      // see the ".rd-ref-toggle" CSS rule in document.ts.
+      const props: Record<string, string> = { 'data-block-category': component.name };
       if (component.schema?.['x-ui']?.reference) {
-        return h('div', { 'data-reference': 'true' }, [rendered]);
+        props['data-reference'] = 'true';
       }
-      return rendered;
+      return h('div', props, [rendered]);
     });
     return h('div', { class: `state-block state-block--${block.name}` }, children);
   };

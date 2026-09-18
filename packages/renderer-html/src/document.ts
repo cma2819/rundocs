@@ -122,6 +122,56 @@ pre, code, kbd, samp {
 .rd-ref-toggle:not(:checked) ~ .page [data-reference="true"] .component { margin: 0; }
 .rd-ref-toggle:not(:checked) ~ .page [data-reference="true"] .component h3 { margin: 0; }
 
+/* Block filter: a <details> disclosure (native show/hide, no JS needed for the
+   dropdown itself) listing one checkbox per Block kind/Component seen on this
+   page (see remarkCollectBlockCategories, @rundocs/core — categories differ
+   per page/GameSchema, so this list and its matching CSS below are generated
+   per page, not part of the shared CSS constant). Same checkbox-hack + :has()
+   idea as ".rd-ref-toggle" above, generalized from one boolean to N: each
+   generated rule hides a category's "[data-block-category]" wrapper only when
+   *that* checkbox is unchecked while *some* checkbox in the group is checked
+   (unchecked-all = show everything, the default). */
+.rd-filter {
+  position: fixed;
+  top: 1rem;
+  right: 8rem;
+  z-index: 1;
+  font-size: 0.75rem;
+}
+.rd-filter-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  opacity: 0.6;
+}
+.rd-filter-summary::-webkit-details-marker { display: none; }
+.rd-filter:hover .rd-filter-summary,
+.rd-filter[open] .rd-filter-summary,
+.rd-filter:has(.rd-filter-cb:checked) .rd-filter-summary { opacity: 1; }
+.rd-filter-list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  background: canvas;
+  max-height: 60vh;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+.rd-filter-list label { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+@media (max-width: 60rem) {
+  .rd-filter { display: none; }
+}
+
 .state-block {
   border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
   border-radius: 0.5rem;
@@ -382,9 +432,21 @@ export interface Heading {
   text: string;
 }
 
+export interface BlockCategory {
+  id: string;
+  label: string;
+}
+
 const HTML_ESCAPES: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' };
 function escapeHtml(text: string): string {
   return text.replace(/[&<>"]/g, (c) => HTML_ESCAPES[c]!);
+}
+
+// Escapes a value for use inside a double-quoted CSS attribute selector
+// (`[data-block-category="…"]`) — category ids can be arbitrary GameSchema
+// Component names or raw schema-less YAML keys, so this must not be skipped.
+function cssEscapeAttrValue(value: string): string {
+  return value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 }
 
 function renderToc(headings: Heading[]): string {
@@ -395,18 +457,46 @@ function renderToc(headings: Heading[]): string {
   return `<ul>${items}</ul>`;
 }
 
-export function wrapDocument(bodyHtml: string, title: string, headings: Heading[] = []): string {
+// Renders the "Filter blocks" <details> disclosure plus the per-category CSS
+// that drives it. Checkbox ids are synthetic ("rd-filter-{i}"), never the raw
+// category id — that id may contain characters unsafe in an HTML id/CSS id
+// selector (e.g. non-ASCII schema-less YAML keys) — while the category id
+// itself is only ever used inside a quoted, escaped attribute selector.
+function renderFilterUI(categories: BlockCategory[]): { html: string; css: string } {
+  if (categories.length === 0) return { html: '', css: '' };
+
+  const items = categories.map((category, i) => {
+    const checkboxId = `rd-filter-${i}`;
+    return {
+      html: `<label><input type="checkbox" class="rd-filter-cb" id="${checkboxId}"> ${escapeHtml(category.label)}</label>`,
+      css: `.rd-filter:has(.rd-filter-cb:checked):not(:has(#${checkboxId}:checked)) ~ .page [data-block-category="${cssEscapeAttrValue(category.id)}"] { display: none; }`,
+    };
+  });
+
+  const html = `<details class="rd-filter"><summary class="rd-filter-summary">Filter blocks</summary><div class="rd-filter-list">${items.map((i) => i.html).join('')}</div></details>`;
+  const css = items.map((i) => i.css).join('\n');
+  return { html, css };
+}
+
+export function wrapDocument(
+  bodyHtml: string,
+  title: string,
+  headings: Heading[] = [],
+  blockCategories: BlockCategory[] = [],
+): string {
+  const { html: filterHtml, css: filterCss } = renderFilterUI(blockCategories);
   return `<!doctype html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title>
-<style>${CSS}</style>
+<style>${CSS}${filterCss}</style>
 </head>
 <body>
 <input type="checkbox" id="rd-ref-toggle" class="rd-ref-toggle">
 <label for="rd-ref-toggle" class="rd-ref-toggle-label">Reference info</label>
+${filterHtml}
 <div class="page">
 <nav class="toc">${renderToc(headings)}</nav>
 <main>

@@ -18,6 +18,7 @@ import {
 import { remarkBlockDirective } from '../remark-block-directive.js';
 import { remarkValidateBlock } from '../remark-validate-block.js';
 import { remarkCollectHeadings } from '../remark-collect-headings.js';
+import { remarkCollectBlockCategories } from '../remark-collect-block-categories.js';
 import { BlockRegistry } from '../block-registry.js';
 import { stateBlockHandler } from '../blocks/state-block-handler.js';
 import { noteBlockHandler } from '../blocks/note-block-handler.js';
@@ -69,6 +70,7 @@ export function createHtmlPipeline(gameSchema: GameSchema | null, componentRegis
     .use(remarkCollectHeadings)
     .use(remarkBlockDirective, { registry: blockRegistry })
     .use(remarkValidateBlock, { registry: blockRegistry, gameSchema })
+    .use(remarkCollectBlockCategories)
     .use(remarkRehype, { handlers: { block: createBlockHandler(blockRenderers) }, allowDangerousHtml: false })
     .use(rehypeStringify);
 }

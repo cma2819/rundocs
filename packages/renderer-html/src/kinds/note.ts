@@ -5,5 +5,5 @@ import { markdownToHast } from '../markdown.js';
 /** Presentation for BlockHandler.kind === "note": Markdown prose aside, no components involved. */
 export const noteKindRenderer: BlockRenderer<any> = (block) => {
   const text = typeof block.value.text === 'string' ? block.value.text : '';
-  return h('aside', { class: 'block block--note' }, markdownToHast(text));
+  return h('aside', { class: 'block block--note', 'data-block-category': 'note' }, markdownToHast(text));
 };
