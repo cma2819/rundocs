@@ -1772,7 +1772,7 @@ count: 1
 :::menu
 actions:
   - kind: formation
-    note: ルネout, マエル out-in
+    note: モノコ（ルネ）out, マエル out-in
 :::
 
 アべレイションと戦闘
