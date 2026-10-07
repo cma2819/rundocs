@@ -1154,14 +1154,14 @@ turns:
   - actions:
     - character: マエル
       action: レイン・オブ・ファイア
-    - character: シエル
+    - character: ルネ
       action: ヒールティント > ヴェルソ
     - character: ヴェルソ
       action: ベルセルク・スラッシュ 
   - actions:
     - character: マエル
       action: オフェンス・スイッチ
-    - character: シエル
+    - character: ルネ
       action: エネルギーティント > ヴェルソ
     - character: ヴェルソ
       action: ベルセルク・スラッシュ 
