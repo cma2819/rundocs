@@ -830,7 +830,7 @@ turns:
 :::
 
 :::encounter
-title: ラインプマスター第二形態
+title: ランプマスター第二形態
 turns:
   - actions:
     - character: ギュスターヴ
