@@ -4,7 +4,13 @@
 ## 要約
 
 - マエル合流までは同じ
-- マエルはキュレーター戦以降オフェンシブシフト使わない
+- 屋敷
+  - マエルのスキルそのまま
+- ゴブル前
+  - マエルのスキル外す
+- エスキエの隠れ家
+  - ギュスターヴの強化違う
+- Polished Chroma Catalyst 15 when Renoir 1
 
 ## ルミエール
 
@@ -281,8 +287,6 @@ actions:
         note: |
           - クリティカルバーン (`<AA`)
           - 死のエネルギーII (`<vAA`)
-      - kind: skill
-        note: スパーク[3] 解除
 :::
 
 :::when
@@ -291,45 +295,17 @@ actions:
 
 - 特性
   - ギュスターヴ
-    - 素早さ1, 攻撃力残り（11）
+    - 素早さ1
+    - 攻撃力残（11）
   - マエル
-    - 攻撃力All（15）
+    - 攻撃力全（15）
   - ルネ
-    - 素早さ All - 1 (5)
+    - 素早さ全 - 1 (5)
 - スキル
   - ギュスターヴ
     - マーキングショット
   - マエル
     - スウィフト・ストライド
-
-:::status
-lune:
-  attributes:
-    m: 6
-    a: 5
-gustave:
-  attributes:
-    m: 11
-    a: 1
-maelle:
-  attributes:
-    m: 15
-:::
-
-:::equip
-gustave:
-  weapon: ノアルアム（デフォルト）
-  pictos: [回避巧者]
-  skills: [マーキング・ショット, オーバーチャージ, パワフル]
-lune:
-  weapon: ライトイム
-  pictos: []
-  skills: [イモレーション, アイスランス]
-maelle:
-  weapon: マエルウム（デフォルト）
-  pictos: [クリティカルバーン, 死のエネルギーII]
-  skills: [オフェンス・スイッチ, ペルセ, スウィフト・ストライド]
-:::
 
 :::encounter
 title: キュレーター
@@ -354,6 +330,15 @@ count: 1
 
 :::when
 ゴブルムービー前
+:::
+
+:::menu
+actions:
+  - character: maelle
+    note: |
+      スキル解除
+      - オフェンス・スイッチ
+      - スパーク
 :::
 
 :::encounter
@@ -394,15 +379,6 @@ turns:
         action: ペルセ
 :::
 
-:::status
-gustave:
-  lv: 7
-lune:
-  lv: 7
-maelle:
-  lv: 7
-:::
-
 :::skip
 count: 1
 :::
@@ -416,7 +392,7 @@ count: 1
 キャンプ
 
 - 武器強化
-  - マエルウム -> Lv4
+  - マエルウム +2 -> Lv4
 - 焚火 -> 眠る[2]
 
 ワールドマップ
@@ -473,26 +449,8 @@ actions:
     note: 回避巧者, 死のエネルギーII (R3 A>A)
   - character: maelle
     kind: lumina
-    note: 回避巧者
+    note: 回避巧者（任意）
 :::
-
-:::equip
-gustave:
-  weapon: サカルアム
-  pictos: [回避巧者]
-  luminas: [クリティカルバーン, 死のエネルギーII]
-  skills: [マーキング・ショット, オーバーチャージ, パワフル]
-lune:
-  weapon: ライトイム
-  pictos: []
-  skills: [イモレーション, アイスランス]
-maelle:
-  weapon: マエルウム（デフォルト）
-  pictos: [クリティカルバーン, 死のエネルギーII]
-  luminas: [回避巧者]
-  skills: [オフェンス・スイッチ, ペルセ, スウィフト・ストライド]
-:::
-
 
 :::encounter
 title: アルティメット・サカパタト
@@ -509,7 +467,7 @@ turns:
     - character: マエル
       action: スウィフト・ストライド
   - note: |
-      - ジャンプカウンターしない（理論上はダメージくらってもいいらしい）
+      - ジャンプカウンター攻撃を食らう
       - パリィ
   - actions:
     - character: ルネ
@@ -529,15 +487,6 @@ turns:
       action: ペルセ
 :::
 
-:::status
-gustave:
-  lv: 10
-lune:
-  lv: 10
-maelle:
-  lv: 10
-:::
-
 ワールドマップ、ジェストラルの村へ
 
 ## ジェストラルの村
@@ -549,49 +498,25 @@ maelle:
     - 攻撃力全振り（30）
 - スキル
   - マエル
-    - （デガジュマン, ）レイン・オブ・ファイア > スウィフト・ストライド（左下）
-
-:::status
-maelle:
-  attributes:
-    m: 30
-:::
-
-:::equip
-maelle:
-  weapon: マエルウム（デフォルト）
-  pictos: [クリティカルバーン, 死のエネルギーII]
-  luminas: [回避巧者]
-  skills: [オフェンス・スイッチ, ペルセ, レイン・オブ・ファイア]
-:::
+    - （デガジュマン, ）レイン・オブ・ファイア（手動での装備不要）
 
 ゴルグラと会話（アリーナへ連れていってもらう）
 
 トーナメントへ、マエルで参加
 
 :::encounter
-title: 1戦目（ベルトラン・ビッグハンド）
-note: 回避、レイン・オブ・ファイア、パリィ、残ったら攻撃
+title: トーナメント（通常、全戦共通）
+note: パリィ、レイン・オブ・ファイア、パリィ
 :::
 
 :::encounter
-title: 2戦目（ドミニク・ジャイアントフィート）
+title: トーナメント（回避巧者あり）
 note: |
     回避、レイン・オブ・ファイア、パリィ
     残ったら以下
 
     - クリティカルなし: 射撃で削って攻撃
     - クリティカルあり: 攻撃 or 削り切れそうなら射撃
-:::
-
-:::encounter
-title: 3戦目（マチュー・ザ・コロッサス）
-turns:
-  - note: パリィ
-  - actions:
-    - character: マエル
-      action: レイン・オブ・ファイア
-  - note: 残りはパリィで
 :::
 
 :::skip
@@ -607,7 +532,14 @@ note: パリィ、レイン・オブ・ファイア
 count: 2
 :::
 
-ゴルグラと会話、ワールドマップへ
+ゴルグラと会話
+
+店
+
+- 洗練されたクロマカタリストx2
+- 土壇場
+
+ワールドマップへ
 
 :::skip
 count: 1
@@ -627,15 +559,15 @@ count: 1
 
 - 特性
   - ギュスターヴ
-    - 素早さ9 (1 -> 10)
-    - 残り攻撃力（11 -> 23）
+    - 素早さ6 (1 -> 7)
+    - 攻撃力残り（11 -> 26）
   - マエル
     - 攻撃力全振り（33）
   - シエル
     - 攻撃力全振り（45）
 - スキル
   - シエル
-    - フォーチュン・フューリー、左上に装備（`AA`）
+    - （下へ）フォーチュン・フューリー、左上に装備（`AA`）
 
 :::menu
 actions:
@@ -646,31 +578,31 @@ actions:
       - kind: weapon
         note: メダルウム
       - kind: pictos
-        note: ブレイカー[3] (`<<AA`)
-      - kind: skill
-        note: スウィフト・ストライド（右上, `<vvA>A`）
-  - character: sciel
-    kind: skill
-    note: ファイアリング・シャドウ（左下, `A<vA`）
-:::
-
-:::equip
-maelle:
-  weapon: メダルウム
-  pictos: [クリティカルバーン, 死のエネルギーII, ブレイカー]
-  luminas: [回避巧者]
-  skills: [オフェンス・スイッチ, ペルセ, レイン・オブ・ファイア, スウィフト・ストライド]
-sciel:
-  weapon: シエルオン（デフォルト）
-  pictos: []
-  luminas: []
-  skills: [フォーチュン・フューリー, フォーカス・フォーテル, ファイアリング・シャドウ, シアリング・ボンド]
+        note: 回避巧者[3] (`<vvAAA`)
+  - character: gustave
+    items: 
+      - kind: pictos
+        note: 土壇場[1]（`v<AA`）
 :::
 
 エスキエの元へ進む
 
 :::skip
 count: 1
+:::
+
+:::when
+フランソワムービー
+:::
+
+:::menu
+actions:
+  - character: maelle
+    kind: skills
+    note: オフェンス・スイッチ > 左上（`<AA`）
+  - character: sciel
+    kind: skills
+    note: ファイアリング・シャドウ > 左下（`AvvA`）
 :::
 
 :::encounter
@@ -695,13 +627,13 @@ actions:
       - kind: pictos
         note: 2,3 解除、強化先制攻撃[3] (`vYvY AA`)
       - kind: lumina
-        note: 死のエネルギーII追加、回避巧者解除 (`>>AvA`)
+        note: 死のエネルギーII (`>>A`)
   - character: sciel
     items:
       - kind: lumina
         note: クリティカルバーン, 死のエネルギーII (`A>A`)
       - kind: skill
-        note: フォーカス・フォーテルを右中へ (`<A >vA`)
+        note: フォーカス・フォーテル > 右上 (`<A >A`)
 :::
 
 向かって左手、旗（フランソワの洞窟）へ、ファストトラベル（入り口）
@@ -715,7 +647,7 @@ count: 1
 :::
 
 - 武器強化
-  - メダリウム（Lv6 or Lv7）
+  - マエル, メダリウムいけるところまで（Lv7 or Lv8 or Lv9）
 - 焚火 -> 眠る[1]
 
 :::skip
@@ -726,7 +658,8 @@ count: 1
 ↓忘れない！！！
 :::
 
-岩波の崖向かって左側、海辺沿いでエナジャイズスタートI回収
+- エナジャイズスタートI（岩波の崖向かって左側、海辺沿い）
+- クロマ1305 （岩波の崖道中、坂道左手のキャンプ跡地）
 
 :::note
 ↑忘れない！！！
@@ -744,8 +677,8 @@ actions:
     items:
       - kind: pictos
         note: |
-          - ブレイカー
-          - エナジャイズスタートI
+          - ブレイカー[1]
+          - エナジャイズスタートI[2]
       - kind: skill
         note: ハーベストを右下へ
 :::
@@ -758,6 +691,28 @@ actions:
 入手後のジャンプでメニュー、デラルアム装備 
 
 - 先制攻撃
+
+:::when
+先制攻撃入手直後
+:::
+
+:::menu
+actions:
+  - character: maelle
+    kind: pictos
+    note: 先制攻撃[2]（`<<AA`） 
+:::
+
+:::encounter
+title: リーパー・キュルティストほか
+note: |
+  オーブを撃たないこと
+
+  - 射撃 左3 右2
+  - レイン・オブ・ファイア
+:::
+
+- シャティォン
 - 緊急強化
 - クロマx790
 - ルミナのカラー
@@ -770,28 +725,10 @@ actions:
 actions:
   - character: gustave
     kind: pictos
-    note: 緊急強化[1] (`<AA`)
-  - character: maelle
-    kind: pictos
-    note: 先制攻撃[2] (`<<AA`)
-:::
-
-:::equip
-gustave:
-  weapon: デラルアム
-  pictos: [緊急強化, 回避巧者]
-  luminas: [クリティカルバーン, 死のエネルギーII]
-  skills: [マーキング・ショット, オーバーチャージ, パワフル]
-maelle:
-  weapon: メダルウム
-  pictos: [クリティカルバーン, 先制攻撃, 強化先制攻撃]
-  luminas: [死のエネルギーII]
-  skills: [オフェンス・スイッチ, ペルセ, レイン・オブ・ファイア, スウィフト・ストライド]
-sciel:
-  weapon: シエルオン（デフォルト）
-  pictos: [ブレイカー, エナジャイジングスタートI]
-  luminas: [クリティカルバーン, 死のエネルギーII]
-  skills: [フォーチュン・フューリー, (空き), ファイアリング・シャドウ, シアリング・ボンド, フォーカス・フォーテル, ハーベスト]
+    note: 緊急強化[2] (`vAvA`)
+  - character: sciel
+    kind: weapon
+    note: シャティオン (`vA`)
 :::
 
 :::note
@@ -839,15 +776,6 @@ turns:
   - note: ダメージ足らない場合、傷跡＋ペルセを狙っていくのが安定っぽい
 :::
 
-:::status
-gustave:
-  lv: 13
-maelle:
-  lv: 14
-sciel:
-  lv: 16
-:::
-
 :::skip
 count: 1
 loading: true
@@ -886,26 +814,17 @@ count: 1
 :::encounter
 title: シャリエ
 turns:
-  - note: パリィカウンター
   - note: |
-      - マエルでカウンターしてたらペルセ
+      - ルネに攻撃 > 回避
+      - ヴェルソに攻撃 > ダメージ受ける（1撃目がクリティカルなら2撃目を回避）
+      - マエルに攻撃 > パリィ
+  - note: |
+      - マエルでカウンターしてたら攻撃
       - それ以外ならレイン・オブ・ファイア
-:::
-
-
-:::when
-道中
-:::
-
-:::menu
-actions:
-  - kind: formation
-    note: マエル out, ルネ out
 :::
 
 店
 
-- 洗練されたクロマカタリストx5
 - インバーテッドアフィニティ
 
 :::when
@@ -914,6 +833,8 @@ actions:
 
 :::menu
 actions:
+  - kind: formation
+    note: ルネ out, マエル out,
   - character: verso
     kind: weapon
     note: デラルアム
@@ -924,8 +845,13 @@ actions:
 強化
 
 - 特性
+  - ルネ
+    - 素早さ全振り (33)
   - ヴェルソ
-    - 攻撃力全振り（42）
+    - 素早さ1
+    - 攻撃力残り (44)
+  - マエル
+    - 攻撃力全振り (45)
 - スキル
   - ヴェルソ
     - （マーキングショット, クイックストライク, ）パワフル, ベルセルク・スラッシュ, ディファイアント・ストライク
@@ -939,30 +865,25 @@ actions:
 :::menu
 actions:
   - character: verso
-    kind: pictos
-    note: |
-      - インバーテッドアフィニティ[2] (`<AA`)
-      - 先制攻撃 > 回避巧者[3] (Yes, `<vAvAA`)
-:::
-
-:::equip
-verso:
-  weapon: デラルアム
-  pictos: [緊急強化, インバーテッドアフィニティ, 先制攻撃]
-  luminas: [クリティカルバーン, 死のエネルギーII]
-  skills: [アサルト・ゼロ, ベルセルク・スラッシュ, ディファイアント・ストライク, クイック・ストライク, パワフル]
+    items:
+      - kind: pictos
+        note: |
+          - インバーテッドアフィニティ[2] (`<AA`)
+          - 先制攻撃 > 土壇場[1] (Yes, `vAvAA`)
+      - kind: lumina
+        note: 土壇場（`>A`） 
 :::
 
 :::encounter
 title: デュアリステ第一形態
 note: |
   - 基本パリィ
-  - 緊急強化が乗っていなければ、エイムでランク上げした方が良い
 turns:
   - note: ディファイアント・ストライク
   - note: |
-      ベルセルク・スラッシュ （AP3 の場合はディファイアント・ストライク） 
-      AP多ければエイムしてランク上げるのも良い
+      - 基本はベルセルク・スラッシュ 
+      - AP3 の場合はディファイアント・ストライク
+      - 残りHP次第でディファイアント・ストライクにしてもよい
 :::
 
 :::encounter
@@ -970,10 +891,10 @@ title: デュアリステ第二形態
 turns:
   - note: |
       ジャンプカウンターのダメージで分岐。
-      - クリティカルもしくは傷跡つきなら、全体攻撃をパリィカウンター
+      - 刻印ありでクリティカルが出たら、なにもしない
+      - 刻印ありでクリティカルなし、もしくは刻印なしでクリティカルが出たら、全体攻撃をパリィカウンター
       - いずれでもなければ、単体攻撃をパリィカウンター
-  - note: エイムで削って、ベルセルク・スラッシュ
-  - note: 倒せなければ、回避のちグラディエントカウンター
+  - note: （射撃で削り or ランク上げ）ベルセルク・スラッシュ
 :::
 
 :::when
@@ -982,9 +903,22 @@ turns:
 
 :::menu
 actions:
+  - kind: formation
+    note: シエルin, ヴェルソout-in, マエルin 
   - character: maelle
     kind: pictos
     note: 瀬戸際[2] (`<AA`)
+  - character: sciel
+    kind: pictos
+    note: コンボ攻撃I[3] (`vAA`)
+  - kind: lumina
+    items:
+      - character: sciel
+        note: 先制攻撃
+      - character: lune
+        note: 先制攻撃  
+      - character: maelle
+        note: 先制攻撃  
 :::
 
 ワールドマップへ
@@ -995,10 +929,7 @@ count: 1
 
 キャンプ
 
-- 武器強化
-  - ヴェルソ: デラルアム Lv9
-  - マエル: メダルウム Lv8～9
-- 焚火 -> 眠る[2]
+焚火 -> 眠る[2]
 
 :::skip
 count: 1
@@ -1006,13 +937,30 @@ count: 1
 
 ワールドマップ、モノコの駅へ
 
+:::note
+忘れない！
+:::
+
+モノコの駅方向すぐ右手側、キャンプ跡地に `ルミナのカラー`
+
 ## モノコの駅
 
 :::encounter
 title: モノコ
 turns:
-  - note: ディファイアント・ストライク
-  - note: エイムで削って、ベルセルク・スラッシュ
+  - actions:
+    - character: シエル
+      action: ヒールティント > ヴェルソ
+    - character: ヴェルソ
+      action: ベルセルク・スラッシュ
+    - character: マエル
+      action: レイン・オブ・ファイア
+  - note: 回避（ヴェルソでクリティカルなければパリィ）
+  - actions:
+    - character: シエル
+      action: エネルギーティント > ヴェルソ（ヴェルソがAP3以上あればスキップ）
+    - character: ヴェルソ
+      action: ベルセルク・スラッシュ
 :::
 
 :::when
@@ -1022,11 +970,7 @@ turns:
 :::menu
 actions:
   - kind: formation
-    note: シエル in, マエル in
-:::
-
-:::formation
-members: [verso, sciel, maelle]
+    note: シエルout-in
 :::
 
 :::skip
@@ -1039,15 +983,6 @@ turns:
   - note: グラディエントアタック, ベルセルク・スラッシュ
 :::
 
-:::status
-verso:
-  lv: 20
-sciel:
-  lv: 19
-maelle:
-  lv: 18
-:::
-
 :::skip
 count: 2
 :::
@@ -1056,21 +991,10 @@ count: 2
 
 ## 旧ルミエール
 
-旗（入り口）
-
-強化
-
-- マエル
-  - 攻撃力全振り（54）
-- ヴェルソ
-  - 運全振り（18）
-- ルネ
-  - 素早さ全振り（45）
-
 店
 
-- 洗練されたクロマカタリストx5
-- ルミナのカラーx1 (合計4個, アルティメットサカパタト以降にダメージ受けてるなら、5個)
+- 洗練されたクロマカタリストx4 (-> x15)
+- ルミナのカラーx3 (-> x7)
 
 :::when
 パーティ分割ムービーin
@@ -1079,22 +1003,14 @@ count: 2
 :::menu
 actions:
   - kind: pictos
-    character: lune
-    note: エナジャイジングスタートI
+    character: verso
+    note: コンボ攻撃I[1] > 先制攻撃（Yes, `<<AAA`）
   - kind: lumina
     items:
-      - character: lune
-        note: 先制攻撃
-      - character: sciel
-        note: 先制攻撃
+      - character: verso
+        note: 死のエネルギー2out, 先制攻撃in (`vAvA`)
       - character: monoco
-        note: 先制攻撃
-      - character: maelle
-        note: 先制攻撃
-:::
-
-:::note
-ルミナ画面で、補助でフィルタ＋逆順ソート（L2->R3）するといい
+        note: 先制攻撃（`R3, >A`）
 :::
 
 進む
@@ -1103,12 +1019,30 @@ actions:
 ルネパーティ終了時
 :::
 
-:::note
-ムービーinでリコートみる (^A L1)
+:::menu
+actions:
+  - kind: pictos
+    character: sciel
+    note: 土壇場[2] > エナジャイズスタートI（`vAvA`）
 :::
 
 :::skip
 count: 2
+:::
+
+:::when
+マエル部隊最初のジャンプ
+:::
+
+:::menu
+actions:
+  - kind: pictos
+    character: maelle
+    note: クリティカルバーン解除[1]
+:::
+
+:::note
+- リコートが一つもない場合、道中左手のクロマ（`2,495`）を取る
 :::
 
 :::encounter
@@ -1132,7 +1066,7 @@ count: 1
 :::menu
 actions:
   - kind: pictos
-    note: 自動加速 > クリティカルバーン[1] (`<<AA`)
+    note: 自動加速 > クリティカルバーン[1] (`AA`)
   - kind: lumina
     note: インバーテッドアフィニティ (`(L3)R3 >A`)
 :::
@@ -1169,10 +1103,11 @@ count: 1
 
 - 武器強化
   - シエル: シエルオン Lv9
+  - ヴェルソ: デラルアム Lv9
   - マエル: メダリアム Lv9
 - 資源強化
   - ルミナ > シエル全振り
-  - ヒーリングティント
+  - ヒールティント
 - 焚火 -> 眠る[2]
 
 ワールドマップ、ヴィサージュへ
@@ -1194,20 +1129,15 @@ actions:
     items:
       - kind: pictos
         note: |
-          - コンボ攻撃 > 自動加速[1] (`<AA`)
-          - 先制攻撃 > 強化先制攻撃[3]（入れ替え, `>vvA ^AY`）
+          - 先制攻撃[1] > 自動加速 (Yes,`<vvAA`)
       - kind: lumina
-        note: 緊急強化（逆順ソート、左上）
+        note: 緊急強化, 土壇場, クリティカルバーン（`R3, AvvA>A`）
   - character: sciel
-    kind: lumina
-    note: インバーテッドアフィニティ (`>A`)
-  - character: verso
-    kind: lumina
-    note: 先制攻撃 (`>>A`)
-:::
-
-:::formation
-members: [verso, sciel, maelle]
+    items:  
+      - kind: lumina
+        note: インバーテッドアフィニティ (`>A`)
+      - kind: pictos
+        note: 自動加速（`<<AA`）
 :::
 
 リコート持っていなければリコートを買う
@@ -1218,12 +1148,15 @@ members: [verso, sciel, maelle]
 
 - 特性
   - マエル
-    - 攻撃力全振り
+    - 攻撃力7 (-> 52)
+    - 素早さ全 -2 (-> 12)
   - ヴェルソ
     - リコート
-    - 攻撃力14, 残り素早さ（52）
+    - 攻撃力14
+    - 残り素早さ（-> 52）
   -  シエル
-     - 攻撃力4(49), 残り素早さ（11）
+     - 素早さ9 
+     - 攻撃力残り(-> 54)
 - スキル
   - ヴェルソ
     - リーダーシップ, 左上
@@ -1232,34 +1165,6 @@ members: [verso, sciel, maelle]
 
 :::when
 ヴィサージュ戦前
-:::
-
-:::menu
-actions:
-  - character: sciel
-    kind: pictos
-    note: |
-      - エナジャイジングスタートI [2] > Yes (`v<AAA`)
-      - 自動加速 [3] (`AA`)
-:::
-
-
-:::equip
-verso:
-  weapon: デラルアム
-  pictos: [緊急強化, インバーテッドアフィニティ, 強化先制攻撃]
-  luminas: [クリティカルバーン, 死のエネルギーII, 先制攻撃]
-  skills: [リーダーシップ, ベルセルク・スラッシュ, マーキング・ショット, クイック・ストライク, パワフル]
-sciel:
-  weapon: シエルオン（デフォルト）
-  pictos: [ブレイカー, エナジャイジングスタートI, 自動加速]
-  luminas: [クリティカルバーン, 死のエネルギーII, 先制攻撃, インバーテッドアフィニティ]
-  skills: [フォーチュン・フューリー, 自己犠牲, ファイアリング・シャドウ, シアリング・ボンド, フォーカス・フォーテル, ハーベスト]
-maelle:
-  weapon: メダルウム
-  pictos: [コンボ攻撃I, 瀬戸際, 先制攻撃]
-  luminas: [死のエネルギーII, インバーテッドアフィニティ, 緊急強化]
-  skills: [オフェンス・スイッチ, ペルセ, レイン・オブ・ファイア, スウィフト・ストライド]
 :::
 
 :::encounter
@@ -1274,10 +1179,10 @@ turns:
       action: レイン・オブ・ファイア
   - actions:
     - character: ヴェルソ
-      action: ベルセルク・スラッシュ
+      action: ディファイアント・ストライク
     - character: シエル
       action: フォーチュン・フューリー > シエル
-  - note: 火傷で発生ダメージ > 与ダメージだったら回避（HPゲージ見る）
+  - note: パリィ
 :::
 
 :::skip
@@ -1289,22 +1194,11 @@ title: 仮面の守護者
 turns:
   - actions:
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: レイン・オブ・ファイア（QTE失敗）
     - character: ヴェルソ
       action: ベルセルク・スラッシュ
     - character: シエル
       action: エイム > グラディエントスキル > 攻撃
-      note: |
-        - HP50% 切ってたらエイムなし
-:::
-
-:::status
-verso:
-  lv: 26
-sciel:
-  lv: 25
-maelle:
-  lv: 25
 :::
 
 :::skip
@@ -1328,18 +1222,23 @@ count: 1
 
 :::menu
 actions:
-  - kind: pictos
+  - character: maelle
     items:
-      - character: sciel
-        note: 完全無欠[1] (`<<AA`)
-  - kind: lumina 
+      - kind: pictos
+        note: |
+          - ブレイカー[2] > 瀬戸際（Yes, `v<<v AAA`）
+      - kind: lumina
+        note: 緊急強化out, エナジャイズスタートIin, 死のエネルギーIIout, 瀬戸際in（`AvA>>AvvA`）
+  - character: verso
     items:
-      - character: sciel
-        note: 瀬戸際 (`R2L2 A`)
-      - character: verso
-        note: エナジャイズスタートI (`R3 vA`)
-      - character: maelle
-        note: エナジャイズスタートI (`vA`)
+      - kind: lumina
+        note: エナジャイズスタートIin, 回避巧者in（`vA>A`）
+  - character: sciel
+    items:
+      - kind: lumina
+        note: エナジャイズスタートIin, 瀬戸際in（`vA ^^A`）  
+      - kind: pictos
+        note: 完全無欠（`AA`）
 :::
 
 旗
@@ -1347,27 +1246,11 @@ actions:
 強化
 
 - シエル
-  - 攻撃力4 (53)
-  - 残り素早さ (22)
+  - 素早さ全 (-> 21)
 - マエル
-  - 素早さ全振り (12)
+  - 素早さ全-3 (-> 20)
 - ヴェルソ
   - 攻撃力全振り (26)
-
-:::status
-sciel:
-  attributes:
-    m: 53
-    a: 22
-verso:
-  attributes:
-    m: 26
-    a: 52
-maelle:
-  attributes:
-    m: 63
-    a: 12
-:::
 
 :::encounter
 title: グリッサンド
@@ -1379,16 +1262,18 @@ turns:
       action: 自己犠牲
     - character: マエル
       action: レイン・オブ・ファイア
+  - note: パリィ
   - actions:
     - character: シエル
       action: フォーチュン・フューリー > シエル
     - character: ヴェルソ
-      action: ベルセルク・スラッシュ（APなければディファイアント・ストライク）
+      action: ディファイアント・ストライク
+  - note: 基本パリィ, 一回目の攻撃がバレエだったら回避
   - actions:
     - character: マエル
       action: オフェンス・スイッチ
     - character: シエル
-      action: グラデエント・スキル > ファイアリング・シャドウ
+      action: グラデエント・スキル > ファイアリング・シャドウ（フォーテルカウンターとHP0の間2/3以降まで削れていたら、攻撃でも可）
 :::
 
 :::when
@@ -1400,30 +1285,9 @@ actions:
   - character: maelle
     items:
       - kind: pictos
-        note: 強化先制攻撃 > 瀬戸際(2, 入れ替え `vA vvAY`)
+        note: 自動加速 > ブレイカー (2, 入れ替え `<A vAY`)
       - kind: lumina
-        note: 瀬戸際 (`A`)
-  - character: verso
-    kind: pictos
-    note: 自動加速 [1] (`<AAA`)
-:::
-
-:::equip
-verso:
-  weapon: デラルアム
-  pictos: [自動加速, インバーテッドアフィニティ, 瀬戸際]
-  luminas: [エナジャイズスタートI, クリティカルバーン, 先制攻撃, 死のエネルギーII]
-  skills: [リーダーシップ, ベルセルク・スラッシュ, マーキング・ショット, ディファイアント・ストライク, パワフル]
-sciel:
-  weapon: シエルオン（デフォルト）
-  pictos: [完全無欠, エナジャイジングスタートI]
-  luminas: [インバーテッドアフィニティ, クリティカルバーン, 先制攻撃, 死のエネルギーII, 瀬戸際]
-  skills: [フォーチュン・フューリー, 自己犠牲, ファイアリング・シャドウ, シアリング・ボンド, フォーカス・フォーテル, ハーベスト]
-maelle:
-  weapon: メダルウム
-  pictos: [コンボ攻撃I, 強化先制攻撃, 先制攻撃]
-  luminas: [死のエネルギーII, インバーテッドアフィニティ, エナジャイズスタートI, 瀬戸際, 緊急強化]
-  skills: [オフェンス・スイッチ, ペルセ, レイン・オブ・ファイア, スウィフト・ストライド]
+        note: 回避巧者 (`R3, <vA`)
 :::
 
 :::encounter
@@ -1482,11 +1346,7 @@ count: 1
 :::menu
 actions:
   - kind: formation
-    note: マエルout, ヴェルソout, モノコin, シエルout-in
-:::
-
-:::formation
-members: [monoco, sciel]
+    note: ヴェルソout, マエルout, モノコin, シエルout-in
 :::
 
 :::when
@@ -1499,11 +1359,10 @@ actions:
     items:
       - kind: pictos
         note: |
-          - エナジャイズターン [3] (`<<AA`)
+          - スロット2,3 解除
+          - エナジャイズターン [3] (`AA`)
       - kind: lumina
-        note: |
-          - クリティカルバーンout (`<^A`)
-          - 自動加速in (`>^A`)
+        note: エナジャイズスタートIout, クリティカルバーンout, 自動加速in  (`<A R3 ^^AvA`)
 :::
 
 :::encounter
@@ -1546,7 +1405,7 @@ count: 1
 
 - 特性
   - シエル
-    - 素早さ全振り (31)
+    - 素早さ全振り (30)
 - スキル
   - シエル
     - (ファントム・ブレイド,) シールド・フェイト > 左下
@@ -1565,31 +1424,9 @@ actions:
   - character: sciel
     items:
       - kind: weapon
-        note: ティスルオン
+        note: ティスルオン（`^A`）
       - kind: pictos
-        note: 弱点の恩恵 > エナジャイズスタートI [2] (`<<AvA`)
-:::
-
-:::equip
-sciel:
-  weapon: ティスルオン
-  pictos: [完全無欠, 弱点の恩恵, エナジャイズターン]
-  luminas: [インバーテッドアフィニティ,  先制攻撃, 死のエネルギーII, 瀬戸際, 自動加速]
-  skills: [フォーチュン・フューリー, 自己犠牲, シールド・フェイト, シアリング・ボンド, フォーカス・フォーテル, ハーベスト]
-verso:
-  weapon: デラルアム
-  pictos: [自動加速, インバーテッドアフィニティ, 瀬戸際]
-  luminas: [エナジャイズスタートI, クリティカルバーン, 先制攻撃, 死のエネルギーII]
-  skills: [リーダーシップ, ベルセルク・スラッシュ, マーキング・ショット, ディファイアント・ストライク, パワフル]
-maelle:
-  weapon: メダルウム
-  pictos: [コンボ攻撃I, 強化先制攻撃, 先制攻撃]
-  luminas: [死のエネルギーII, インバーテッドアフィニティ, エナジャイズスタートI, 瀬戸際, 緊急強化]
-  skills: [オフェンス・スイッチ, ペルセ, レイン・オブ・ファイア, スウィフト・ストライド]
-:::
-
-:::formation
-members: [maelle, sciel, verso]
+        note: 弱点の恩恵 > エナジャイズスタートI [2] (`<<AA`)
 :::
 
 :::encounter
@@ -1605,6 +1442,8 @@ turns:
     - character: シエル
       action: フォーチュン・フューリー > シエル
   - actions:
+    - character: マエル
+      action: オフェンス・シフト
     - character: ヴェルソ
       action: ディファイアント・ストライク
     - character: シエル
@@ -1617,14 +1456,9 @@ turns:
 
 :::menu
 actions:
-  - character: maelle
-    kind: pictos
-    note: コンボ攻撃 I 外す
   - character: sciel
     kind: lumina
-    note: |
-      - 自動加速 out
-      - クリティカルバーン, 強化先制攻撃
+    note: 自動加速out, クリティカルバーン, 回避巧者, 土壇場（`R3 ^^>A^A^Av<A`）
 :::
 
 :::encounter
@@ -1636,39 +1470,59 @@ turns:
     - character: シエル
       action: フォーカス・フォーテル
     - character: ヴェルソ
-      action: ベルセルク・スラッシュ
-    - character: ペイントレス
-      action: 隕石攻撃 > パリィ 
-      note: 最低 1 AP はヴェルソに入らなければ、セーブをロード
+      action: ディファイアント・ストライク
+  - note: パリィ, ラストだけ回避。ヴェルソに1APも入らなかったらバックアップ（後述）へ
   - actions:
     - character: シエル
       action: フォーチュン・フューリー
-    - character: ヴェルソ
-      action: |
-        - 3 パリィ以上してたらベルセルク・スラッシュ
-        - 2 か 1 パリィならディファイアント・ストライク
-    - character: ペイントレス
-      action: グラディエントアタック
-      note: ここまでで 3 AP 以上ヴェルソに入ってなければ、次以降ダメージを減らす（シールド・フェイトのQTEで失敗するなどする）
-  - actions:
     - character: マエル
       action: オフェンス・スイッチ
+  - note: |
+      グラディエントカウンター。AP状況を確認する
+      - ヴェルソ3, マエル4以上 -> シエルで倒し切り
+      - 上記未満 -> シエルのQTEを失敗してカウンターで倒す
+  - actions:
+    - character: ヴェルソ
+      action: ベルセルク・スラッシュ
     - character: シエル
-      action: （エイム, AP2 まで）グラディエントスキル > シールド・フェイト
+      action: グラディエントスキル > シールド・フェイト
+  - note: パリィカウンター
+:::
+
+:::encounter
+title: ペイントレス第一形態（2ターン目以降バックアップ）
+turns:
+  - actions:
+    - character: シエル
+      action: フォーチュン・フューリー
+    - character: マエル
+      action: スウィフト・ストライド
+  - note: グラディエントカウンター
+  - actions:
+    - character: ヴェルソ
+      action: パワフル
+    - character: シエル
+      action: グラディエントスキル > シールド・フェイト（QTEはパーフェクト）
+  - note: パリィカウンター
 :::
 
 :::encounter
 title: ペイントレス第二形態
 turns:
   - actions:
+    - character: マエル
+      action: レイン・オブ・ファイア
+  - note: |
+      - クロマ波をスキップ or バックアップなら、最後回避
+      - クロマ波をパリィしたなら、全部パリィ
+  - actions:
     - character: ヴェルソ
       action: ディファイアント・ストライク
   - actions:
     - character: シエル
       action: シールド・フェイト
+  - note: 全部回避
   - actions:
-    - character: ヴェルソ
-      action: ベルセルク・スラッシュ
     - character: マエル
       action: レイン・オブ・ファイア
     - character: シエル
@@ -1677,7 +1531,7 @@ turns:
 
 :::encounter
 title: ペイントレス第三形態
-note: シールド・フェイト
+note: スキップ -> シールド・フェイト
 :::
 
 :::skip
@@ -1720,9 +1574,9 @@ actions:
   - character: maelle
     items:
       - kind: pictos
-        note: 強化先制攻撃[2] out, かりそめの力 in (`vY AA`)
+        note: 全部解除
       - kind: lumina
-        note: 完全無欠 in, エナジャイズスタートI out, 強化先制攻撃 in (`^>A ^>A ^^<A`)
+        note: エナジャイズスタートIout, 先制攻撃in (`L2 vA>A`)
 :::
 
 :::skip
@@ -1744,72 +1598,82 @@ count: 1
 
 旗（港）
 
-- スキル
+:::note
+リコートを2つ持っていない場合は、ここをスキップして商人からリコートを買う
+
+その場合、噴水の近くの旗を使って強化する
+:::
+
+- 特性
   - シエル
     - リコート
-    - （ラッシュ, スペクトル・スイープ, ダーク・クレンジング）インターヴェンション > 左上
+    - 素早さ全
+  - マエル
+    - 運全
+- スキル
   - マエル
     - スタンダール > 左上
     - (メッゾ・フォルテ, ) ラストチャンス > 左中
+  - シエル
+    - リコート
+    - （ラッシュ, スペクトル・スイープ, ダーク・クレンジング）インターヴェンション > 左上
 - 武器強化
-  - メダルウム > Lv15
+  - メダルウム > Lv13
 
 :::when
-アベレイション前
+クリアション前までのジャンプ時
 :::
 
 :::menu
 actions:
   - kind: formation
-    note: モノコ（ルネ）out, マエル out-in
+    note: モノコ（ルネ）out, シエルin, ヴェルソout
+  - character: sciel
+    kind: pictos
+    note: |
+      - 自動加速[1] > 完全無欠（`A>A`）
+      - コンボ攻撃[2] > 弱点の恩恵（Yes, `vAvvA`）
 :::
-
-アべレイションと戦闘
 
 :::encounter
-title: アベレイション
-note: エネルギーティント, スタンダール
-:::
-
-:::when
-ジャンプ時
-:::
-
-:::menu
+title: クリアション
 actions:
-  - character: maelle
-    kind: pictos
-    note: ショートカット[1] (`AvA`)
+  - character: マエル
+    action: ラストチャンス
+  - character: シエル
+    action: インターヴェンション > マエル
+  - note: 逃げる
 :::
 
-クリアションは逃げる
-
 :::when
-クリアション戦後
+ルノワールムービー
 :::
 
 :::menu
 actions:
   - kind: formation
-    note: シエル in
-:::
-
-:::formation
-members: [verso, maelle, sciel]
+    note: ヴェルソin, マエルout-in
+  - character: maelle
+    kind: pictos
+    note: かりそめの力, 弱点の恩恵, 完全無欠（`<<AAvAAvAA`）
 :::
 
 :::encounter
 title: ルノワール（最終）
 turns:
   - actions:
+    - character: シエル
+      action: インターヴェンション > ヴェルソ
     - character: ヴェルソ
       action: リーダーシップ
     - character: マエル
-      action: スタンダール
+      action: スタンダール（QTE失敗）
     - character: シエル
-      action: インターヴェンション 
+      action: インターヴェンション > マエル（左）
     - character: マエル
-      action: ラストチャンス > スタンダール
+      action: グラディエントスキル
+  - note: ムービー
+  - note: スタンダール
 :::
 
 :::skip
