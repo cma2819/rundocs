@@ -1521,7 +1521,7 @@ turns:
   - actions:
     - character: シエル
       action: シールド・フェイト
-  - note: 全部回避
+  - note: 全部回避（ヴェルソがターゲットの場合、やられてよい）
   - actions:
     - character: マエル
       action: レイン・オブ・ファイア
