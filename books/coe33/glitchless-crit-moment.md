@@ -598,10 +598,10 @@ count: 1
 :::menu
 actions:
   - character: maelle
-    kind: skills
+    kind: skill
     note: オフェンス・スイッチ > 左上（`<AA`）
   - character: sciel
-    kind: skills
+    kind: skill
     note: ファイアリング・シャドウ > 左下（`AvvA`）
 :::
 
