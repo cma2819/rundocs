@@ -1126,7 +1126,7 @@ actions:
       - kind: lumina
         note: インバーテッドアフィニティ (`>A`)
       - kind: pictos
-        note: 自動加速（`<<AA`）
+        note: 自動加速[3]（`<<AA`）
 :::
 
 リコート持っていなければリコートを買う
@@ -1217,7 +1217,7 @@ actions:
         note: |
           - ブレイカー[2] > 瀬戸際（Yes, `v<<v AAA`）
       - kind: lumina
-        note: 緊急強化out, エナジャイズスタートIin, 死のエネルギーIIout, 瀬戸際in（`AvA>>AvvA`）
+        note: 緊急強化out, エナジャイズスタートIin, 死のエネルギーIIout, 瀬戸際in（`R3 AvA>>AvvA`）
   - character: verso
     items:
       - kind: lumina
@@ -1257,10 +1257,10 @@ turns:
       action: フォーチュン・フューリー > シエル
     - character: ヴェルソ
       action: ディファイアント・ストライク
-  - note: 基本パリィ, 一回目の攻撃がバレエだったら回避
-  - actions:
     - character: マエル
       action: オフェンス・スイッチ
+  - note: 基本パリィ, 一回目の攻撃がバレエだったら回避
+  - actions:
     - character: シエル
       action: グラデエント・スキル > ファイアリング・シャドウ（フォーテルカウンターとHP0の間2/3以降まで削れていたら、攻撃でも可）
 :::
@@ -1276,7 +1276,7 @@ actions:
       - kind: pictos
         note: 自動加速 > ブレイカー (2, 入れ替え `<A vAY`)
       - kind: lumina
-        note: 回避巧者 (`R3, <vA`)
+        note: 回避巧者 (`R3, >vA`)
 :::
 
 :::encounter
@@ -1290,10 +1290,10 @@ turns:
     - character: マエル
       action: レイン・オブ・ファイア
   - actions:
-    - character: ヴェルソ
-      action: ヴェルセルク・スラッシュ
     - character: マエル
       action: レイン・オブ・ファイア
+    - character: ヴェルソ
+      action: ヴェルセルク・スラッシュ
     - character: シエル
       action: グラデエント・スキル > ファイアリング・シャドウ
   - note: 倒せなかったらジャンプカウンターだけやる、他は回避
@@ -1335,7 +1335,7 @@ count: 1
 :::menu
 actions:
   - kind: formation
-    note: ヴェルソout, マエルout, モノコin, シエルout-in
+    note: マエルout, モノコin, シエルout-in, ヴェルソout
 :::
 
 :::when
@@ -1432,7 +1432,7 @@ turns:
       action: フォーチュン・フューリー > シエル
   - actions:
     - character: マエル
-      action: オフェンス・シフト
+      action: オフェンス・スイッチ
     - character: ヴェルソ
       action: ディファイアント・ストライク
     - character: シエル
@@ -1507,10 +1507,9 @@ turns:
   - actions:
     - character: ヴェルソ
       action: ディファイアント・ストライク
-  - actions:
     - character: シエル
       action: シールド・フェイト
-  - note: 全部回避（ヴェルソがターゲットの場合、やられてよい）
+  - note: 全部回避
   - actions:
     - character: マエル
       action: レイン・オブ・ファイア
@@ -1626,12 +1625,14 @@ actions:
 
 :::encounter
 title: クリアション
-actions:
-  - character: マエル
-    action: ラストチャンス
-  - character: シエル
-    action: インターヴェンション > マエル
-  - note: 逃げる
+turns:
+  - actions:
+    - character: マエル
+      action: ラストチャンス
+    - character: シエル
+      action: インターヴェンション > マエル
+    - character: マエル
+      action: 逃げる
 :::
 
 :::when
