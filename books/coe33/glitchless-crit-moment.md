@@ -1,17 +1,6 @@
 # Expedition 33 - Any% Glitchless Story (Critical Moment)
 - [English Guide](https://docs.google.com/document/u/1/d/e/2PACX-1vQH1QZlqpVW4IqMhPRxq7dLSYNCnu2DQdkSBazySIH8kPsRGQfMU96gpLnEet4E1GQQJ2oA2zTTRYmM/pub)
 
-## 要約
-
-- マエル合流までは同じ
-- 屋敷
-  - マエルのスキルそのまま
-- ゴブル前
-  - マエルのスキル外す
-- エスキエの隠れ家
-  - ギュスターヴの強化違う
-- Polished Chroma Catalyst 15 when Renoir 1
-
 ## ルミエール
 
 :::skip
@@ -868,7 +857,7 @@ actions:
     items:
       - kind: pictos
         note: |
-          - インバーテッドアフィニティ[2] (`<AA`)
+          - インバーテッドアフィニティ[3] (`<AA`)
           - 先制攻撃 > 土壇場[1] (Yes, `vAvAA`)
       - kind: lumina
         note: 土壇場（`>A`） 
