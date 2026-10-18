@@ -860,7 +860,7 @@ actions:
           - インバーテッドアフィニティ[3] (`<AA`)
           - 先制攻撃 > 土壇場[1, 上書き] (`vAvAA`)
       - kind: lumina
-        note: 土壇場 `^A`） 
+        note: 土壇場 （`^A`） 
 :::
 
 :::encounter
