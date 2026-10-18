@@ -1118,7 +1118,7 @@ actions:
     items:
       - kind: pictos
         note: |
-          - 先制攻撃[1] > 自動加速[上書き](`<vvAA`)
+          - 先制攻撃[1] > 自動加速[上書き]（`<vvAA`）
       - kind: lumina
         note: 緊急強化, 土壇場, クリティカルバーン（`R3, AvvA>A`）
   - character: sciel
