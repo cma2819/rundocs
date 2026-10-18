@@ -241,7 +241,7 @@ actions:
       - kind: skill
         note: ルミエール・アサルト解除
       - kind: pictos
-        note: 外す, 外す, 回避巧者 [3, Yes]
+        note: 外す, 外す, 回避巧者 [3, 上書き]
   - character: lune
     kind: weapon
     note: ライトイム（間に合わなかったら屋敷前でも可）
@@ -858,9 +858,9 @@ actions:
       - kind: pictos
         note: |
           - インバーテッドアフィニティ[3] (`<AA`)
-          - 先制攻撃 > 土壇場[1] (Yes, `vAvAA`)
+          - 先制攻撃 > 土壇場[1, 上書き] (`vAvAA`)
       - kind: lumina
-        note: 土壇場（`>A`） 
+        note: 土壇場 `^A`） 
 :::
 
 :::encounter
@@ -993,7 +993,7 @@ count: 2
 actions:
   - kind: pictos
     character: verso
-    note: コンボ攻撃I[1] > 先制攻撃（Yes, `<<AAA`）
+    note: コンボ攻撃I[1] > 先制攻撃[上書き]（`<<AAA`）
   - kind: lumina
     items:
       - character: verso
@@ -1118,7 +1118,7 @@ actions:
     items:
       - kind: pictos
         note: |
-          - 先制攻撃[1] > 自動加速 (Yes,`<vvAA`)
+          - 先制攻撃[1] > 自動加速[上書き](`<vvAA`)
       - kind: lumina
         note: 緊急強化, 土壇場, クリティカルバーン（`R3, AvvA>A`）
   - character: sciel
@@ -1215,7 +1215,7 @@ actions:
     items:
       - kind: pictos
         note: |
-          - ブレイカー[2] > 瀬戸際（Yes, `v<<v AAA`）
+          - ブレイカー[2] > 瀬戸際[上書き]（`v<<v AAA`）
       - kind: lumina
         note: 緊急強化out, エナジャイズスタートIin, 死のエネルギーIIout, 瀬戸際in（`R3 AvA>>AvvA`）
   - character: verso
@@ -1620,7 +1620,7 @@ actions:
     kind: pictos
     note: |
       - 自動加速[1] > 完全無欠（`A>A`）
-      - コンボ攻撃[2] > 弱点の恩恵（Yes, `vAvvA`）
+      - コンボ攻撃[2] > 弱点の恩恵[上書き]（`vAvvA`）
 :::
 
 :::encounter
