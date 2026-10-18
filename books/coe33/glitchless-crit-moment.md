@@ -1,5 +1,6 @@
 # Expedition 33 - Any% Glitchless Story (Critical Moment)
 - [English Guide](https://docs.google.com/document/u/1/d/e/2PACX-1vQH1QZlqpVW4IqMhPRxq7dLSYNCnu2DQdkSBazySIH8kPsRGQfMU96gpLnEet4E1GQQJ2oA2zTTRYmM/pub)
+- [Save files](https://drive.google.com/file/d/1qD6oc02OOpZs5Ikg-i7c5-87D4d8qI4o/view?usp=sharing)
 
 ## ルミエール
 
