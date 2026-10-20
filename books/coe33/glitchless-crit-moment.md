@@ -590,9 +590,6 @@ actions:
   - character: maelle
     kind: skill
     note: オフェンス・スイッチ > 左上（`<AA`）
-  - character: sciel
-    kind: skill
-    note: ファイアリング・シャドウ > 左下（`AvvA`）
 :::
 
 :::encounter
@@ -670,7 +667,10 @@ actions:
           - ブレイカー[1]
           - エナジャイズスタートI[2]
       - kind: skill
-        note: ハーベストを右下へ
+        note: |
+          - シエルのスキル位置調整（任意）
+          - ファイアリング・シャドウ > 左下（`vvYAA`）
+          - ハーベスト > 右下（`>Av>A`）
 :::
 
 道中回収
