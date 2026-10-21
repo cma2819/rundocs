@@ -19,6 +19,8 @@ export interface SemanticComponent {
 
 export interface RenderContext {
   format: 'html' | 'cli' | 'pdf';
+  /** "${key}" placeholder dictionary for the default locale, resolved at render time */
+  dictionary: Record<string, string>;
 }
 
 export type ComponentRenderer<TOut> = (component: SemanticComponent, ctx: RenderContext) => TOut;

@@ -63,6 +63,9 @@ turns:
 操作のタイミングを一言で記す、プレーンなテキストのみのBlock。`:::skip`や`:::menu`など、
 タイミングが意味を持つBlockの直前に置く。
 
+地の文には`${critical-burn}`のような辞書プレースホルダーも書ける(`rundocs.config.ts`の
+`i18n.dictionaries`で言語ごとに解決され、ページ右上のLang切り替えで表示を変更できる)。
+
 :::when
 ボス戦前の休憩地点で
 :::

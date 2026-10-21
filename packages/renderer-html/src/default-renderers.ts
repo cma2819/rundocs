@@ -1,13 +1,14 @@
 import { h } from 'hastscript';
 import type { BlockRenderer, ComponentRenderer } from '@rundocs/renderer-core';
 import { markdownToHast } from './markdown.js';
+import { expandDictionaryTermsToHast } from './dictionary-term-handler.js';
 
 /**
  * Zero-configuration renderer: works for any component, whether or not a
  * ComponentSchema exists for it. Plugins can override per-component-name via
  * RendererRegistry.register() to produce a richer layout (grid, icons, etc).
  */
-export const genericComponentRenderer: ComponentRenderer<any> = (component) => {
+export const genericComponentRenderer: ComponentRenderer<any> = (component, ctx) => {
   const title = component.schema?.['x-ui']?.displayName ?? component.name;
   const icon = component.schema?.['x-ui']?.icon;
 
@@ -18,7 +19,15 @@ export const genericComponentRenderer: ComponentRenderer<any> = (component) => {
       {},
       component.fields.flatMap((f) => [
         h('dt', {}, [f.icon ? h('span', { class: `icon icon--${f.icon}` }) : null, f.displayName].filter(Boolean) as any),
-        h('dd', {}, f.key === 'note' && typeof f.value === 'string' ? markdownToHast(f.value) : String(f.value)),
+        h(
+          'dd',
+          {},
+          (f.key === 'note' && typeof f.value === 'string'
+            ? markdownToHast(f.value, ctx.dictionary)
+            : typeof f.value === 'string'
+              ? expandDictionaryTermsToHast(f.value, ctx.dictionary)
+              : String(f.value)) as never,
+        ),
       ]),
     ),
   ]);

@@ -20,8 +20,27 @@ export interface BlockNode {
   data?: { hName?: string };
 }
 
+export interface DictionaryTermNode {
+  type: 'dictionaryTerm';
+  /** the "${key}" placeholder's key */
+  key: string;
+  /** default-locale text resolved at build time; other locales are embedded client-side */
+  value: string;
+  position?: Position;
+}
+
+/** Same as DictionaryTermNode, but for a `` `${key}` `` whose entire inline-code span is the placeholder — keeps the <code> styling while still being switchable. */
+export interface DictionaryCodeTermNode {
+  type: 'dictionaryCodeTerm';
+  key: string;
+  value: string;
+  position?: Position;
+}
+
 declare module 'mdast' {
   interface RootContentMap {
     block: BlockNode & import('mdast').Node;
+    dictionaryTerm: DictionaryTermNode & import('mdast').Node;
+    dictionaryCodeTerm: DictionaryCodeTermNode & import('mdast').Node;
   }
 }

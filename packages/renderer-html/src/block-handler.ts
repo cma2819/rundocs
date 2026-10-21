@@ -6,7 +6,7 @@ import type { BlockRendererRegistry } from '@rundocs/renderer-core';
  * `:::name ... :::` directive produces this node type regardless of kind — the
  * actual presentation branch happens inside `registry`, keyed by `node.kind`.
  */
-export function createBlockHandler(registry: BlockRendererRegistry<any>): Handler {
+export function createBlockHandler(registry: BlockRendererRegistry<any>, dictionary: Record<string, string> = {}): Handler {
   return (_state, node: any) =>
     registry.render(
       {
@@ -17,6 +17,6 @@ export function createBlockHandler(registry: BlockRendererRegistry<any>): Handle
         semantic: node.semantic ?? [],
         diagnostics: node.diagnostics ?? [],
       },
-      { format: 'html' },
+      { format: 'html', dictionary },
     );
 }

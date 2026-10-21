@@ -37,7 +37,9 @@ export async function build(resolved: ResolvedInput, outDirName = 'dist'): Promi
   }
 
   const gameSchema = config?.plugin?.gameSchema ?? null;
-  const pipeline = createHtmlPipeline(gameSchema, registry);
+  const i18n = config?.i18n;
+  const defaultDictionary = (i18n && i18n.dictionaries[i18n.defaultLocale]) ?? {};
+  const pipeline = createHtmlPipeline(gameSchema, registry, defaultDictionary);
 
   const outDir = join(workspaceRoot, outDirName);
   const pages: PageResult[] = [];
@@ -53,7 +55,7 @@ export async function build(resolved: ResolvedInput, outDirName = 'dist'): Promi
     const outFile = join(outDir, outRel);
 
     await mkdir(dirname(outFile), { recursive: true });
-    await writeFile(outFile, wrapDocument(bodyHtml, rel, headings, blockCategories), 'utf8');
+    await writeFile(outFile, wrapDocument(bodyHtml, rel, headings, blockCategories, i18n), 'utf8');
     pages.push({ source: rel, output: outRel, errorCount: countErrors(bodyHtml) });
   }
 

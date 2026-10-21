@@ -1,6 +1,7 @@
 import { h } from 'hastscript';
 import type { BlockRenderer } from '@rundocs/renderer-core';
 import { markdownToHast, markdownToInlineHast } from '../markdown.js';
+import { expandDictionaryTermsToHast } from '../dictionary-term-handler.js';
 
 /**
  * Presentation for BlockHandler.kind === "encounter": a title/note followed by
@@ -11,7 +12,7 @@ import { markdownToHast, markdownToInlineHast } from '../markdown.js';
  * note.ts/route.ts, checks diagnostics first (like state.ts) since this nested
  * shape is meaningfully more error-prone.
  */
-export const encounterKindRenderer: BlockRenderer<any> = (block) => {
+export const encounterKindRenderer: BlockRenderer<any> = (block, ctx) => {
   const errors = block.diagnostics.filter((d) => d.severity === 'error');
   if (errors.length > 0) {
     return h('div', { class: 'state-block state-block--error' }, [
@@ -24,6 +25,7 @@ export const encounterKindRenderer: BlockRenderer<any> = (block) => {
     ]);
   }
 
+  const dict = ctx.dictionary;
   const title = typeof block.value.title === 'string' ? block.value.title : undefined;
   const note = typeof block.value.note === 'string' ? block.value.note : undefined;
   const turns = Array.isArray(block.value.turns) ? (block.value.turns as Record<string, unknown>[]) : [];
@@ -32,8 +34,8 @@ export const encounterKindRenderer: BlockRenderer<any> = (block) => {
     'div',
     { class: 'block block--encounter', 'data-block-category': 'encounter' },
     [
-      title ? h('h3', { class: 'encounter-title' }, title) : null,
-      note ? h('div', { class: 'encounter-note' }, markdownToHast(note)) : null,
+      title ? h('h3', { class: 'encounter-title' }, expandDictionaryTermsToHast(title, dict) as never) : null,
+      note ? h('div', { class: 'encounter-note' }, markdownToHast(note, dict)) : null,
       h(
         'div',
         { class: 'encounter-turns' },
@@ -51,18 +53,20 @@ export const encounterKindRenderer: BlockRenderer<any> = (block) => {
                     { class: 'encounter-actions' },
                     actions.map((a) => {
                       const actionNote = typeof a.note === 'string' ? a.note : undefined;
-                      const label = `${typeof a.character === 'string' ? a.character : '?'}: ${typeof a.action === 'string' ? a.action : '?'}`;
+                      const characterText = typeof a.character === 'string' ? a.character : '?';
+                      const actionText = typeof a.action === 'string' ? a.action : '?';
+                      const label = [...expandDictionaryTermsToHast(characterText, dict), ': ', ...expandDictionaryTermsToHast(actionText, dict)];
                       return h(
                         'li',
                         {},
-                        actionNote
-                          ? [label, h('span', { class: 'encounter-action-note' }, [' — ', ...markdownToInlineHast(actionNote)])]
-                          : label,
+                        (actionNote
+                          ? [...label, h('span', { class: 'encounter-action-note' }, [' — ', ...markdownToInlineHast(actionNote, dict)])]
+                          : label) as never,
                       );
                     }),
                   )
                 : null,
-              turnNote ? h('div', { class: 'encounter-note' }, markdownToHast(turnNote)) : null,
+              turnNote ? h('div', { class: 'encounter-note' }, markdownToHast(turnNote, dict)) : null,
             ].filter(Boolean) as any,
           );
         }),

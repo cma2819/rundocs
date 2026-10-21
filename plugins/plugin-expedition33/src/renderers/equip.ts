@@ -1,5 +1,6 @@
 import { h } from 'hastscript';
 import type { ComponentRenderer } from '@rundocs/renderer-core';
+import { expandDictionaryTermsToHast } from '@rundocs/renderer-html';
 import { CHARACTERS, type CharacterMeta } from '../characters.js';
 
 interface Loadout {
@@ -33,8 +34,9 @@ function chunkSkills(skills: string[]): [string[], string[]] {
  * this order also means updating those grid-areas.
  */
 export function createEquipRenderer(characters: Record<string, CharacterMeta>): ComponentRenderer<any> {
-  return (component) => {
+  return (component, ctx) => {
     const title = component.schema?.['x-ui']?.displayName ?? component.name;
+    const dict = ctx.dictionary;
 
     const cards = component.fields
       .filter((f) => f.value && typeof f.value === 'object' && !Array.isArray(f.value))
@@ -44,28 +46,28 @@ export function createEquipRenderer(characters: Record<string, CharacterMeta>): 
 
         return h('div', { class: 'equip-card' }, [
           h('h4', {}, characters[f.key]?.displayName ?? f.displayName),
-          h('div', { class: 'equip-weapon' }, loadout.weapon ?? '—'),
+          h('div', { class: 'equip-weapon' }, expandDictionaryTermsToHast(loadout.weapon ?? '—', dict) as never),
           h(
             'ul',
             { class: 'equip-pictos' },
-            (loadout.pictos ?? []).map((p) => h('li', {}, p)),
+            (loadout.pictos ?? []).map((p) => h('li', {}, expandDictionaryTermsToHast(p, dict) as never)),
           ),
           h('div', { class: 'equip-skills' }, [
             h(
               'ul',
               { class: 'equip-skills-page' },
-              page1.map((s) => h('li', {}, s)),
+              page1.map((s) => h('li', {}, expandDictionaryTermsToHast(s, dict) as never)),
             ),
             h(
               'ul',
               { class: 'equip-skills-page' },
-              page2.map((s) => h('li', {}, s)),
+              page2.map((s) => h('li', {}, expandDictionaryTermsToHast(s, dict) as never)),
             ),
           ]),
           h(
             'ul',
             { class: 'equip-luminas' },
-            (loadout.luminas ?? []).map((l) => h('li', {}, l)),
+            (loadout.luminas ?? []).map((l) => h('li', {}, expandDictionaryTermsToHast(l, dict) as never)),
           ),
         ]);
       });

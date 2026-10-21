@@ -8,6 +8,8 @@ import { RendererRegistry, BlockRendererRegistry } from '@rundocs/renderer-core'
 import {
   createBlockHandler,
   createStateKindRenderer,
+  dictionaryTermHandler,
+  dictionaryCodeTermHandler,
   encounterKindRenderer,
   genericBlockRenderer,
   genericComponentRenderer,
@@ -19,6 +21,7 @@ import { remarkBlockDirective } from '../remark-block-directive.js';
 import { remarkValidateBlock } from '../remark-validate-block.js';
 import { remarkCollectHeadings } from '../remark-collect-headings.js';
 import { remarkCollectBlockCategories } from '../remark-collect-block-categories.js';
+import { remarkExpandDictionaryTerms } from '../remark-expand-dictionary-terms.js';
 import { BlockRegistry } from '../block-registry.js';
 import { stateBlockHandler } from '../blocks/state-block-handler.js';
 import { noteBlockHandler } from '../blocks/note-block-handler.js';
@@ -54,7 +57,11 @@ export function createBlockRegistry(gameSchema: GameSchema | null): BlockRegistr
   return registry;
 }
 
-export function createHtmlPipeline(gameSchema: GameSchema | null, componentRegistry: RendererRegistry<any>) {
+export function createHtmlPipeline(
+  gameSchema: GameSchema | null,
+  componentRegistry: RendererRegistry<any>,
+  dictionary: Record<string, string> = {},
+) {
   const blockRegistry = createBlockRegistry(gameSchema);
 
   const blockRenderers = new BlockRendererRegistry<any>(genericBlockRenderer);
@@ -67,10 +74,18 @@ export function createHtmlPipeline(gameSchema: GameSchema | null, componentRegis
   return unified()
     .use(remarkParse)
     .use(remarkDirective)
+    .use(remarkExpandDictionaryTerms, { dictionary })
     .use(remarkCollectHeadings)
     .use(remarkBlockDirective, { registry: blockRegistry })
     .use(remarkValidateBlock, { registry: blockRegistry, gameSchema })
     .use(remarkCollectBlockCategories)
-    .use(remarkRehype, { handlers: { block: createBlockHandler(blockRenderers) }, allowDangerousHtml: false })
+    .use(remarkRehype, {
+      handlers: {
+        block: createBlockHandler(blockRenderers, dictionary),
+        dictionaryTerm: dictionaryTermHandler,
+        dictionaryCodeTerm: dictionaryCodeTermHandler,
+      },
+      allowDangerousHtml: false,
+    })
     .use(rehypeStringify);
 }

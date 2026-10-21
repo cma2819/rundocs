@@ -97,15 +97,15 @@ turns:
     - character: ギュスターヴ
       action: エイム（ヘッドショット含む2発）-> 攻撃 
     - character: ルネ
-      action: アイスランス
+      action: ${ice-lance}
 :::
 
 :::skip
 count: 1
 :::
 
-- 入手 `回避巧者`
-- 入手 `クリティカルバーン`
+- 入手 `${dodger}`
+- 入手 `${critical-burn}`
 
 :::when
 ヴォレステ戦
@@ -140,10 +140,10 @@ actions:
     items:
       - character: gustave
         note: |
-          `クリティカルバーン` [1] (`AA`)
+          `${critical-burn}` [1] (`AA`)
       - character: lune
         note: |
-          `回避巧者` [1] (`<AA`)
+          `${dodger}` [1] (`<AA`)
 :::
 
 :::skip
@@ -152,7 +152,7 @@ count: 2
 
 イヴェキ戦へ進む
 
-- 入手 `死のエネルギーII`
+- 入手 `${dead-energy-2}`
 - 入手 `ルミナのカラー`
 
 :::when
@@ -165,13 +165,13 @@ count: 2
   - ルネ
     - 攻撃力全振り (6)
 - スキル
-  - パワフル  
+  - ${powerful}  
 
 :::menu
 actions:
   - character: gustave
     kind: pictos
-    note: 死のエネルギーII (`<AA`)
+    note: ${dead-energy-2} (`<AA`)
 :::
 
 :::formation
@@ -180,13 +180,13 @@ members: [lune, gustave]
 
 :::equip
 gustave:
-  weapon: ノアルアム（デフォルト）
-  pictos: [クリティカルバーン, 死のエネルギーII]
-  skills: [ルミエール・アサルト, オーバーチャージ, パワフル]
+  weapon: ${noahram}（デフォルト）
+  pictos: ["${critical-burn}", "${dead-energy-2}"]
+  skills: ["${lumiere-assault}", "${overcharge}", "${powerful}"]
 lune:
-  weapon: ルネイム（デフォルト）
-  pictos: [回避巧者]
-  skills: [イモレーション, アイスランス]
+  weapon: ${lunerim}（デフォルト）
+  pictos: ["${dodger}"]
+  skills: ["${immolation}", "${ice-lance}"]
 :::
 
 :::encounter
@@ -195,21 +195,21 @@ note: 全部パリィ
 turns:
   - actions:
     - character: ルネ
-      action: 盾削ってイモレーション
+      action: 盾削って${immolation}
     - character: ギュスターヴ
-      action: パワフル
+      action: ${powerful}
   - actions:
     - character: ルネ
-      action: イモレーション
+      action: ${immolation}
     - character: ギュスターヴ
-      action: ルミエール・アサルト
+      action: ${lumiere-assault}
   - actions:
     - character: ルネ
-      action: APティント（ギュスターヴの AP 足りなければ）/ アイスランス / 攻撃
+      action: APティント（ギュスターヴの AP 足りなければ）/ ${ice-lance} / 攻撃
       note: HP残り3/8くらいを目指す
     - character: ギュスターヴ
-      action: オーバーチャージ
-  - note: オーバーチャージでクリティカル出ないと倒せない。残ったら、頑張って削って倒す
+      action: ${overcharge}
+  - note: ${overcharge}でクリティカル出ないと倒せない。残ったら、頑張って削って倒す
 :::
 
 :::status
@@ -240,12 +240,12 @@ actions:
   - character: gustave
     items:
       - kind: skill
-        note: ルミエール・アサルト解除
+        note: ${lumiere-assault}解除
       - kind: pictos
-        note: 外す, 外す, 回避巧者 [3, 上書き]
+        note: 外す, 外す, ${dodger} [3, 上書き]
   - character: lune
     kind: weapon
-    note: ライトイム（間に合わなかったら屋敷前でも可）
+    note: ${lighterim}（間に合わなかったら屋敷前でも可）
 :::
 
 - 屋敷まで進む
@@ -275,8 +275,8 @@ actions:
     items:
       - kind: pictos
         note: |
-          - クリティカルバーン (`<AA`)
-          - 死のエネルギーII (`<vAA`)
+          - ${critical-burn} (`<AA`)
+          - ${dead-energy-2} (`<vAA`)
 :::
 
 :::when
@@ -293,9 +293,9 @@ actions:
     - 素早さ全 - 1 (5)
 - スキル
   - ギュスターヴ
-    - マーキングショット
+    - ${marking-shot}
   - マエル
-    - スウィフト・ストライド
+    - ${swift-stride}
 
 :::encounter
 title: キュレーター
@@ -304,9 +304,9 @@ turns:
     - character: ルネ
       action: APティント > マエル
     - character: ギュスターヴ
-      action: マーキング・ショット
+      action: ${marking-shot}
     - character: マエル
-      action: ペルセ
+      action: ${percee}
   - note: 残ったら反撃で終わり
 :::
 
@@ -327,8 +327,8 @@ actions:
   - character: maelle
     note: |
       スキル解除
-      - オフェンス・スイッチ
-      - スパーク
+      - ${offensive-switch}
+      - ${spark}
 :::
 
 :::encounter
@@ -338,35 +338,35 @@ turns:
   - note: 回避する
   - actions:
       - character: ルネ
-        action: イモレーション
+        action: ${immolation}
       - character: ギュスターヴ
-        action: パワフル
+        action: ${powerful}
       - character: マエル
-        action: スウィフト・ストライド
+        action: ${swift-stride}
   - note: ここも回避
   - actions:
       - character: ルネ
-        action: アイスランス
+        action: ${ice-lance}
       - character: ギュスターヴ
-        action: マーキング・ショット
+        action: ${marking-shot}
       - character: マエル
-        action: ペルセ
-    note: ペルセがクリティカルだったら以降も回避
+        action: ${percee}
+    note: ${percee}がクリティカルだったら以降も回避
   - actions:
       - character: ルネ
-        action: イモレーション
+        action: ${immolation}
       - character: ギュスターヴ
-        action: オーバーチャージ
+        action: ${overcharge}
       - character: マエル
-        action: スウィフト・ストライド
+        action: ${swift-stride}
   - actions:
       - character: ルネ
         action: 攻撃
-        note: ペルセでクリティカルが出た or 他のクリティカルで100ダメージ以上増えてるならスキップ
+        note: ${percee}でクリティカルが出た or 他のクリティカルで100ダメージ以上増えてるならスキップ
       - character: ギュスターヴ
-        action: マーキング・ショット
+        action: ${marking-shot}
       - character: マエル
-        action: ペルセ
+        action: ${percee}
 :::
 
 :::skip
@@ -401,18 +401,18 @@ turns:
   - note: 盾攻撃はパリィ、他は回避
   - actions:
     - character: ルネ
-      action: イモレーション（盾あるときはミス）
+      action: ${immolation}（盾あるときはミス）
     - character: ギュスターヴ
       action: スキップ
     - character: マエル
-      action: スウィフト・ストライド（盾あるときはミス）
+      action: ${swift-stride}（盾あるときはミス）
   - actions:
     - character: ルネ
       action: スキップ
     - character: ギュスターヴ
-      action: マーキング・ショット
+      action: ${marking-shot}
     - character: マエル
-      action: ペルセ
+      action: ${percee}
   - note: 回避でOK
 :::
 
@@ -431,15 +431,15 @@ actions:
   - character: gustave
     items:
       - kind: weapon
-        note: サカルアム (`vA`)
+        note: ${sakaram} (`vA`)
       - kind: lumina
-        note: クリティカルバーン, 死のエネルギーII (`A>A`)
+        note: ${critical-burn}, ${dead-energy-2} (`A>A`)
   - character: lune
     kind: lumina
-    note: 回避巧者, 死のエネルギーII (R3 A>A)
+    note: ${dodger}, ${dead-energy-2} (R3 A>A)
   - character: maelle
     kind: lumina
-    note: 回避巧者（任意）
+    note: ${dodger}（任意）
 :::
 
 :::encounter
@@ -451,30 +451,30 @@ turns:
   - note: 最初の叩きつけ攻撃だけ回避、他はパリィ
   - actions:
     - character: ルネ
-      action: イモレーション
+      action: ${immolation}
     - character: ギュスターヴ
-      action: パワフル
+      action: ${powerful}
     - character: マエル
-      action: スウィフト・ストライド
+      action: ${swift-stride}
   - note: |
       - ジャンプカウンター攻撃を食らう
       - パリィ
   - actions:
     - character: ルネ
-      action: エイムで盾破壊, スキップ or イモレーション or 通常攻撃
+      action: エイムで盾破壊, スキップ or ${immolation} or 通常攻撃
       note: sakapatate の最初の T にゲージが乗るくらいを目安
     - character: ギュスターヴ
-      action: マーキング・ショット
+      action: ${marking-shot}
     - character: マエル
-      action: ペルセ
+      action: ${percee}
     note: クリティカル出たら倒せる
   - actions:
     - character: ルネ
       action: AP ティント > マエル or スキップ
     - character: ギュスターヴ
-      action: マーキング・ショット
+      action: ${marking-shot}
     - character: マエル
-      action: ペルセ
+      action: ${percee}
 :::
 
 ワールドマップ、ジェストラルの村へ
@@ -488,7 +488,7 @@ turns:
     - 攻撃力全振り（30）
 - スキル
   - マエル
-    - （デガジュマン, ）レイン・オブ・ファイア（手動での装備不要）
+    - （${degagement}, ）${rain-of-fire}（手動での装備不要）
 
 ゴルグラと会話（アリーナへ連れていってもらう）
 
@@ -496,13 +496,13 @@ turns:
 
 :::encounter
 title: トーナメント（通常、全戦共通）
-note: パリィ、レイン・オブ・ファイア、パリィ
+note: パリィ、${rain-of-fire}、パリィ
 :::
 
 :::encounter
-title: トーナメント（回避巧者あり）
+title: トーナメント（${dodger}あり）
 note: |
-    回避、レイン・オブ・ファイア、パリィ
+    回避、${rain-of-fire}、パリィ
     残ったら以下
 
     - クリティカルなし: 射撃で削って攻撃
@@ -515,7 +515,7 @@ count: 1
 
 :::encounter
 title: 4戦目（シエル）
-note: パリィ、レイン・オブ・ファイア
+note: パリィ、${rain-of-fire}
 :::
 
 :::skip
@@ -527,7 +527,7 @@ count: 2
 店
 
 - 洗練されたクロマカタリストx2
-- 土壇場
+- ${last-stand}
 
 ワールドマップへ
 
@@ -557,7 +557,7 @@ count: 1
     - 攻撃力全振り（45）
 - スキル
   - シエル
-    - （下へ）フォーチュン・フューリー、左上に装備（`AA`）
+    - （下へ）${fortunes-fury}、左上に装備（`AA`）
 
 :::menu
 actions:
@@ -566,13 +566,13 @@ actions:
   - character: maelle
     items:
       - kind: weapon
-        note: メダルウム
+        note: ${medalum}
       - kind: pictos
-        note: 回避巧者[3] (`<vvAAA`)
+        note: ${dodger}[3] (`<vvAAA`)
   - character: gustave
     items: 
       - kind: pictos
-        note: 土壇場[1]（`v<AA`）
+        note: ${last-stand}[1]（`v<AA`）
 :::
 
 エスキエの元へ進む
@@ -589,7 +589,7 @@ count: 1
 actions:
   - character: maelle
     kind: skill
-    note: オフェンス・スイッチ > 左上（`<AA`）
+    note: ${offensive-switch} > 左上（`<AA`）
 :::
 
 :::encounter
@@ -598,9 +598,9 @@ turns:
   - note: 回避
   - actions:
     - character: ギュスターヴ
-      action: エイム（1～2発）, マーキング・ショット
+      action: エイム（1～2発）, ${marking-shot}
     - character: マエル
-      action: エイム（盾はがすまで）, ペルセ
+      action: エイム（盾はがすまで）, ${percee}
 :::
 
 :::when
@@ -612,15 +612,15 @@ actions:
   - character: maelle
     items:
       - kind: pictos
-        note: 2,3 解除、強化先制攻撃[3] (`vYvY AA`)
+        note: 2,3 解除、強化${first-strike}[3] (`vYvY AA`)
       - kind: lumina
-        note: 死のエネルギーII (`>>A`)
+        note: ${dead-energy-2} (`>>A`)
   - character: sciel
     items:
       - kind: lumina
-        note: クリティカルバーン, 死のエネルギーII (`A>A`)
+        note: ${critical-burn}, ${dead-energy-2} (`A>A`)
       - kind: skill
-        note: フォーカス・フォーテル > 右上 (`<A >A`)
+        note: ${focused-foretell} > 右上 (`<A >A`)
 :::
 
 向かって左手、旗（フランソワの洞窟）へ、ファストトラベル（入り口）
@@ -634,7 +634,7 @@ count: 1
 :::
 
 - 武器強化
-  - マエル, メダリウムいけるところまで（Lv7 or Lv8 or Lv9）
+  - マエル, ${medalum}いけるところまで（Lv7 or Lv8 or Lv9）
 - 焚火 -> 眠る[1]
 
 :::skip
@@ -645,7 +645,7 @@ count: 1
 ↓忘れない！！！
 :::
 
-- エナジャイズスタートI（岩波の崖向かって左側、海辺沿い）
+- ${energising-start-1}（岩波の崖向かって左側、海辺沿い）
 - クロマ1305 （岩波の崖道中、坂道左手のキャンプ跡地）
 
 :::note
@@ -664,33 +664,33 @@ actions:
     items:
       - kind: pictos
         note: |
-          - ブレイカー[1]
-          - エナジャイズスタートI[2]
+          - ${breaker}[1]
+          - ${energising-start-1}[2]
       - kind: skill
         note: |
           - シエルのスキル位置調整（任意）
-            - ファイアリング・シャドウ > 左下（`vvYAA`）
-            - ハーベスト > 右下（`>Av>A`）
+            - ${firing-shadow} > 左下（`vvYAA`）
+            - ${harvest} > 右下（`>Av>A`）
 :::
 
 道中回収
 
 - クロマx790
-- デラルアム
+- ${delaram}
 
-入手後のジャンプでメニュー、デラルアム装備 
+入手後のジャンプでメニュー、${delaram}装備 
 
-- 先制攻撃
+- ${first-strike}
 
 :::when
-先制攻撃入手直後
+${first-strike}入手直後
 :::
 
 :::menu
 actions:
   - character: maelle
     kind: pictos
-    note: 先制攻撃[2]（`<<AA`） 
+    note: ${first-strike}[2]（`<<AA`） 
 :::
 
 :::encounter
@@ -699,12 +699,12 @@ note: |
   オーブを撃たないこと
 
   - 射撃 左3 右2
-  - レイン・オブ・ファイア
+  - ${rain-of-fire}
 :::
 
-- シャティオン
+- ${chation}
 - 洗練されたクロマカタリスト
-- 緊急強化
+- ${sos-power}
 - クロマx790
 - ルミナのカラー
 
@@ -716,10 +716,10 @@ note: |
 actions:
   - character: gustave
     kind: pictos
-    note: 緊急強化[2] (`vAvA`)
+    note: ${sos-power}[2] (`vAvA`)
   - character: sciel
     kind: weapon
-    note: シャティオン (`vA`)
+    note: ${chation} (`vA`)
 :::
 
 :::note
@@ -731,18 +731,18 @@ title: ランプマスター第一形態
 turns:
   - actions:
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: ${rain-of-fire}
   - note: マエルが1度でもパリィしている必要あり。なければ全員攻撃で一周回す
   - actions:
     - character: ギュスターヴ
-      action: パワフル
+      action: ${powerful}
     - character: マエル
-      action: スウィフト・ストライド
+      action: ${swift-stride}
     - character: シエル
-      action: フォーチュン・フューリー > マエル
+      action: ${fortunes-fury} > マエル
   - actions:
     - character: ギュスターヴ
-      action: オーバーチャージ
+      action: ${overcharge}
 :::
 
 :::encounter
@@ -750,21 +750,21 @@ title: ランプマスター第二形態
 turns:
   - actions:
     - character: ギュスターヴ
-      action: （第一形態で行動していなければ）マーキング・ショット
+      action: （第一形態で行動していなければ）${marking-shot}
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: ${rain-of-fire}
     - character: シエル
       action: |
         マエルの AP が少ないなら、APティント
-        十分あるなら、フォーチュン・フューリー or 通常攻撃
+        十分あるなら、${fortunes-fury} or 通常攻撃
   - actions:
     - character: ギュスターヴ
-      action: オーバーチャージかマーキング・ショット
+      action: ${overcharge}か${marking-shot}
     - character: マエル
-      action: ペルセかレイン・オブ・ファイア
+      action: ${percee}か${rain-of-fire}
     - character: シエル
       action: APティント or 攻撃などなど
-  - note: ダメージ足らない場合、傷跡＋ペルセを狙っていくのが安定っぽい
+  - note: ダメージ足らない場合、傷跡＋${percee}を狙っていくのが安定っぽい
 :::
 
 :::skip
@@ -811,12 +811,12 @@ turns:
       - マエルに攻撃 > パリィ
   - note: |
       - マエルでカウンターしてたら攻撃
-      - それ以外ならレイン・オブ・ファイア
+      - それ以外なら${rain-of-fire}
 :::
 
 店
 
-- インバーテッドアフィニティ
+- ${inverted-affinity}
 
 :::when
 入手後のジャンプ
@@ -828,7 +828,7 @@ actions:
     note: ルネ out, マエル out,
   - character: verso
     kind: weapon
-    note: デラルアム
+    note: ${delaram}
 :::
 
 旗（古い橋）
@@ -845,9 +845,9 @@ actions:
     - 攻撃力全振り (45)
 - スキル
   - ヴェルソ
-    - （マーキングショット, クイックストライク, ）パワフル, ベルセルク・スラッシュ, ディファイアント・ストライク
-    - 左下にディファイアント・ストライク
-    - 左中にベルセルク・スラッシュ
+    - （${marking-shot}, ${quick-strike}, ）${powerful}, ${berserk-slash}, ${defiant-strike}
+    - 左下に${defiant-strike}
+    - 左中に${berserk-slash}
 
 :::when
 デュアリステ前
@@ -859,10 +859,10 @@ actions:
     items:
       - kind: pictos
         note: |
-          - インバーテッドアフィニティ[3] (`<AA`)
-          - 先制攻撃 > 土壇場[1, 上書き] (`vAvAA`)
+          - ${inverted-affinity}[3] (`<AA`)
+          - ${first-strike} > ${last-stand}[1, 上書き] (`vAvAA`)
       - kind: lumina
-        note: 土壇場 （`R2 >A`） 
+        note: ${last-stand} （`R2 >A`） 
 :::
 
 :::encounter
@@ -870,11 +870,11 @@ title: デュアリステ第一形態
 note: |
   - 基本パリィ
 turns:
-  - note: ディファイアント・ストライク
+  - note: ${defiant-strike}
   - note: |
-      - 基本はベルセルク・スラッシュ 
-      - AP3 の場合はディファイアント・ストライク
-      - 残りHP次第でディファイアント・ストライクにしてもよい
+      - 基本は${berserk-slash} 
+      - AP3 の場合は${defiant-strike}
+      - 残りHP次第で${defiant-strike}にしてもよい
 :::
 
 :::encounter
@@ -885,7 +885,7 @@ turns:
       - 刻印ありでクリティカルが出たら、なにもしない
       - 刻印ありでクリティカルなし、もしくは刻印なしでクリティカルが出たら、全体攻撃をパリィカウンター
       - いずれでもなければ、単体攻撃をパリィカウンター
-  - note: （射撃で削り or ランク上げ）ベルセルク・スラッシュ
+  - note: （射撃で削り or ランク上げ）${berserk-slash}
 :::
 
 :::when
@@ -898,18 +898,18 @@ actions:
     note: シエルin, ヴェルソout-in, マエルin 
   - character: maelle
     kind: pictos
-    note: 瀬戸際[2] (`<AA`)
+    note: ${at-deaths-door}[2] (`<AA`)
   - character: sciel
     kind: pictos
-    note: コンボ攻撃I[3] (`vAA`)
+    note: ${combo-attack-1}[3] (`vAA`)
   - kind: lumina
     items:
       - character: sciel
-        note: 先制攻撃
+        note: ${first-strike}
       - character: lune
-        note: 先制攻撃  
+        note: ${first-strike}  
       - character: maelle
-        note: 先制攻撃  
+        note: ${first-strike}  
 :::
 
 ワールドマップへ
@@ -943,15 +943,15 @@ turns:
     - character: シエル
       action: ヒールティント > ヴェルソ
     - character: ヴェルソ
-      action: ベルセルク・スラッシュ
+      action: ${berserk-slash}
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: ${rain-of-fire}
   - note: 回避（ヴェルソでクリティカルなければパリィ）
   - actions:
     - character: シエル
       action: エネルギーティント > ヴェルソ（ヴェルソがAP3以上あればスキップ）
     - character: ヴェルソ
-      action: ベルセルク・スラッシュ
+      action: ${berserk-slash}
 :::
 
 :::when
@@ -971,7 +971,7 @@ count: 1
 :::encounter
 title: スタラクト
 turns:
-  - note: グラディエントアタック, ベルセルク・スラッシュ
+  - note: グラディエントアタック, ${berserk-slash}
 :::
 
 :::skip
@@ -995,13 +995,13 @@ count: 2
 actions:
   - kind: pictos
     character: verso
-    note: コンボ攻撃I[1] > 先制攻撃[上書き]（`<<AAA`）
+    note: ${combo-attack-1}[1] > ${first-strike}[上書き]（`<<AAA`）
   - kind: lumina
     items:
       - character: verso
-        note: 死のエネルギー2out, 先制攻撃in (`vAvA`)
+        note: 死のエネルギー2out, ${first-strike}in (`vAvA`)
       - character: monoco
-        note: 先制攻撃（`R3, >A`）
+        note: ${first-strike}（`R3, >A`）
 :::
 
 進む
@@ -1014,7 +1014,7 @@ actions:
 actions:
   - kind: pictos
     character: sciel
-    note: 土壇場[2] > エナジャイズスタートI（`vAvA`）
+    note: ${last-stand}[2] > ${energising-start-1}（`vAvA`）
 :::
 
 :::skip
@@ -1029,7 +1029,7 @@ count: 2
 actions:
   - kind: pictos
     character: maelle
-    note: クリティカルバーン解除[1]
+    note: ${critical-burn}解除[1]
 :::
 
 :::note
@@ -1040,15 +1040,15 @@ actions:
 title: シュヴァリエ2体
 turns:
   - note: |
-      - メダリウム Lv9 なら、ペルセ / ディファイアント・ストライク
-      - メダリウム Lv8 なら、レイン・オブ・ファイア / ディファイアント・ストライク
+      - ${medalum} Lv9 なら、${percee} / ${defiant-strike}
+      - ${medalum} Lv8 なら、${rain-of-fire} / ${defiant-strike}
 :::
 
 :::skip
 count: 1
 :::
 
-- 入手 `自動加速`
+- 入手 `${auto-rush}`
 
 :::when
 ルノアール戦ムービー前（植木3つ目の奥側に判定）
@@ -1057,9 +1057,9 @@ count: 1
 :::menu
 actions:
   - kind: pictos
-    note: 自動加速 > クリティカルバーン[1] (`AA`)
+    note: ${auto-rush} > ${critical-burn}[1] (`AA`)
   - kind: lumina
-    note: インバーテッドアフィニティ (`(L3)R3 >A`)
+    note: ${inverted-affinity} (`(L3)R3 >A`)
 :::
 
 :::encounter
@@ -1067,18 +1067,18 @@ title: ルノアール戦1
 turns:
   - actions:
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: ${rain-of-fire}
     - character: ルネ
       action: ヒールティント > ヴェルソ
     - character: ヴェルソ
-      action: ベルセルク・スラッシュ 
+      action: ${berserk-slash} 
   - actions:
     - character: マエル
-      action: オフェンス・スイッチ
+      action: ${offensive-switch}
     - character: ルネ
       action: エネルギーティント > ヴェルソ
     - character: ヴェルソ
-      action: ベルセルク・スラッシュ 
+      action: ${berserk-slash} 
 :::
 
 :::skip
@@ -1093,9 +1093,9 @@ count: 1
 キャンプ
 
 - 武器強化
-  - シエル: シャティオン Lv9
-  - ヴェルソ: デラルアム Lv9
-  - マエル: メダリアム Lv9
+  - シエル: ${chation} Lv9
+  - ヴェルソ: ${delaram} Lv9
+  - マエル: ${medalum} Lv9
 - 資源強化
   - ルミナ > シエル全振り
   - ヒールティント
@@ -1120,15 +1120,15 @@ actions:
     items:
       - kind: pictos
         note: |
-          - 先制攻撃[1] > 自動加速[上書き]（`<vvAA`）
+          - ${first-strike}[1] > ${auto-rush}[上書き]（`<vvAA`）
       - kind: lumina
-        note: 緊急強化, 土壇場, クリティカルバーン（`R3, AvvA>A`）
+        note: ${sos-power}, ${last-stand}, ${critical-burn}（`R3, AvvA>A`）
   - character: sciel
     items:  
       - kind: lumina
-        note: インバーテッドアフィニティ (`>A`)
+        note: ${inverted-affinity} (`>A`)
       - kind: pictos
-        note: 自動加速[3]（`<<AA`）
+        note: ${auto-rush}[3]（`<<AA`）
 :::
 
 リコート持っていなければリコートを買う
@@ -1150,9 +1150,9 @@ actions:
      - 攻撃力残り(-> 54)
 - スキル
   - ヴェルソ
-    - リーダーシップ, 左上
+    - ${leadership}, 左上
   - シエル
-    - 自己犠牲, 左中
+    - ${our-sacrifice}, 左中
 
 :::when
 ヴィサージュ戦前
@@ -1165,14 +1165,14 @@ turns:
     - character: ヴェルソ
       action: エネルギーティント > シエル
     - character: シエル
-      action: 自己犠牲
+      action: ${our-sacrifice}
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: ${rain-of-fire}
   - actions:
     - character: ヴェルソ
-      action: ディファイアント・ストライク
+      action: ${defiant-strike}
     - character: シエル
-      action: フォーチュン・フューリー > シエル
+      action: ${fortunes-fury} > シエル
   - note: パリィ
 :::
 
@@ -1185,9 +1185,9 @@ title: 仮面の守護者
 turns:
   - actions:
     - character: マエル
-      action: レイン・オブ・ファイア（QTE失敗）
+      action: ${rain-of-fire}（QTE失敗）
     - character: ヴェルソ
-      action: ベルセルク・スラッシュ
+      action: ${berserk-slash}
     - character: シエル
       action: エイム > グラディエントスキル > 攻撃
 :::
@@ -1217,19 +1217,19 @@ actions:
     items:
       - kind: pictos
         note: |
-          - ブレイカー[2] > 瀬戸際[上書き]（`v<<v AAA`）
+          - ${breaker}[2] > ${at-deaths-door}[上書き]（`v<<v AAA`）
       - kind: lumina
-        note: 緊急強化out, エナジャイズスタートIin, 死のエネルギーIIout, 瀬戸際in（`R3 AvA>>AvvA`）
+        note: ${sos-power}out, ${energising-start-1}in, ${dead-energy-2}out, ${at-deaths-door}in（`R3 AvA>>AvvA`）
   - character: verso
     items:
       - kind: lumina
-        note: エナジャイズスタートIin, 回避巧者in（`vA>A`）
+        note: ${energising-start-1}in, ${dodger}in（`vA>A`）
   - character: sciel
     items:
       - kind: lumina
-        note: エナジャイズスタートIin, 瀬戸際in（`vA ^^A`）  
+        note: ${energising-start-1}in, ${at-deaths-door}in（`vA ^^A`）  
       - kind: pictos
-        note: 完全無欠（`AA`）
+        note: ${immaculate}（`AA`）
 :::
 
 旗
@@ -1248,23 +1248,23 @@ title: グリッサンド
 turns:
   - actions:
     - character: ヴェルソ
-      action: リーダーシップ
+      action: ${leadership}
     - character: シエル
-      action: 自己犠牲
+      action: ${our-sacrifice}
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: ${rain-of-fire}
   - note: パリィ
   - actions:
     - character: シエル
-      action: フォーチュン・フューリー > シエル
+      action: ${fortunes-fury} > シエル
     - character: ヴェルソ
-      action: ディファイアント・ストライク
+      action: ${defiant-strike}
     - character: マエル
-      action: オフェンス・スイッチ
+      action: ${offensive-switch}
   - note: 基本パリィ, 一回目の攻撃がバレエだったら回避
   - actions:
     - character: シエル
-      action: グラデエント・スキル > ファイアリング・シャドウ（フォーテルカウンターとHP0の間2/3以降まで削れていたら、攻撃でも可）
+      action: グラデエント・スキル > ${firing-shadow}（フォーテルカウンターとHP0の間2/3以降まで削れていたら、攻撃でも可）
 :::
 
 :::when
@@ -1276,9 +1276,9 @@ actions:
   - character: maelle
     items:
       - kind: pictos
-        note: 自動加速 > ブレイカー (2, 入れ替え `<A vAY`)
+        note: ${auto-rush} > ${breaker} (2, 入れ替え `<A vAY`)
       - kind: lumina
-        note: 回避巧者 (`R3, >vA`)
+        note: ${dodger} (`R3, >vA`)
 :::
 
 :::encounter
@@ -1286,18 +1286,18 @@ title: シレーヌ
 turns:
   - actions:
     - character: ヴェルソ
-      action: パワフル
+      action: ${powerful}
     - character: シエル
-      action: フォーチュン・フューリー > シエル
+      action: ${fortunes-fury} > シエル
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: ${rain-of-fire}
   - actions:
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: ${rain-of-fire}
     - character: ヴェルソ
-      action: ヴェルセルク・スラッシュ
+      action: ヴェルセルク・ス${rush}
     - character: シエル
-      action: グラデエント・スキル > ファイアリング・シャドウ
+      action: グラデエント・スキル > ${firing-shadow}
   - note: 倒せなかったらジャンプカウンターだけやる、他は回避
 :::
 
@@ -1351,15 +1351,15 @@ actions:
       - kind: pictos
         note: |
           - スロット2,3 解除
-          - エナジャイズターン [3] (`AA`)
+          - ${energising-turn} [3] (`AA`)
       - kind: lumina
-        note: エナジャイズスタートIout, クリティカルバーンout, 自動加速in  (`<A R3 ^^AvA`)
+        note: ${energising-start-1}out, ${critical-burn}out, ${auto-rush}in  (`<A R3 ^^AvA`)
 :::
 
 :::encounter
 title: ペイントレス（モノリス）
 turns:
-  - note: ヒールティント > シエル, ハーベスト（失敗）
+  - note: ヒールティント > シエル, ${harvest}（失敗）
   - note: あとはスキップ
 :::
 
@@ -1382,7 +1382,7 @@ actions:
       - シエルout-in, ヴェルソin
 :::
 
-道中で回収 「弱点の恩恵」
+道中で回収 「${weakness-gain}」
 
 電車に乗る
 
@@ -1399,7 +1399,7 @@ count: 1
     - 素早さ全振り (30)
 - スキル
   - シエル
-    - (ファントム・ブレイド,) シールド・フェイト > 左下
+    - (${phantom-blade},) ${sealed-fate} > 左下
 
 :::note
 リコート持っていなければ回収する
@@ -1415,9 +1415,9 @@ actions:
   - character: sciel
     items:
       - kind: weapon
-        note: ティスルオン（`^A`）
+        note: ${tisseron}（`^A`）
       - kind: pictos
-        note: 弱点の恩恵 > エナジャイズスタートI [2] (`<<AA`)
+        note: ${weakness-gain} > ${energising-start-1} [2] (`<<AA`)
 :::
 
 :::encounter
@@ -1425,20 +1425,20 @@ title: ルノワール2戦目
 turns:
   - actions:
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: ${rain-of-fire}
     - character: シエル
-      action: 自己犠牲
+      action: ${our-sacrifice}
     - character: ヴェルソ
-      action: リーダーシップ
+      action: ${leadership}
     - character: シエル
-      action: フォーチュン・フューリー > シエル
+      action: ${fortunes-fury} > シエル
   - actions:
     - character: マエル
-      action: オフェンス・スイッチ
+      action: ${offensive-switch}
     - character: ヴェルソ
-      action: ディファイアント・ストライク
+      action: ${defiant-strike}
     - character: シエル
-      action: グラディエントスキル > シールド・フェイト
+      action: グラディエントスキル > ${sealed-fate}
 :::
 
 :::when
@@ -1449,7 +1449,7 @@ turns:
 actions:
   - character: sciel
     kind: lumina
-    note: 自動加速out, クリティカルバーン, 回避巧者, 土壇場（`R3 ^^>A^A^Av<A`）
+    note: ${auto-rush}out, ${critical-burn}, ${dodger}, ${last-stand}（`R3 ^^>A^A^Av<A`）
 :::
 
 :::encounter
@@ -1457,26 +1457,26 @@ title: ペイントレス第一形態
 turns:
   - actions:
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: ${rain-of-fire}
     - character: シエル
-      action: フォーカス・フォーテル
+      action: ${focused-foretell}
     - character: ヴェルソ
-      action: ディファイアント・ストライク
+      action: ${defiant-strike}
   - note: パリィ, ラストだけ回避。ヴェルソに1APも入らなかったらバックアップ（後述）へ
   - actions:
     - character: シエル
-      action: フォーチュン・フューリー
+      action: ${fortunes-fury}
     - character: マエル
-      action: オフェンス・スイッチ
+      action: ${offensive-switch}
   - note: |
       グラディエントカウンター。AP状況を確認する
       - ヴェルソ3, マエル4以上 -> シエルで倒し切り
       - 上記未満 -> シエルのQTEを失敗してカウンターで倒す
   - actions:
     - character: ヴェルソ
-      action: ベルセルク・スラッシュ
+      action: ${berserk-slash}
     - character: シエル
-      action: グラディエントスキル > シールド・フェイト
+      action: グラディエントスキル > ${sealed-fate}
   - note: パリィカウンター
 :::
 
@@ -1485,15 +1485,15 @@ title: ペイントレス第一形態（2ターン目以降バックアップ）
 turns:
   - actions:
     - character: シエル
-      action: フォーチュン・フューリー
+      action: ${fortunes-fury}
     - character: マエル
-      action: スウィフト・ストライド
+      action: ${swift-stride}
   - note: グラディエントカウンター
   - actions:
     - character: ヴェルソ
-      action: パワフル
+      action: ${powerful}
     - character: シエル
-      action: グラディエントスキル > シールド・フェイト（QTEはパーフェクト）
+      action: グラディエントスキル > ${sealed-fate}（QTEはパーフェクト）
   - note: パリィカウンター
 :::
 
@@ -1502,26 +1502,26 @@ title: ペイントレス第二形態
 turns:
   - actions:
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: ${rain-of-fire}
   - note: |
       - クロマ波をスキップ or バックアップなら、最後回避
       - クロマ波をパリィしたなら、全部パリィ
   - actions:
     - character: ヴェルソ
-      action: ディファイアント・ストライク
+      action: ${defiant-strike}
     - character: シエル
-      action: シールド・フェイト
+      action: ${sealed-fate}
   - note: 全部回避
   - actions:
     - character: マエル
-      action: レイン・オブ・ファイア
+      action: ${rain-of-fire}
     - character: シエル
-      action: グラディエントスキル > シールド・フェイト
+      action: グラディエントスキル > ${sealed-fate}
 :::
 
 :::encounter
 title: ペイントレス第三形態
-note: スキップ -> シールド・フェイト
+note: スキップ -> ${sealed-fate}
 :::
 
 :::skip
@@ -1566,7 +1566,7 @@ actions:
       - kind: pictos
         note: 全部解除
       - kind: lumina
-        note: エナジャイズスタートIout, 先制攻撃in (`L2 vA>A`)
+        note: ${energising-start-1}out, ${first-strike}in (`L2 vA>A`)
 :::
 
 :::skip
@@ -1602,13 +1602,13 @@ count: 1
     - 運全
 - スキル
   - マエル
-    - スタンダール > 左上
-    - (メッゾ・フォルテ, ) ラストチャンス > 左中
+    - ${stendhal} > 左上
+    - (${mezzo-forte}, ) ${last-chance} > 左中
   - シエル
     - リコート
-    - （ラッシュ, スペクトル・スイープ, ダーク・クレンジング）インターヴェンション > 左上
+    - （${rush}, ${spectral-sweep}, ${dark-cleansing}）${intervention} > 左上
 - 武器強化
-  - メダルウム > Lv13
+  - ${medalum} > Lv13
 
 :::when
 クリアション前までのジャンプ時
@@ -1621,8 +1621,8 @@ actions:
   - character: sciel
     kind: pictos
     note: |
-      - 自動加速[1] > 完全無欠（`A>A`）
-      - コンボ攻撃[2] > 弱点の恩恵[上書き]（`vAvvA`）
+      - ${auto-rush}[1] > ${immaculate}（`A>A`）
+      - コンボ攻撃[2] > ${weakness-gain}[上書き]（`vAvvA`）
 :::
 
 :::encounter
@@ -1630,9 +1630,9 @@ title: クリアション
 turns:
   - actions:
     - character: マエル
-      action: ラストチャンス
+      action: ${last-chance}
     - character: シエル
-      action: インターヴェンション > マエル
+      action: ${intervention} > マエル
     - character: マエル
       action: 逃げる
 :::
@@ -1647,7 +1647,7 @@ actions:
     note: ヴェルソin, マエルout-in
   - character: maelle
     kind: pictos
-    note: かりそめの力, 弱点の恩恵, 完全無欠（`<<AAvAAvAA`）
+    note: ${painted-power}, ${weakness-gain}, ${immaculate}（`<<AAvAAvAA`）
 :::
 
 :::encounter
@@ -1655,17 +1655,17 @@ title: ルノワール（最終）
 turns:
   - actions:
     - character: シエル
-      action: インターヴェンション > ヴェルソ
+      action: ${intervention} > ヴェルソ
     - character: ヴェルソ
-      action: リーダーシップ
+      action: ${leadership}
     - character: マエル
-      action: スタンダール（QTE失敗）
+      action: ${stendhal}（QTE失敗）
     - character: シエル
-      action: インターヴェンション > マエル（左）
+      action: ${intervention} > マエル（左）
     - character: マエル
       action: グラディエントスキル
   - note: ムービー
-  - note: スタンダール
+  - note: ${stendhal}
 :::
 
 :::skip
@@ -1682,5 +1682,5 @@ count: 1
 
 :::encounter
 title: ヴェルソ
-note: レイン・オブ・ファイア
+note: ${rain-of-fire}
 :::

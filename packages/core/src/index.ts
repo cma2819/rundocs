@@ -1,8 +1,9 @@
 export { remarkBlockDirective } from './remark-block-directive.js';
 export { remarkValidateBlock } from './remark-validate-block.js';
 export { remarkCollectHeadings } from './remark-collect-headings.js';
+export { remarkExpandDictionaryTerms } from './remark-expand-dictionary-terms.js';
 export { toSemanticState } from './semantic.js';
-export type { Diagnostic, BlockNode } from './mdast-types.js';
+export type { Diagnostic, BlockNode, DictionaryTermNode, DictionaryCodeTermNode } from './mdast-types.js';
 export type { BlockHandler, ParsedBlockBody } from './block-handler.js';
 export { BlockRegistry } from './block-registry.js';
 export { stateBlockHandler } from './blocks/state-block-handler.js';

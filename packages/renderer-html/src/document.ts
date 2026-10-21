@@ -172,6 +172,29 @@ pre, code, kbd, samp {
   .rd-filter { display: none; }
 }
 
+/* Language switcher: unlike every other toggle in this file, swapping
+   per-term text at display time can't be done with a checkbox-hack/:has()
+   trick, so this is the one place in this project that genuinely needs JS
+   (see wrapDocument's renderI18nUI) — kept deliberately tiny, and absent
+   entirely from the page when no book configures i18n. */
+.rd-i18n-toggle-label {
+  position: fixed;
+  top: 1rem;
+  right: 14rem;
+  z-index: 1;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  opacity: 0.6;
+}
+.rd-i18n-toggle-label:hover { opacity: 1; }
+.rd-i18n-toggle-label select { margin-left: 0.3rem; font: inherit; background: none; color: inherit; border: none; }
+@media (max-width: 60rem) {
+  .rd-i18n-toggle-label { display: none; }
+}
+
 .state-block {
   border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
   border-radius: 0.5rem;
@@ -478,13 +501,63 @@ function renderFilterUI(categories: BlockCategory[]): { html: string; css: strin
   return { html, css };
 }
 
+export interface I18nOptions {
+  /** locale -> ("${key}" placeholder key -> text) */
+  dictionaries: Record<string, Record<string, string>>;
+  defaultLocale: string;
+}
+
+// Escapes "<" so a dictionary value that happens to contain the literal
+// substring "</script>" can't prematurely close the embedded JSON <script>.
+function escapeForInlineScript(json: string): string {
+  return json.replace(/</g, '\\u003c');
+}
+
+// Renders the language switcher <select> plus the embedded dictionary JSON
+// and the vanilla-JS that rewrites `.rd-i18n-term[data-key]` elements on
+// change (see remarkExpandDictionaryTerms/dictionaryTermHandler, @rundocs/core
+// and @rundocs/renderer-html, for how those spans get their default-locale
+// text at build time). Absent entirely when no book configures `i18n`.
+function renderI18nUI(i18n: I18nOptions | undefined): { html: string; script: string } {
+  const locales = i18n ? Object.keys(i18n.dictionaries) : [];
+  if (locales.length === 0) return { html: '', script: '' };
+
+  const options = locales.map((locale) => `<option value="${escapeHtml(locale)}">${escapeHtml(locale)}</option>`).join('');
+  const html = `<label class="rd-i18n-toggle-label">Lang: <select id="rd-i18n-select">${options}</select></label>`;
+
+  const data = escapeForInlineScript(JSON.stringify(i18n!.dictionaries));
+  const script = `<script type="application/json" id="rd-i18n-data">${data}</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('rd-i18n-data').textContent);
+  var select = document.getElementById('rd-i18n-select');
+  function apply(locale) {
+    var dict = data[locale] || {};
+    document.querySelectorAll('.rd-i18n-term[data-key]').forEach(function (el) {
+      var key = el.getAttribute('data-key');
+      if (key in dict) el.textContent = dict[key];
+    });
+  }
+  var saved = localStorage.getItem('rd-i18n-locale');
+  if (saved && data[saved]) { select.value = saved; apply(saved); }
+  select.addEventListener('change', function () {
+    localStorage.setItem('rd-i18n-locale', select.value);
+    apply(select.value);
+  });
+})();
+</script>`;
+  return { html, script };
+}
+
 export function wrapDocument(
   bodyHtml: string,
   title: string,
   headings: Heading[] = [],
   blockCategories: BlockCategory[] = [],
+  i18n?: I18nOptions,
 ): string {
   const { html: filterHtml, css: filterCss } = renderFilterUI(blockCategories);
+  const { html: i18nHtml, script: i18nScript } = renderI18nUI(i18n);
   return `<!doctype html>
 <html lang="ja">
 <head>
@@ -497,12 +570,14 @@ export function wrapDocument(
 <input type="checkbox" id="rd-ref-toggle" class="rd-ref-toggle">
 <label for="rd-ref-toggle" class="rd-ref-toggle-label">Reference info</label>
 ${filterHtml}
+${i18nHtml}
 <div class="page">
 <nav class="toc">${renderToc(headings)}</nav>
 <main>
 ${bodyHtml}
 </main>
 </div>
+${i18nScript}
 </body>
 </html>
 `;

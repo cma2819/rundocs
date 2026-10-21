@@ -73,12 +73,12 @@ export function createMenuRenderer(
     );
   };
 
-  const renderActionNode = (node: MenuActionNode): any => {
+  const renderActionNode = (node: MenuActionNode, dict: Record<string, string>): any => {
     const note = typeof node.note === 'string' ? node.note : undefined;
     const items = Array.isArray(node.items) ? node.items : [];
 
     if (node.character && node.kind && items.length === 0) {
-      return renderActionNode({ character: node.character, items: [{ kind: node.kind, note: node.note }] });
+      return renderActionNode({ character: node.character, items: [{ kind: node.kind, note: node.note }] }, dict);
     }
 
     return h(
@@ -86,13 +86,13 @@ export function createMenuRenderer(
       { class: 'menu-action' },
       [
         actionHeading(node),
-        note ? h('div', { class: 'menu-action-note' }, markdownToHast(note)) : null,
-        items.length > 0 ? h('ul', { class: 'menu-action-items' }, items.map(renderActionNode)) : null,
+        note ? h('div', { class: 'menu-action-note' }, markdownToHast(note, dict)) : null,
+        items.length > 0 ? h('ul', { class: 'menu-action-items' }, items.map((item) => renderActionNode(item, dict))) : null,
       ].filter(Boolean) as any,
     );
   };
 
-  return (component) => {
+  return (component, ctx) => {
     const title = component.schema?.['x-ui']?.displayName ?? component.name;
     const actions = Array.isArray(component.value.actions) ? (component.value.actions as MenuActionNode[]) : [];
 
@@ -101,7 +101,7 @@ export function createMenuRenderer(
       { class: 'component component--menu menu-card' },
       [
         h('h3', {}, title),
-        actions.length > 0 ? h('ol', { class: 'menu-actions' }, actions.map(renderActionNode)) : null,
+        actions.length > 0 ? h('ol', { class: 'menu-actions' }, actions.map((a) => renderActionNode(a, ctx.dictionary))) : null,
       ].filter(Boolean) as any,
     );
   };

@@ -1,9 +1,10 @@
 export { genericComponentRenderer, genericBlockRenderer } from './default-renderers.js';
 export { createBlockHandler } from './block-handler.js';
+export { dictionaryTermHandler, dictionaryCodeTermHandler, expandDictionaryTermsToHast } from './dictionary-term-handler.js';
 export { createStateKindRenderer } from './kinds/state.js';
 export { noteKindRenderer } from './kinds/note.js';
 export { routeKindRenderer } from './kinds/route.js';
 export { encounterKindRenderer } from './kinds/encounter.js';
 export { whenKindRenderer } from './kinds/when.js';
-export { wrapDocument, type Heading, type BlockCategory } from './document.js';
+export { wrapDocument, type Heading, type BlockCategory, type I18nOptions } from './document.js';
 export { markdownToHast, markdownToInlineHast } from './markdown.js';

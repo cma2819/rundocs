@@ -7,7 +7,7 @@ import type { BlockRenderer, RendererRegistry } from '@rundocs/renderer-core';
  * registry a Plugin's `renderers.html` entries populate.
  */
 export function createStateKindRenderer(componentRegistry: RendererRegistry<any>): BlockRenderer<any> {
-  return (block) => {
+  return (block, ctx) => {
     const errors = block.diagnostics.filter((d) => d.severity === 'error');
     if (errors.length > 0) {
       return h('div', { class: 'state-block state-block--error' }, [
@@ -21,7 +21,7 @@ export function createStateKindRenderer(componentRegistry: RendererRegistry<any>
     }
 
     const children = block.semantic.map((component) => {
-      const rendered = componentRegistry.render(component, { format: 'html' });
+      const rendered = componentRegistry.render(component, ctx);
       // Every Component is wrapped so the "Filter blocks" UI (document.ts) can
       // target it by "data-block-category" regardless of whether it came from
       // ":::status" (block.name === component.name) or a mixed ":::state"

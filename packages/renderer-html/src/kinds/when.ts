@@ -1,11 +1,12 @@
 import { h } from 'hastscript';
 import type { BlockRenderer } from '@rundocs/renderer-core';
+import { expandDictionaryTermsToHast } from '../dictionary-term-handler.js';
 
 /** Presentation for BlockHandler.kind === "when": a "when" label next to its free-text value. */
-export const whenKindRenderer: BlockRenderer<any> = (block) => {
+export const whenKindRenderer: BlockRenderer<any> = (block, ctx) => {
   const text = typeof block.value.text === 'string' ? block.value.text : '';
   return h('div', { class: 'block block--when', 'data-block-category': 'when' }, [
     h('span', { class: 'slot-label' }, 'when'),
-    h('span', { class: 'slot-value' }, text),
+    h('span', { class: 'slot-value' }, expandDictionaryTermsToHast(text, ctx.dictionary) as never),
   ]);
 };
