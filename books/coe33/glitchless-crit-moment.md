@@ -135,7 +135,7 @@ turns:
 actions:
   - kind: formation
     note: |
-      - ギュスターブ Out, In
+      - ギュスターヴ out-in
   - kind: pictos
     items:
       - character: gustave
@@ -527,7 +527,7 @@ count: 2
 店
 
 - 洗練されたクロマカタリストx2
-- ${last-stand}
+- ${critical-moment}
 
 ワールドマップへ
 
@@ -572,7 +572,7 @@ actions:
   - character: gustave
     items: 
       - kind: pictos
-        note: ${last-stand}[1]（`v<AA`）
+        note: ${critical-moment}[1]（`v<AA`）
 :::
 
 エスキエの元へ進む
@@ -860,9 +860,9 @@ actions:
       - kind: pictos
         note: |
           - ${inverted-affinity}[3] (`<AA`)
-          - ${first-strike} > ${last-stand}[1, 上書き] (`vAvAA`)
+          - ${first-strike} > ${critical-moment}[1, 上書き] (`vAvAA`)
       - kind: lumina
-        note: ${last-stand} （`R2 >A`） 
+        note: ${critical-moment} （`R2 >A`） 
 :::
 
 :::encounter
@@ -999,7 +999,7 @@ actions:
   - kind: lumina
     items:
       - character: verso
-        note: 死のエネルギー2out, ${first-strike}in (`vAvA`)
+        note: ${dead-energy-2}(解除), ${first-strike} (`vAvA`)
       - character: monoco
         note: ${first-strike}（`R3, >A`）
 :::
@@ -1014,7 +1014,7 @@ actions:
 actions:
   - kind: pictos
     character: sciel
-    note: ${last-stand}[2] > ${energising-start-1}（`vAvA`）
+    note: ${critical-moment}[2] > ${energising-start-1}（`vAvA`）
 :::
 
 :::skip
@@ -1122,7 +1122,7 @@ actions:
         note: |
           - ${first-strike}[1] > ${auto-rush}[上書き]（`<vvAA`）
       - kind: lumina
-        note: ${sos-power}, ${last-stand}, ${critical-burn}（`R3, AvvA>A`）
+        note: ${sos-power}, ${critical-moment}, ${critical-burn}（`R3, AvvA>A`）
   - character: sciel
     items:  
       - kind: lumina
@@ -1219,15 +1219,15 @@ actions:
         note: |
           - ${breaker}[2] > ${at-deaths-door}[上書き]（`v<<v AAA`）
       - kind: lumina
-        note: ${sos-power}out, ${energising-start-1}in, ${dead-energy-2}out, ${at-deaths-door}in（`R3 AvA>>AvvA`）
+        note: ${sos-power}(解除), ${energising-start-1}, ${dead-energy-2}(解除), ${at-deaths-door}（`R3 AvA>>AvvA`）
   - character: verso
     items:
       - kind: lumina
-        note: ${energising-start-1}in, ${dodger}in（`vA>A`）
+        note: ${energising-start-1}, ${dodger}（`vA>A`）
   - character: sciel
     items:
       - kind: lumina
-        note: ${energising-start-1}in, ${at-deaths-door}in（`vA ^^A`）  
+        note: ${energising-start-1}, ${at-deaths-door}（`vA ^^A`）  
       - kind: pictos
         note: ${immaculate}（`AA`）
 :::
@@ -1295,9 +1295,9 @@ turns:
     - character: マエル
       action: ${rain-of-fire}
     - character: ヴェルソ
-      action: ヴェルセルク・ス${rush}
+      action: ${berserk-slash}
     - character: シエル
-      action: グラデエント・スキル > ${firing-shadow}
+      action: グラディエントスキル > ${firing-shadow}
   - note: 倒せなかったらジャンプカウンターだけやる、他は回避
 :::
 
@@ -1353,7 +1353,7 @@ actions:
           - スロット2,3 解除
           - ${energising-turn} [3] (`AA`)
       - kind: lumina
-        note: ${energising-start-1}out, ${critical-burn}out, ${auto-rush}in  (`<A R3 ^^AvA`)
+        note: ${energising-start-1}(解除), ${critical-burn}(解除), ${auto-rush}  (`<A R3 ^^AvA`)
 :::
 
 :::encounter
@@ -1449,7 +1449,7 @@ turns:
 actions:
   - character: sciel
     kind: lumina
-    note: ${auto-rush}out, ${critical-burn}, ${dodger}, ${last-stand}（`R3 ^^>A^A^Av<A`）
+    note: ${auto-rush}out, ${critical-burn}, ${dodger}, ${critical-moment}（`R3 ^^>A^A^Av<A`）
 :::
 
 :::encounter
@@ -1566,7 +1566,7 @@ actions:
       - kind: pictos
         note: 全部解除
       - kind: lumina
-        note: ${energising-start-1}out, ${first-strike}in (`L2 vA>A`)
+        note: ${energising-start-1}(解除), ${first-strike} (`L2 vA>A`)
 :::
 
 :::skip
@@ -1622,7 +1622,7 @@ actions:
     kind: pictos
     note: |
       - ${auto-rush}[1] > ${immaculate}（`A>A`）
-      - コンボ攻撃[2] > ${weakness-gain}[上書き]（`vAvvA`）
+      - ${combo-attack-1}[2] > ${weakness-gain}[上書き]（`vAvvA`）
 :::
 
 :::encounter

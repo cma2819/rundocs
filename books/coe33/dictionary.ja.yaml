@@ -12,7 +12,7 @@ tisseron: ティスルオン
 critical-burn: クリティカル・バーン
 dead-energy-2: 死のエネルギーII
 dodger: 回避巧者
-last-stand: 土壇場
+critical-moment: 土壇場
 auto-rush: 自動加速
 first-strike: 先制攻撃
 inverted-affinity: インバーテッドアフィニティ
@@ -26,7 +26,7 @@ weakness-gain: 弱点の恩恵
 painted-power: かりそめの力
 sos-power: 緊急強化
 
-# スキル (公式スキルリストに確認済み)
+# スキル
 lumiere-assault: ルミエール・アサルト
 overcharge: オーバーチャージ
 powerful: パワフル
