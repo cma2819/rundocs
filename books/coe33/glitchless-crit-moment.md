@@ -1056,7 +1056,7 @@ count: 1
 :::menu
 actions:
   - kind: pictos
-    note: ${auto-rush} > ${critical-burn}[1] (`AA`)
+    note: ${auto-rush}[1] (`AA`)
   - kind: lumina
     note: ${inverted-affinity} (`(L3)R3 >A`)
 :::
