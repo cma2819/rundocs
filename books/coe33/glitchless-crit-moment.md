@@ -1504,7 +1504,7 @@ turns:
       action: ${rain-of-fire}
   - note: |
       - クロマ波をスキップ or バックアップなら、最後回避
-      - クロマ波をパリィしたなら、全部パリィ
+      - それ以外なら、全部パリィ
   - actions:
     - character: ヴェルソ
       action: ${defiant-strike}
