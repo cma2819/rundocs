@@ -71,7 +71,7 @@ turns:
   - actions:
     - character: ギュスターヴ
       action: エイム（弱点含む2発） -> スキップ
-      note: 弱点逃したら3発 > 攻撃
+      note: 弱点逃したら2発 > 攻撃
     - character: ランセリエ
       action: 攻撃 （パリィ）
 :::
